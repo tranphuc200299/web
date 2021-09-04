@@ -1,0 +1,8 @@
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <input data-toggle="time-picker" class="form-control has-feedback-left col-md-7 col-xs-12" type="text" id="$FIELD_NAME$" name="$FIELD_NAME$" $ATTR_REQUIRED$ $ATTR_EDITABLE$ value="$VALUE$">
+                                        <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                    </div>
+                                </div>

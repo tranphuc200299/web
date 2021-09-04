@@ -1,0 +1,5 @@
+
+    public function users()
+    {
+        return $this->hasMany('Modules\Auth\Entities\Models\User', '$RELATION_ID$');
+    }

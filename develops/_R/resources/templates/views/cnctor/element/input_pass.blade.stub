@@ -1,0 +1,5 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <input class="form-control" type="password" id="$FIELD_NAME$" name="$FIELD_NAME$" $ATTR_REQUIRED$ $ATTR_EDITABLE$ value="">
+                                </div>

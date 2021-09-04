@@ -1,0 +1,57 @@
+@import "plugin";
+
+.dataTables_paginate {
+    margin: 0;
+    white-space: nowrap;
+    text-align: right;
+    float: right;
+
+    ul.pagination {
+        margin: 2px 0;
+        white-space: nowrap;
+    }
+}
+
+.help-block-error {
+    color: #CE5454;
+    margin-top: 5px;
+    margin-bottom: 0;
+}
+
+.d-inline {
+    display: inline !important;
+}
+
+.d-block {
+    display: block !important;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.panel_toolbox {
+    min-width: auto;
+}
+
+.rules-group-container {
+    .btn {
+        margin-bottom: auto;
+    }
+}
+
+[data-toggle="select2-single"] + .select2 {
+    width: 100% !important;
+}
+
+[data-toggle="select2-group"] + .select2 {
+    width: 100% !important;
+}
+
+[data-toggle="select2-multi"] + .select2 {
+    width: 100% !important;
+}
+
+[data-toggle="select2-ajax"] + .select2 {
+    width: 100% !important;
+}

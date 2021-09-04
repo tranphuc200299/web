@@ -1,0 +1,28 @@
+<div role="tabpanel" class="tab-pane fade $ACTIVE$ in" id="tab_$RELATION_TAB$" aria-labelledby="home-tab">
+    <div class="x_content">
+        <div class="table-responsive">
+            <table class="table table-striped jambo_table bulk_action">
+                <thead>
+                <tr class="headings">
+                    <th>ID</th>
+                    <th>$DISPLAY_NAME$</th>
+                    <th>Action</th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach($model->$RELATION_MODEL_NAME$ as $item)
+                    <tr>
+                        <td>{{ $item->id }}</td>
+                        <td>{{ $item->$DISPLAY_FIELD$ }}</td>
+                        <td>
+                            @can('read', \Modules\$MODULE$\Entities\Models\$RELATION_MODEL$Model::class)
+                                <a class="btn btn-info btn-xs" href="{{ route('cp.$RELATION_ROUTE$.show', [$item->id]) }}">View</a>
+                            @endcan
+                        </td>
+                    </tr>
+                @endforeach
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

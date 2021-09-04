@@ -1,0 +1,2 @@
+                                            <input type="checkbox" id="$FIELD_NAME$_$KEY$" name="$FIELD_NAME$[]" $ATTR_REQUIRED$$ATTR_EDITABLE$value="$KEY$">
+                                            <label for="$FIELD_NAME$_$KEY$">$LABEL$</label>

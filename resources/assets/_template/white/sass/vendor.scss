@@ -1,0 +1,36 @@
+@import "admin/../common/mixins";
+@import "~pace-js/templates/pace-theme-flash.tmpl.css";
+$fa-font-path: '../../../fonts';
+$font-path: '../../../fonts';
+@import "~font-awesome/scss/font-awesome";
+@import "~bootstrap/scss/bootstrap";
+@import "~jquery.scrollbar/sass/jquery.scrollbar";
+@import "~select2/src/scss/core";
+@import "~switchery/switchery.css";
+@import "admin/plugins/jquery.nestable.css";
+@import "~bootstrap-datepicker/dist/css/bootstrap-datepicker3.min.css";
+@import '~sweetalert2/src/sweetalert2.scss';
+@import "~jquery-ui/themes/base/draggable.css";
+@import "~jquery-ui/themes/base/resizable.css";
+@import "admin/plugins/jquery.schedule";
+@import "~nvd3/build/nv.d3.min.css";
+//@import "~tagmanager/tagmanager.css";
+@import "~summernote/src/styles/summernote-bs4";
+@import "~jquery-ui/themes/base/datepicker.css";
+@import "~jquery-ui/themes/base/all.css";
+@import "~slick-carousel/slick/slick.scss";
+@import "~slick-carousel/slick/slick-theme.scss";
+@import "~bootstrap-colorpicker/src/sass/colorpicker";
+@import "~bootstrap-daterangepicker/daterangepicker.css";
+
+@import "admin/variables";
+//@import "template/pages";
+@import "admin/themes/light.css";
+@import "admin/template/pages-icon/pages-icons.css";
+@import "admin/theme_colors";
+@import "admin/custom/style";
+@import "admin/../common/mixins";
+$fa-font-path: '../../../fonts';
+$font-path: '../../../fonts';
+
+

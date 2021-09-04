@@ -17,6 +17,8 @@ return [
         resource_path('views'),
     ],
 
+    'template' => env('VIEW_TEMPLATE', 'base'),
+
     /*
     |--------------------------------------------------------------------------
     | Compiled View Path

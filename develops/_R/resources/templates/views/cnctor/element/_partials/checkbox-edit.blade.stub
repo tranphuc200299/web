@@ -1,0 +1,4 @@
+                                            <input type="checkbox" id="$FIELD_NAME$_$KEY$" name="$FIELD_NAME$[]" $ATTR_REQUIRED$$ATTR_EDITABLE$value="$KEY$"
+                                                   @if(is_array($model->checkbox) && in_array($KEY$, $model->$FIELD_NAME$)) checked @endif>
+                                            <label for="$FIELD_NAME$_$KEY$">$LABEL$</label>
+

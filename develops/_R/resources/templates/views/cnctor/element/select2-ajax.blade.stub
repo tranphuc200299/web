@@ -1,0 +1,9 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <div>
+                                        <select data-toggle="select2-ajax" id="$FIELD_NAME$" name="$FIELD_NAME$" class="form-control" data-field="$FIELD_DISPLAY$" data-url="{{ route('cp.$RELATION_ROUTES$.ajax') }}" $ATTR_REQUIRED$ $ATTR_EDITABLE$>
+                                            <option value="{{ $model->$FIELD_NAME$ }}">{{ $model->$RELATION_NAME$->$FIELD_DISPLAY$ ?? '' }}</option>
+                                        </select>
+                                    </div>
+                                </div>

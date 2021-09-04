@@ -1,0 +1,24 @@
+
+@mixin full-width (){
+    /*margin-left: calc(-100vw / 2 + 500px / 2);
+       margin-right: calc(-100vw / 2 + 500px / 2);*/
+    width: 100vw;
+    position: relative;
+    left: 50%;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
+}
+
+@mixin font-icon-base($font-name) {
+    font-family: $font-name !important;
+    font-style: normal !important;
+    font-variant: normal !important;
+    text-transform: none !important;
+    speak: none;
+    line-height: 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    display: inline-block;
+    text-rendering: auto;
+}

@@ -1,0 +1,39 @@
+body {
+    font-family: $base-font-family;
+
+    .page-container .page-content-wrapper .content {
+        min-height: 100vh;
+    }
+
+    .header {
+        .brand {
+            width: auto;
+            margin-left: 20px;
+        }
+    }
+}
+
+
+.ui-front {
+    z-index: 1052;
+}
+
+.badge-custom {
+    width: 100px;
+    padding: 11px;
+    border-radius: 0;
+}
+
+.disable-day {
+    pointer-events: none;
+    cursor: not-allowed !important;
+    background-color: #C9C9C9 !important;
+}
+.disabled-td {
+    pointer-events: none;
+    cursor: not-allowed !important;
+    background-color: #C9C9C9 !important;
+}
+.pointer-event-td {
+    cursor: pointer;
+}

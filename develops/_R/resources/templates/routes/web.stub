@@ -1,0 +1,35 @@
+<?php
+
+use Illuminate\Support\Facades\Route;
+use Modules\$MODULE$\Entities\Models\$MODEL$Model;
+
+Route::group(['middleware' => [$AUTH$]], function () {
+    /*List*/
+    Route::get('/cp/$ROUTES$', 'Web\$MODEL$Controller@index')
+        ->name('cp.$ROUTES$.index')->middleware('can:read,'.$MODEL$Model::class);
+
+    /*Create*/
+    Route::get('/cp/$ROUTES$/create', 'Web\$MODEL$Controller@create')
+        ->name('cp.$ROUTES$.create')->middleware('can:create,'.$MODEL$Model::class);
+
+    Route::post('/cp/$ROUTES$', 'Web\$MODEL$Controller@store')
+        ->name('cp.$ROUTES$.store')->middleware('can:create,'.$MODEL$Model::class);
+
+    /*Detail*/
+    Route::get('/cp/$ROUTES$/{id}', 'Web\$MODEL$Controller@show')
+        ->name('cp.$ROUTES$.show')->middleware('can:read,'.$MODEL$Model::class);;
+
+    /*Edit*/
+    Route::get('/cp/$ROUTES$/{id}/edit', 'Web\$MODEL$Controller@edit')
+        ->name('cp.$ROUTES$.edit')->middleware('can:update,'.$MODEL$Model::class);
+
+    Route::match(['POST', 'PUT', 'PATCH'], '/cp/$ROUTES$/{id}', 'Web\$MODEL$Controller@update')
+        ->name('cp.$ROUTES$.update')->middleware('can:update,'.$MODEL$Model::class);
+
+    /*Delete*/
+    Route::delete('/cp/$ROUTES$/{id}', 'Web\$MODEL$Controller@destroy')
+        ->name('cp.$ROUTES$.destroy')->middleware('can:delete,'.$MODEL$Model::class);
+
+    Route::get('/cp/$ROUTES$/ajax/search', 'Web\$MODEL$Controller@ajaxSearch')
+           ->name('cp.$ROUTES$.ajax')->middleware('can:read,'.$MODEL$Model::class);
+});

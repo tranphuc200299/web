@@ -1,0 +1,97 @@
+<?php
+
+namespace Modules\$MODULE$\Http\Controllers\Web;
+
+use Core\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+use Modules\$MODULE$\Services\$MODEL$Service;
+use Illuminate\Support\Str;
+
+class $MODEL$Controller extends Controller
+{
+    private $$SERVICE_VAR$;
+
+    public function __construct($MODEL$Service $$SERVICE_VAR$)
+    {
+        $this->$SERVICE_VAR$ = $$SERVICE_VAR$;
+    }
+
+    public function index()
+    {
+        $assign['list'] = $this->$SERVICE_VAR$->paginate(['with_load' => [$RELATION_SINGLE$]]$PAGE$);
+
+        return view('$MODULE_LOWER$::$MODEL_LOWER$.index', $assign);
+    }
+
+    public function ajaxSearch()
+    {
+        $queryString = request()->get('q');
+        $assign['list'] = $this->$SERVICE_VAR$->ajaxSearch([], 30);
+
+        return json_encode($assign['list']);
+    }
+
+    public function create()
+    {
+        return view('$MODULE_LOWER$::$MODEL_LOWER$.create');
+    }
+
+    public function store(Request $request)
+    {
+        $input = $request->all();
+
+        $module = $this->$SERVICE_VAR$->create($input);
+
+        return redirect(route('cp.$MODEL_LOWER_PLURAL$.index'))->with('success', 'Saved successfully.');
+    }
+
+    public function show($id)
+    {
+        $assign['model'] = $this->$SERVICE_VAR$->find($id);
+        $assign['id'] = $id;
+
+        if (empty($assign['model'])) {
+            return redirect(route("cp.$MODEL_LOWER_PLURAL$.index"))->with('error', 'Item not found.');
+        }
+
+        return view('$MODULE_LOWER$::$MODEL_LOWER$.show', $assign);
+    }
+
+    public function edit($id)
+    {
+        $assign['model'] = $this->$SERVICE_VAR$->find($id);
+        $assign['id'] = $id;
+
+        if (empty($assign['model'])) {
+            return redirect(route("cp.$MODEL_LOWER_PLURAL$.index"))->with('error', 'Item not found.');
+        }
+
+        return view('$MODULE_LOWER$::$MODEL_LOWER$.edit', $assign);
+    }
+
+    public function update($id, Request $request)
+    {
+        $assign['model'] = $this->$SERVICE_VAR$->find($id);
+
+        if (empty($assign['model'])) {
+            return redirect(route("cp.$MODEL_LOWER_PLURAL$.index"))->with('error', 'Item not found.');
+        }
+
+        $model = $this->$SERVICE_VAR$->update($id, $request->all());
+
+        return redirect()->back()->with('success', 'Updated successfully.');
+    }
+
+    public function destroy($id)
+    {
+        $model = $this->$SERVICE_VAR$->find($id);
+
+        if (empty($model)) {
+            return redirect(route("cp.$MODEL_LOWER_PLURAL$.index"))->with('error', 'Item not found.');
+        }
+
+        $this->$SERVICE_VAR$->delete($id);
+
+        return redirect()->route("cp.$MODEL_LOWER_PLURAL$.index")->with('success', 'Deleted successfully.');
+    }
+}

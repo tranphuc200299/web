@@ -1,0 +1,24 @@
+<?php
+
+namespace Modules\$MODULE$\Entities\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class $MODEL$Model extends Model
+{
+    protected $guarded = [];
+
+    protected $table = '$TABLE$';
+
+    protected $fillable = [$FILLABLE$];
+
+    /**
+     * The attributes that should be casted to native types.
+     *
+     * @var array
+     */
+    protected $casts = [
+        $CAST$
+    ];
+$RELATIONS$
+}

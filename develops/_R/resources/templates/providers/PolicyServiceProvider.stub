@@ -1,0 +1,38 @@
+<?php
+
+namespace Modules\$MODULE$\Providers\$MODEL$;
+
+use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
+use Modules\Auth\Entities\Models\User;
+use Modules\$MODULE$\Entities\Models\$MODEL$Model;
+use Modules\$MODULE$\Policies\$MODEL$Policy;
+
+class PolicyServiceProvider extends ServiceProvider
+{
+    /**
+     * The policy mappings for the application.
+     *
+     * @var array
+     */
+    protected $policies = [
+        $MODEL$Model::class => $MODEL$Policy::class
+    ];
+
+    /**
+     * Register any authentication / authorization services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        $this->registerPolicies();
+
+        Gate::before(function (User $user) {
+            if ($user->roles->pluck('name')->contains('super-admin')) {
+                //admin always pass;
+                return true;
+            }
+        });
+    }
+}

@@ -1,0 +1,57 @@
+stages:
+  - quality
+  - deploy
+.tags-default: &tags-default
+  tags:
+    - devops
+
+.only-default: &only-default
+  only:
+    - dev
+
+.init_ssh: &init_ssh |
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY" | tr -d '\r' | ssh-add - > /dev/null
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+.init_ssh_prod: &init_ssh_prod |
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY_PROD" | tr -d '\r' | ssh-add - > /dev/null
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
+PSR2 Coding Standard:
+  image: devopsntqsolution/phpcs:7.2.19-3.4.2
+  stage: quality
+  <<: *tags-default
+  script:
+    - git fetch origin
+    - phpcs-gitlab ./
+
+dev:
+  image: nguyentruongson93/php:7.4
+  stage: deploy
+  <<: *tags-default
+  script:
+    - *init_ssh
+    - /composer/vendor/bin/envoy run deploy --server=dev --npm=prod
+  only:
+    - dev
+honban:
+  image: nguyentruongson93/php:7.4
+  stage: deploy
+  <<: *tags-default
+  script:
+    - *init_ssh_prod
+    - /composer/vendor/bin/envoy run deploy --server=prod --npm=prod
+  cache:
+    paths:
+      - /composer/vendor
+  artifacts:
+    paths:
+      - /composer/vendor
+  only:
+    - master

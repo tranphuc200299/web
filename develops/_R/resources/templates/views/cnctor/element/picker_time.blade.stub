@@ -1,0 +1,10 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <div class="input-group date">
+                                        <input type="text" class="form-control" data-toggle="time-picker" id="$FIELD_NAME$" name="$FIELD_NAME$" $ATTR_REQUIRED$ $ATTR_EDITABLE$ value="$VALUE$">
+                                        <div class="input-group-append ">
+                                            <span class="input-group-text"><i class="fa fa-calendar"></i></span>
+                                        </div>
+                                    </div>
+                                </div>

@@ -1,0 +1,17 @@
+.email_list {
+    .remove-mark {
+        position: absolute;
+        right: -5px;
+        top: -5px;
+        cursor: pointer;
+    }
+
+    @media (min-width: 320px) and (max-width: 480px) {
+        .remove-mark {
+            position: absolute;
+            right: 10px;
+            top: -5px;
+        }
+    }
+}
+

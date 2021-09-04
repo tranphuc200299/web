@@ -1,0 +1,195 @@
+table {
+    &.table-calendar {
+        thead {
+            tr {
+                background: #F3F3F3 0 0 no-repeat padding-box;
+
+                th {
+                    color: #0092BE;
+                    font-weight: bold;
+                    border-right: 1px solid #B5B4B4;
+                    border-left: 1px solid #B5B4B4;
+                    border-bottom: 0;
+                    text-align: center;
+
+                    &:last-child {
+                        border-right: 1px solid #B5B4B4;
+                    }
+                }
+
+            }
+
+            .weekend {
+                background: #707070;
+                color: #FFFFFF;
+            }
+        }
+
+        tbody {
+            border: solid 1px #B5B4B4 !important;
+
+            tr {
+                td {
+                    min-height: 40px;
+                    border-right: 1px solid #B5B4B4;
+                    border-left: 1px solid #B5B4B4;
+                    border-bottom: 0;
+                    background: none;
+
+                    &:hover {
+                        background-color: #ccfaf1;
+                    }
+
+                    &:last-child {
+                        border-right: 1px solid #B5B4B4;
+                    }
+
+                    &.first-time {
+                        background-color: #FFEDA7;
+                        color: $main_text_color;
+                    }
+
+                    &.second-time {
+                        background-color: #FFC5CD;
+                        color: $main_text_color;
+                    }
+
+                    &.both-time {
+                        background-color: #2CCEF4;
+                        color: white;
+                    }
+                }
+
+                &.day_of_month {
+                    td {
+                        font-size: 12px;
+                        padding: 8px 7px;
+                        font-weight: bold;
+                        cursor: pointer;
+                    }
+                }
+            }
+        }
+
+        &.first-time {
+            tbody {
+                tr {
+                    td {
+                        &:hover {
+                            background-color: #FFEDA7;
+                            color: $main_text_color;
+                            animation-name: periodOpacity;
+                            animation-duration: 1s;
+                            animation-iteration-count: infinite;
+                            animation-timing-function: linear;
+                            animation-delay: 0s;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.second-time {
+            tbody {
+                tr {
+                    td {
+                        &:hover {
+                            background-color: #FFC5CD;
+                            color: $main_text_color;
+                            animation-name: periodOpacity;
+                            animation-duration: 1s;
+                            animation-iteration-count: infinite;
+                            animation-timing-function: linear;
+                            animation-delay: 0s;
+                        }
+                    }
+                }
+            }
+        }
+
+        &.both-time {
+            tbody {
+                tr {
+                    td {
+                        &:hover {
+                            background-color: #2CCEF4;
+                            color: white;
+                            animation-name: periodOpacity;
+                            animation-duration: 1s;
+                            animation-iteration-count: infinite;
+                            animation-timing-function: linear;
+                            animation-delay: 0s;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+.booking_type_selector {
+    width: 100px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 30px;
+    font-weight: bold;
+    cursor: pointer;
+    opacity: 0.5;
+
+    &.booking_type_selected {
+        opacity: 1;
+    }
+
+    &.first-time {
+        background-color: #FFEDA7 !important;
+        color: $main_text_color !important;
+    }
+
+    &.second-time {
+        background-color: #FFC5CD !important;
+        color: $main_text_color !important;
+    }
+
+    &.both-time {
+        background-color: #2CCEF4 !important;
+        color: white !important;
+    }
+}
+
+@keyframes periodOpacity {
+    0% {
+        opacity: 0.5;
+    }
+    50% {
+        opacity: 1.0;
+    }
+    100% {
+        opacity: 0.5;
+    }
+}
+
+.input_checkbox {
+    width: 20%;
+    display: inline-block;
+}
+.input_total {
+    width: 60%;
+    display: inline-block;
+}
+.input_total > label {
+    width: 15%;
+    display: inline-block;
+}
+.input_total > input {
+    width: 60%;
+    display: inline-block;
+}
+
+@media (min-width: 320px) and (max-width: 480px) {
+    .setting-zone {
+        .input_checkbox {
+            width: 38%;
+        }
+    }
+}

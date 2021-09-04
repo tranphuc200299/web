@@ -1,0 +1,121 @@
+{
+    "moduleName": "Company",
+    "modelName": "Company",
+    "tableName": "companies",
+    "listView": "Table",
+    "childView": "None",
+    "icon": "building",
+    "group": "Business",
+    "fakerLanguage": "en_US",
+    "options": {
+        "softDelete": true,
+        "prefix": "ms",
+        "paginate": "10"
+    },
+    "addOns": {
+        "auth": true
+    },
+    "fields": [
+        {
+            "name": "id",
+            "dbType": "increments",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "number",
+            "valueList": "",
+            "validations": "",
+            "nullable": false,
+            "unique": false,
+            "searchable": false,
+            "primary": true,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "name",
+            "dbType": "string",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "text",
+            "valueList": "",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "address",
+            "dbType": "string",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "text",
+            "valueList": "",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "email",
+            "dbType": "string",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "email",
+            "valueList": "",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "created_at",
+            "dbType": "timestamp",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "date",
+            "valueList": "",
+            "validations": "",
+            "nullable": false,
+            "unique": false,
+            "searchable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "updated_at",
+            "dbType": "timestamp",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "date",
+            "valueList": "",
+            "validations": "",
+            "nullable": false,
+            "unique": false,
+            "searchable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        }
+    ],
+    "relations": [
+        {
+            "relationType": "mt1_has_many",
+            "foreignModel": "Post",
+            "foreignTable": "",
+            "foreignKey": "company_id",
+            "localKey": "id",
+            "displayName": "Post Title",
+            "displayField": "title"
+        }
+    ]
+}

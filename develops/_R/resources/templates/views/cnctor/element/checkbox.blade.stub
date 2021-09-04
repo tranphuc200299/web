@@ -1,0 +1,9 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <div>
+                                        <div id="$FIELD_NAME$" class="checkbox check-success">
+                                            $CHECK_BOX_LIST$
+                                        </div>
+                                    </div>
+                                </div>

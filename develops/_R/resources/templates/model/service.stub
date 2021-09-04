@@ -1,0 +1,14 @@
+<?php
+
+namespace Modules\$MODULE$\Services;
+
+use Core\Services\BaseService;
+use Modules\$MODULE$\Repositories\$MODEL$Repository;
+
+class $MODEL$Service extends BaseService
+{
+    public function __construct($MODEL$Repository $repository)
+    {
+        $this->mainRepository = $repository;
+    }
+}

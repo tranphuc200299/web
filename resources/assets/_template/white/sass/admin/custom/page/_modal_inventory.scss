@@ -1,0 +1,499 @@
+.modal_inventory {
+    height: 85vh;
+    margin-top: 5%;
+    margin-left: 13%;
+}
+
+.popup_head {
+    color: #0092BE;
+    background-color: #F3F3F3;
+    padding-left: 10%;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.block_vaccine {
+    height: auto;
+}
+
+.block_booking {
+    height: auto;
+}
+
+.block_vaccine > .title {
+    width: 100%;
+    display: block;
+    height: 30px;
+}
+
+.block_vaccine > .title > .vaccine {
+    color: #FFFFFF;
+    width: 25%;
+    text-align: center;
+    background-color: #07B53B;
+    float: left;
+    opacity: 0.55;
+    height: inherit;
+    padding: 5px;
+}
+
+.block_vaccine > .title > .number {
+    color: #2B303B;
+    width: 25%;
+    background-color: #F3F3F3;
+    text-align: center;
+    float: left;
+    height: inherit;
+    padding: 5px;
+}
+
+.block_vaccine > .body > .detail {
+    width: 100%;
+    height: 50px;
+    display: block;
+}
+
+.detail > .vaccine {
+    width: 25%;
+    height: inherit;
+    float: left;
+    background-color: rgba(7, 181, 59, 0.05);
+    display: block;
+    padding: 15px;
+}
+
+.detail > .vaccine > .text {
+    color: #07B53B;
+    font-weight: bold;
+}
+
+.detail > .input_number {
+    width: 25%;
+    height: inherit;
+    float: left;
+    display: block;
+}
+
+.detail > .input_number > input {
+    width: 80%;
+    max-width: 100px;
+    height: 75%;
+    margin: 8px auto;
+    //border: 1px solid #737373;
+    //border-radius: 8px;
+    text-align: center;
+    //color: #2B303B;
+    font-weight: bold;
+
+    &[disabled]{
+        background: #E0E0E0;
+    }
+}
+
+.inventory-booked{
+    position: relative;
+}
+
+.inventory-booked:before{
+    display: block;
+    position: absolute;
+    content: "/";
+    right: -4px;
+    top: 17px;
+}
+
+.inventory-total {
+    position: relative;
+
+    .help-block-error {
+        position: absolute;
+        top: 100%;
+        font-size: 11px;
+    }
+}
+
+.inventory-total:before{
+    display: block;
+    position: absolute;
+    content: ":";
+    right: -4px;
+    top: 17px;
+}
+
+.inventory-remaining {
+    input[disabled].full-slot {
+        color: #FF1822 !important;
+    }
+
+    input[disabled].available {
+        color: #07B53B !important;
+    }
+}
+
+.block_booking > .title {
+    width: 100%;
+    display: block;
+    height: 30px;
+    overflow-y: scroll;
+}
+
+/* width */
+.block_booking > .title::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.block_booking > .title::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #FFFFFF;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+.block_booking > .title::-webkit-scrollbar-thumb {
+    background: #FFFFFF;
+    border-radius: 10px;
+}
+
+.block_booking > .body {
+    width: 100%;
+    height: 30vh;
+    overflow-y: scroll;
+}
+
+.block_booking > .log-body {
+    border: 1px solid #ccc;
+}
+
+/* width */
+.block_booking > .body::-webkit-scrollbar {
+    width: 4px;
+}
+
+/* Track */
+.block_booking > .body::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px #CCCCCC;
+    border-radius: 10px;
+}
+ 
+/* Handle */
+.block_booking > .body::-webkit-scrollbar-thumb {
+    background: #a2a0a0;
+    border-radius: 10px;
+}
+
+/* Handle on hover */
+.block_booking > .body::-webkit-scrollbar-thumb:hover {
+    background: #a2a0a0;
+}
+
+.block_booking > .title > .time {
+    color: #FFFFFF;
+    background-color: #8DD2E2;
+    text-align: center;
+    float: left;
+    width: 25%;
+    height: inherit;
+    padding: 5px;
+}
+
+.block_booking > .title > .count_booking {
+    color: #2B303B;
+    background-color: #FFEDA7;
+    text-align: center;
+    float: left;
+    width: 20%;
+    height: inherit;
+    padding: 5px;
+
+    &.web{
+        background-color: #FFEDA7;
+    }
+
+    &.cc{
+        background-color: #FFDD68;
+    }
+
+    &.total{
+        background-color: #ECC72F;
+    }
+}
+
+.block_booking > .title > .stop_booking {
+    color: #FFFFFF;
+    background-color: #707070;
+    text-align: center;
+    float: left;
+    width: 15%;
+    height: inherit;
+    padding: 5px;
+}
+
+.block_booking > .body > .detail {
+    width: 100%;
+    height: 60px;
+    display: block;
+}
+
+.detail > .detail_time {
+    width: 25%;
+    height: inherit;
+    padding: 20px;
+    background-color: rgba(141, 210, 226, 0.05);
+    display: block;
+    float: left;
+}
+
+.detail > .detail_time > span {
+    color: #2B303B;
+    font-weight: bold;
+}
+
+.detail > .detail_count {
+    width: 20%;
+    height: inherit;
+    padding: 8px;
+    display: block;
+    float: left;
+    position: relative;
+
+    .help-block-error{
+        font-size: 10px;
+        position: absolute;
+        top: 100%;
+    }
+
+    &.web{
+        background-color: rgba(255, 237, 167, 0.2);
+    }
+
+    &.cc{
+        background-color: rgba(255, 221, 104, 0.2);
+    }
+
+    &.total{
+        background-color: rgba(236, 199, 47, 0.2);
+    }
+
+    .slot-booked{
+        float: left;
+        margin-top: 15px;
+        width: 30%;
+        text-align: right;
+        padding-right: 6px;
+    }
+}
+
+.detail > .detail_count > span {
+    float: left;
+    margin-top: 25px;
+}
+
+.alert_booking {
+    float: left;
+    margin: 0px !important;
+}
+
+.detail_count {
+    &.de-active{
+        opacity: 0.4;
+    }
+}
+.detail > .detail_count > input {
+    width: 70%;
+    height: 75%;
+    margin: 7px 0;
+    //border: 1px solid #737373;
+    //border-radius: 8px;
+    text-align: center;
+    color: #2B303B;
+    font-weight: bold;
+    float: right;
+
+    &[disabled]{
+        background: #E0E0E0;
+    }
+}
+
+.detail > .detail_stop {
+    width: 15%;
+    height: inherit;
+    background-color: #F3F3F3;
+    display: block;
+    float: left;
+    position: relative;
+}
+
+.detail > .detail_stop > input {
+    width: 33%;
+    height: 33%;
+    //border: 1px solid #737373;
+    //border-radius: 8px;
+    margin-left: 33%;
+    margin-top: 19%;
+    position: absolute;
+}
+
+.button_action {
+    width: 100%;
+    height: 70px;
+    padding: 10px 8%;
+}
+
+.button_action > .cancel {
+    height: 45px;
+    color: #707070;
+    text-align: center;
+    float: left;
+    box-shadow: 0 0 6px #00000029;
+}
+
+.button_action > .submit {
+    height: 45px;
+    color: #FFFFFF;
+    background-color: #07B53B;
+    text-align: center;
+}
+
+.button_action > .submit_false {
+    height: 45px;
+    color: #FFFFFF;
+    background-color: #dddddd;
+    text-align: center;
+}
+
+.button_action > .check {
+    height: 45px;
+    color: #FFFFFF;
+    background-color: #0092be;
+    text-align: center;
+}
+
+.hidden_label {
+    color: #7a8994;
+}
+
+.block_booking.day_of_week > .body {
+    height: 60vh;
+}
+
+.block_booking > .title > .attribute {
+    color: #FFFFFF;
+    background-color: #8DD2E2;
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: inherit;
+    padding: 5px;
+}
+
+.block_booking > .title > .content {
+    color: #2B303B;
+    background-color: #FFEDA7;
+    text-align: center;
+    float: left;
+    width: 50%;
+    height: inherit;
+    padding: 5px;
+}
+
+.log_popup_head {
+    color: #0092BE;
+    background-color: #F3F3F3;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.detail > .detail_item {
+    width: 33%;
+    height: inherit;
+    padding: 8px;
+    display: block;
+    float: left;
+}
+
+.detail > .detail_attribute, .detail_content {
+    width: 50%;
+    height: inherit;
+    padding: 8px;
+    display: block;
+    float: left;
+}
+
+.detail > .detail_item > span {
+    color: #2B303B;
+    font-weight: bold;
+}
+
+.detail > .detail_attribute > span {
+    color: #2B303B;
+    font-weight: bold;
+}
+
+.detail > .detail_before {
+    width: 33%;
+    height: inherit;
+    padding: 8px;
+    display: block;
+    float: left;
+    word-break: break-word;
+}
+.detail > .detail_before > span {
+    float: left;
+    margin-top: 25px;
+}
+
+.detail > .detail_before > input {
+    width: 70%;
+    height: 75%;
+    margin: 7px 6%;
+    border-radius: 8px;
+    text-align: center;
+    color: #2B303B;
+    font-weight: bold;
+    float: left;
+}
+
+.detail > .detail_current {
+    padding: 8px;
+    width: 33%;
+    height: inherit;
+    display: block;
+    float: left;
+    position: relative;
+    word-break: break-word;
+}
+
+.detail > .detail_current > input {
+    width: 34%;
+    height: 33%;
+    border-radius: 8px;
+    margin-left: 33%;
+    margin-top: 13%;
+    position: absolute;
+}
+
+.text-highlight {
+    font-weight: bold;
+    color: #0092BE;
+}
+
+.btn-log-detail {
+    color: white;
+    background: #07B53B no-repeat padding-box;
+    opacity: 1;
+    box-shadow: 0 3px 6px #00000029;
+    border-radius: 3px;
+    padding: 5px 15px;
+    border-color: #07B53B;
+}
+
+.modal_log_detail {
+    width: 76% !important;
+    height: 60vh;
+    margin-top: 5%;
+    margin-left: 13%;
+}
+
+.float-right {
+    float: right;
+}

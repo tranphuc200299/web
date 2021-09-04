@@ -1,0 +1,128 @@
+@extends('$MODULE_LOWER$::layout')
+@section('content')
+    <div class=" container-fluid container-fixed-lg bg-white">
+        <!-- START card -->
+        <div class="card card-transparent pt-2">
+            @include('core::_messages.flash')
+            <div class="card-header">
+                <div class="card-title">$MODEL$ table</div>
+                @can('create', Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                    <a href="{{ route('cp.$ROUTES$.create') }}" class="btn btn-success btn-xs pull-right">
+                        New <i class="fa fa-plus-circle"></i>
+                    </a>
+                @endcan
+            </div>
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table table-hover" id="basicTable">
+                        <thead>
+                        <tr>
+                            <th style="width:1%" class="text-center">
+                                <button class="btn btn-link"><i class="pg-trash"></i>
+                                </button>
+                            </th>
+                            $LABELS$
+                            <th>{{ trans('Action') }}</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        @foreach($list as $item)
+                            <tr>
+                                <td class="v-align-middle">
+                                    <div class="checkbox text-center">
+                                        <input type="checkbox" value="{{ $item->id }}" name="record[]" id="checkbox_{{$item->id}}">
+                                        <label for="checkbox_{{$item->id}}" class="no-padding no-margin"></label>
+                                    </div>
+                                </td>
+                                $FIELDS$
+                                <td class="v-align-middle">
+                                    @can('update', \Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                                        <a class="btn btn-primary btn-xs" href="{{ route('cp.$ROUTES$.edit', [$item->id]) }}">Edit</a>
+                                    @endcan
+                                    @can('read', \Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                                        <a class="btn btn-info btn-xs" href="{{ route('cp.$ROUTES$.show', [$item->id]) }}">View</a>
+                                    @endcan
+                                    @can('delete', \Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                                        <form method="POST" action="{{ route('cp.$ROUTES$.destroy', [$item->id]) }}" style="display: initial;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="submit" class="btn btn-danger btn-xs delete-record" value="Delete">
+                                        </form>
+                                    @endcan
+                                </td>
+                            </tr>
+                        @endforeach
+                        </tbody>
+                    </table>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 col-sm-5">
+                        <nav class="mt-3">
+                            @include('core::_pagination.counting', ['paginator' => $list])
+                        </nav>
+                    </div>
+                    <div class="col-xs-12 col-sm-7">
+                        <nav class="mt-3">
+                            @if(!empty($list))
+                                {{ $list->appends(request()->input())->links() }}
+                            @endif
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- END card -->
+    </div>
+@endsection
+@push('custom-scripts')
+<script>
+    @if(request()->has('rules') && request()->get('rules') && is_json(request()->has('rules')))
+    {!! 'var rules = ' . request()->get('rules') . ';'!!}
+    @else
+    var rules = {
+        condition: 'AND',
+        rules: [{}]
+    };
+    @endif
+    var filters = $FILTER_JSON$;
+    try {
+        $('#builder').queryBuilder({
+            plugins: [
+                'sortable',
+                'filter-description',
+                'unique-filter',
+                'bt-selectpicker',
+                'bt-checkbox',
+                'invert',
+                'not-group'
+            ],
+
+            filters: filters,
+            rules: rules
+        })
+    }
+    catch (err) {
+
+    }
+
+    $('#search').on('click', function(){
+        var Rules = $('#builder').queryBuilder('getRules');
+        console.log(Rules);
+        // return;
+        if(Rules) {
+            $('#rules').val(JSON.stringify(Rules));
+        }
+
+        $('#formSearch').submit();
+    });
+
+    $('.delete-record').click(function(e) {
+        e.preventDefault();
+
+        if (confirm('Are you sure?')) {
+            // Post the form
+            $(e.target).closest('form').submit();
+        }
+    });
+</script>
+@endpush

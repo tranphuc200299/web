@@ -1,0 +1,173 @@
+.quick-booking .ui-datepicker {
+    border: none;
+    padding-top: 0;
+}
+.quick-booking .ui-datepicker-header {
+    background: white;
+    height: 2.5em;
+    padding: 0;
+    margin-bottom: .5em;
+}
+.quick-booking .ui-datepicker-prev,
+.quick-booking .ui-datepicker-next {
+    width: 5.5em;
+    height: 100%;
+    color: #2596be !important;
+    border: 1px solid #2596be !important;
+    border-radius: 3px !important;
+}
+.quick-booking .ui-datepicker-prev span,
+.quick-booking .ui-datepicker-next span{
+    text-indent: unset;
+    color: #2596be !important;
+    transform: unset !important;
+    -webkit-transform: unset !important;
+    width: auto !important;
+    height: 25px !important;
+    border: 0 !important;
+    line-height: 30px !important;
+}
+.quick-booking .ui-datepicker-prev span i,
+.quick-booking .ui-datepicker-next span i{
+    font-size: 20px;
+    position: relative;
+    top: 2px;
+}
+.quick-booking .ui-datepicker-title {
+    height: 100%;
+    font-size: 1.4em;
+    color: #2596be !important;
+    line-height: 2.7em;
+}
+.quick-booking .ui-datepicker-month {
+    font-size: unset !important;
+}
+.quick-booking .ui-datepicker-calendar thead th.ui-datepicker-week-end {
+    border: 1px solid white;
+    background: #F3F3F3;
+    color: #f84569;
+}
+.quick-booking .ui-datepicker-calendar thead th:not(.ui-datepicker-week-end) {
+    border: 1px solid white;
+    background: #2596be;
+    color: white;
+}
+.quick-booking .ui-datepicker-calendar tbody td:not(.ui-datepicker-week-end, .ui-datepicker-unselectable) a{
+    border: 1px solid #2596be;
+    border-radius: 2px;
+    font-size: 17px;
+    font-weight: 700;
+}
+.quick-booking .ui-datepicker-calendar tbody td.ui-datepicker-week-end a{
+    border: 1px solid #f4c4cc;
+    border-radius: 2px;
+    font-size: 17px;
+    font-weight: 700;
+}
+.quick-booking .ui-datepicker-calendar tbody td:last-child a{
+    background-color: white !important;
+}
+.quick-booking .ui-datepicker-calendar tbody:before, .calendar_table tbody:before {
+    content: unset;
+}
+.quick-booking .table-schedule th,
+.quick-booking .table-schedule td {
+    padding-top: 0;
+    padding-bottom: 0;
+
+    .quick-detail{
+        padding-top: 11px;
+        padding-bottom: 11px;
+        display: block;
+    }
+}
+.quick-booking .table thead th{
+    color: #2596be !important;
+    font-size: 14px;
+}
+.quick-booking .table thead tr th:first-child {
+    background: white;
+    border-left: 0;
+}
+.quick-booking .table thead tr th:last-child {
+    border-right: 0;
+}
+.quick-booking .table tbody {
+    border-left: none !important;
+    border-right: none !important;
+}
+.quick-booking .table tbody tr td:first-child {
+    background: #F3F3F3;
+    border-left: none;
+    font-weight: bold;
+    text-align: center;
+}
+.quick-booking .table tbody tr td:last-child {
+    border-right: none;
+}
+.quick-booking .table tbody tr{
+    border-bottom: 1px solid #B5B4B4;;
+}
+.quick-booking .table tbody td.x-mark{
+    background: #CECECE !important;
+    opacity: unset !important;
+}
+.quick-booking .table tbody td:not(.x-mark){
+    cursor: pointer;
+}
+.quick-booking .table tbody i.fa-times,
+.quick-booking .table tbody i.fa-circle-o{
+    font-size: 20px;
+}
+.quick-booking .table tbody i.fa-circle-o{
+    color: #0092be;
+}
+.quick-booking .table tbody i.ika-triangle{
+    color: #ffc0cb;
+    margin-top: 3px;
+}
+
+.quick-booking .table tbody i.fa-times{
+    color: #454545;
+}
+
+.quick-booking .ui-state-highlight {
+    background: white !important;
+}
+.quick-booking .ui-state-active {
+    background: #f8c800 !important;
+    color: #0a0c0d !important;
+}
+
+.quick-booking .first-time {
+    background: rgba(250, 243, 217, 0.73);
+    //opacity: 0.5;
+}
+.quick-booking .second-time {
+    background: rgba(252, 203, 209, 0.89);
+    //opacity: 0.5;
+}
+.quick-booking .both-time {
+    background: rgba(181, 227, 241, 0.92);
+    //opacity: 0.5;
+}
+#quick-booking-date-picker-2 .ui-datepicker-prev,
+#quick-booking-date-picker-2 .ui-datepicker-next {
+    display: none;
+}
+.quick-booking .background-white {
+    background-color: white !important;
+    color: #454545 !important;
+}
+
+.quick-booking{
+    .number-remaining{
+        width: 100%;
+        display: block;
+    }
+
+    .table tbody tr td{
+        padding-left: 0;
+        padding-right: 0;
+    }
+}

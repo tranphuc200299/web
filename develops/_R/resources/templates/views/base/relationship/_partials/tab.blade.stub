@@ -1,0 +1,3 @@
+<li role="presentation" class="$ACTIVE$">
+    <a href="#tab_$RELATION_TAB$" role="tab" data-toggle="tab" aria-expanded="true">$RELATION_TAB$</a>
+</li>

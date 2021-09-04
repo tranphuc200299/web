@@ -1,0 +1,5 @@
+
+    public function owner()
+    {
+        return $this->belongsTo('Modules\Auth\Entities\Models\User', '$RELATION_ID$');
+    }

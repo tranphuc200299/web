@@ -1,0 +1,9 @@
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div id="$FIELD_NAME$" style="margin-top: 5px;">
+$RADIO_LIST$
+                                        </div>
+                                    </div>
+                                </div>

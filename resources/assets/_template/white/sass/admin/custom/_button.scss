@@ -1,0 +1,84 @@
+.btn-theme-default:hover, .btn-theme-default:focus, .btn-theme-default:active:focus {
+  color: #ffffff;
+  background: inherit;
+}
+
+.btn-theme-default:disabled {
+  opacity: 0.55;
+  cursor: auto !important;
+
+  span {
+    opacity: 0.55;
+  }
+}
+
+.btn-theme-default {
+  border-radius: 5px;
+  letter-spacing: 1px;
+  font-weight: bold;
+  color: #FFFFFF;
+  font-size: 20px;
+  border: none;
+  @media (max-width: 767px) {
+    font-size: 16px;
+  }
+
+  &:hover {
+    border: none;
+  }
+}
+
+.btn-theme-login {
+  width: 242px;
+  height: 55px;
+  background: transparent linear-gradient(270deg, $main_color_gradient_start 0%, $main_color_gradient_end 100%) 0 0 no-repeat padding-box !important;
+}
+
+.btn-theme-password {
+  width: 242px;
+  height: 51px;
+  background: $password_color;
+
+  &:hover, &:focus, &:active:focus {
+    background: $password_color;
+  }
+}
+
+.btn-light-yellow {
+    background-color: #FFEDA7;
+    color: #2B303B;
+    font-weight: 600;
+}
+
+.btn-light-pink {
+    background-color: #FFC5CD;
+    color: #2B303B;
+    font-weight: 600;
+}
+
+.btn-light-gray {
+    background-color: #707070;
+    color: #F0F0F0;
+    font-weight: 600;
+    padding-left: 12px;
+    padding-right: 12px;
+}
+.btn-light-blue {
+    background-color: #8DD2E2;
+    color: #F0F0F0;
+    font-weight: 600;
+}
+.btn-light-green {
+    background-color: #45AB5F;
+    color: #F0F0F0;
+    font-weight: 600;
+}
+
+.btn-reservation {
+    background-color: #07B53B;
+    color : #FFFFFF;
+}
+.btn-blue {
+    background-color: #2CCEF4;
+    color : #FFFFFF;
+}

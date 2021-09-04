@@ -1,0 +1,10 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <div>
+                                        <select data-toggle="select2-single" id="$FIELD_NAME$" name="$FIELD_NAME$" class="form-control" $ATTR_REQUIRED$ $ATTR_EDITABLE$>
+                                            <option></option>
+                                            $OPTIONS$
+                                        </select>
+                                    </div>
+                                </div>

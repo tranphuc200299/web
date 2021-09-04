@@ -1,0 +1,3 @@
+                                            <label>
+                                                <input type="checkbox" name="$FIELD_NAME$[]" class="flat" $ATTR_REQUIRED$$ATTR_EDITABLE$value="$KEY$"> $LABEL$
+                                            </label>

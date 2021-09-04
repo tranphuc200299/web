@@ -1,0 +1,11 @@
+                                <div class="item form-group">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$
+                                    </label>
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <div id="$FIELD_NAME$" style="margin-top: 5px;">
+                                            <label>
+                                                <input type="checkbox" class="js-switch" name="$FIELD_NAME$" $ATTR_REQUIRED$$ATTR_EDITABLE$value="1" $ATTR_CHECKED$/>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>

@@ -1,0 +1,1 @@
+                                            <option value="$KEY$" @if($model->$FIELD_NAME$ == '$KEY$') selected @endif>$LABEL$</option>

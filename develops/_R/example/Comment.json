@@ -1,0 +1,136 @@
+{
+    "moduleName": "Comment",
+    "modelName": "Comment",
+    "tableName": "comments",
+    "listView": "Table",
+    "childView": "None",
+    "icon": "comment",
+    "group": "Article",
+    "fakerLanguage": "en_US",
+    "options": {
+        "softDelete": true,
+        "prefix": "ms",
+        "paginate": "10"
+    },
+    "addOns": {
+        "auth": true
+    },
+    "fields": [
+        {
+            "name": "id",
+            "dbType": "increments",
+            "txtLabel": "",
+            "txtFactoryFaker": "",
+            "htmlType": "number",
+            "validations": "",
+            "nullable": false,
+            "unique": false,
+            "searchable": false,
+            "fillable": false,
+            "primary": true,
+            "inForm": false,
+            "inIndex": false
+        },
+        {
+            "name": "title",
+            "dbType": "string",
+            "txtLabel": "Title",
+            "txtFactoryFaker": "",
+            "htmlType": "text",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "contents",
+            "dbType": "text",
+            "txtLabel": "Content",
+            "txtFactoryFaker": "paragraph",
+            "htmlType": "textArea",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "comment_at",
+            "dbType": "datetime",
+            "txtLabel": "Comment at",
+            "txtFactoryFaker": "dateTime",
+            "htmlType": "date",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "post_id",
+            "dbType": "integer",
+            "txtLabel": "Post",
+            "txtFactoryFaker": "",
+            "htmlType": "text",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "created_at",
+            "dbType": "timestamp",
+            "txtLabel": "Created at",
+            "txtFactoryFaker": "",
+            "htmlType": "date",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": true,
+            "fillable": true,
+            "primary": false,
+            "inForm": true,
+            "inIndex": true
+        },
+        {
+            "name": "updated_at",
+            "dbType": "timestamp",
+            "txtLabel": "updated at",
+            "txtFactoryFaker": "",
+            "htmlType": "date",
+            "validations": "",
+            "nullable": true,
+            "unique": false,
+            "searchable": false,
+            "fillable": false,
+            "primary": false,
+            "inForm": false,
+            "inIndex": false
+        }
+    ],
+    "relations": [
+        {
+            "relationType": "mt1_belongs_to",
+            "foreignModel": "Post",
+            "foreignTable": "",
+            "foreignKey": "post_id",
+            "localKey": "id",
+            "displayName": "Post",
+            "displayField": "title"
+        }
+    ]
+}

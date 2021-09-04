@@ -1,0 +1,7 @@
+                                    <div class="item form-group">
+                                        <label class="control-label col-md-3 col-sm-3 col-xs-12" for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$
+                                        </label>
+                                        <div class="col-md-6 col-sm-6 col-xs-12">
+                                            <input class="form-control col-md-7 col-xs-12 input-images" type="file" data-rule-images="true" accept="image/*" id="$FIELD_NAME$" name="$FIELD_NAME$" $ATTR_REQUIRED$ $ATTR_EDITABLE$ value="$VALUE$">
+                                        </div>
+                                    </div>

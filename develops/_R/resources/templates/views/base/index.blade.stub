@@ -1,0 +1,151 @@
+@extends('$MODULE_LOWER$::layout')
+@section('content')
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+            <div class="page-title">
+                <div class="row">
+                    <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="x_panel">
+                            <div class="x_title">
+                                <h2>Search</h2>
+                                <ul class="nav navbar-right panel_toolbox">
+                                    <li><a class="collapse-link"><i class="fa @if(request()->has('rules') && is_json(request('rules'))) {{'fa-chevron-up'}} @else {{'fa-chevron-down'}} @endif"></i></a>
+                                    </li>
+                                </ul>
+                                <div class="clearfix"></div>
+                            </div>
+                            <div class="x_content" @if(!request()->has('rules') || !is_json(request('rules'))) style="display: none;" @endif>
+                                <div id="builder"></div>
+                                <form action="{{ route('cp.$ROUTES$.index') }}" autocomplete="off" id="formSearch">
+                                    <input type="hidden" name="rules" id="rules">
+                                    <button type="button" class="btn btn-success" id="search">Search <i class="fa fa-search"></i></button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="clearfix"></div>
+            @include('core::_messages.flash')
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="x_panel">
+                        <div class="x_title">
+                            <h2>$MODEL$ table</h2>
+                            @can('create', Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                            <a href="{{ route('cp.$ROUTES$.create') }}" class="pull-right">
+                                <button type="button" class="btn btn-success btn-xs">New <i class="fa fa-plus-circle"></i></button>
+                            </a>
+                            @endcan
+                            <div class="clearfix"></div>
+                        </div>
+                        <div class="x_content">
+                            <div class="table-responsive">
+                                <table class="table table-striped jambo_table bulk_action">
+                                    <thead>
+                                    <tr class="headings">
+                                        <th>
+                                            <input type="checkbox" name="check_all" id="check-all" class="flat">
+                                        </th>
+                                        $LABELS$
+                                        <th>Action</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    @foreach($list as $item)
+                                        <tr>
+                                            <td class="a-center ">
+                                                <input type="checkbox" class="flat" name="table_records">
+                                            </td>
+                                            $FIELDS$
+                                            <td>
+                                                @can('update', \Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                                                <a class="btn btn-primary btn-xs" href="{{ route('cp.$ROUTES$.edit', [$item->id]) }}">Edit</a>
+                                                @endcan
+                                                @can('read', \Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                                                <a class="btn btn-info btn-xs" href="{{ route('cp.$ROUTES$.show', [$item->id]) }}">View</a>
+                                                @endcan
+                                                @can('delete', \Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                                                    <form method="POST" action="{{ route('cp.$ROUTES$.destroy', [$item->id]) }}" style="display: initial;">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                            <input type="submit" class="btn btn-danger btn-xs delete-record" value="Delete">
+                                                    </form>
+                                                @endcan
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                    </tbody>
+                                </table>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-sm-5">
+                                    @include('core::_pagination.counting', ['paginator' => $list])
+                                </div>
+                                <div class="col-xs-12 col-sm-7">
+                                    <div class="dataTables_paginate paging_simple_numbers">
+                                        {{ $list->appends(request()->input())->links('core::_pagination.template') }}
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- /page content -->
+@endsection
+@push('custom-scripts')
+<script>
+    @if(request()->has('rules') && request()->get('rules') && is_json(request()->has('rules')))
+    {!! 'var rules = ' . request()->get('rules') . ';'!!}
+    @else
+    var rules = {
+        condition: 'AND',
+        rules: [{}]
+    };
+    @endif
+    var filters = $FILTER_JSON$;
+    try {
+        $('#builder').queryBuilder({
+            plugins: [
+                'sortable',
+                'filter-description',
+                'unique-filter',
+                'bt-selectpicker',
+                'bt-checkbox',
+                'invert',
+                'not-group'
+            ],
+
+            filters: filters,
+            rules: rules
+        })
+    }
+    catch (err) {
+
+    }
+
+    $('#search').on('click', function(){
+        var Rules = $('#builder').queryBuilder('getRules');
+        console.log(Rules);
+        // return;
+        if(Rules) {
+            $('#rules').val(JSON.stringify(Rules));
+        }
+
+        $('#formSearch').submit();
+    });
+
+    $('.delete-record').click(function(e) {
+        e.preventDefault();
+
+        if (confirm('Are you sure?')) {
+            // Post the form
+            $(e.target).closest('form').submit();
+        }
+    });
+</script>
+@endpush

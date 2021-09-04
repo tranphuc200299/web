@@ -1,0 +1,8 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <div id="$FIELD_NAME$" style="margin-top: 5px;">
+                                        <input type="checkbox" data-init-plugin="switchery" data-size="small" data-color="primary"
+                                               name="$FIELD_NAME$" $ATTR_REQUIRED$$ATTR_EDITABLE$value="1" $ATTR_CHECKED$/>
+                                    </div>
+                                </div>

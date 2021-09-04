@@ -1,0 +1,139 @@
+table {
+    &.table-inventory {
+        thead {
+            tr {
+                background: #F3F3F3 0 0 no-repeat padding-box;
+
+                th {
+                    color: #0092BE;
+                    font-weight: bold;
+                    border-right: 1px solid #B5B4B4;
+                    border-left: 1px solid #B5B4B4;
+                    border-bottom: 0;
+                    text-align: center;
+                    cursor: pointer;
+
+                    &:last-child {
+                        border-right: 1px solid #B5B4B4;
+                    }
+                }
+
+            }
+
+            .weekend {
+                background: #707070;
+                color: #FFFFFF;
+            }
+        }
+
+        tbody {
+            border: solid 1px #B5B4B4 !important;
+
+            tr {
+                td {
+                    border-right: 1px solid #B5B4B4;
+                    border-left: 1px solid #B5B4B4;
+                    border-bottom: 0;
+                    background: none;
+
+                    &:last-child {
+                        border-right: 1px solid #B5B4B4;
+                    }
+                }
+
+                &.day_of_month {
+                    td {
+                        color: #0092BE;
+                        font-size: 12px;
+                        padding: 8px 7px;
+                        font-weight: bold;
+                    }
+
+                    .td_not_time {
+                        color: rgba(0, 146, 190, 0.3);
+                        font-size: 12px;
+                        padding: 8px 7px;
+                        font-weight: bold;
+                    }
+                }
+
+                &.vaccine-inventory {
+                    td {
+                        font-size: 10px;
+                        padding: 6px 7px;
+                        cursor: pointer;
+
+                        &:hover {
+                            background-color: #ccfaf1 !important;
+                        }
+                    }
+
+                    .vaccine-name {
+                        color: #07B53B;
+                        font-weight: bold;
+                    }
+
+                    .vaccine-limit {
+                        color: $main_text_color;
+                        font-weight: bold;
+                        float: right;
+                    }
+
+                    border-top: 1px dashed #8DD2E2;
+
+                    &.calendar-view {
+                        &:nth-child(odd) {
+                            background-color: rgba(7, 181, 59, 0.1);
+                        }
+                    }
+
+                    &.list-view {
+                        .date {
+                            text-align: center;
+                            padding-top: 35px;
+                        }
+                        &:nth-child(even) {
+                            background-color: rgba(7, 181, 59, 0.1);
+                        }
+
+                        &:nth-child(odd) {
+                            background-color: #FAFAFA;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+.table-venue {
+    height: 65vh !important;
+    overflow: scroll;
+}
+
+.table-venue thead{
+    position: sticky;
+    top: 0;
+    background-color: #D6D6D6;
+}
+.button-list-venue {
+    color: #FFFFFF;
+    background-color: #2CCEF4;
+    border-radius: 20px;
+}
+
+.button-list-venue:hover {
+    color: #FFFFFF;
+    background-color: #2CCEF4;
+    border-radius: 20px;
+}
+.day-off {
+    background-color: #cecece !important;
+    color: rgba(0, 0, 0, 0.44)  !important;
+}
+.day-off > .vaccine-name {
+    color: rgba(0, 0, 0, 0.44) !important;
+}
+
+.day-off > .vaccine-limit {
+    color: rgba(0, 0, 0, 0.44) !important;
+}

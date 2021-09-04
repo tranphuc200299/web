@@ -1,0 +1,98 @@
+.table-list-booking {
+    font-size: 13px;
+
+    .left-side {
+        width: 120px;
+        font-weight: bold;
+        border: 1px solid #0092BC;
+        border-right: 2px solid #0092BC;
+        padding-left: 5px;
+    }
+
+    .normal-font {
+        font-weight: normal;
+    }
+
+    .right-side {
+        border: 1px solid #0092BC;
+        text-align: center;
+        width: 90px;
+    }
+
+    .date-bg {
+        background: #0092BE;
+    }
+
+    .white-color {
+        color: #FFFFFF;
+
+    }
+
+    .green-bg {
+        background: #c0ffd3;
+    }
+
+    .green-color {
+        color: #07B53B;
+        font-weight: 700;
+    }
+
+    .dotted-border {
+
+    }
+
+    .blue-space {
+        background: #8DD2E2;
+    }
+
+    .red-space {
+        background: #FFC5CD;
+        color: #F9375D;
+        opacity: 1;
+    }
+
+    .disable-space {
+        background: #D6D6D6;
+    }
+
+    .yellow-space {
+        background: #FFEDA7;
+    }
+
+    .note-chart {
+        width: calc(100% - 240px);
+        border: none;
+
+        span {
+            font-weight: bold;
+            margin-right: 15px;
+        }
+
+        .circle {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            border: 1px solid #cccccc;
+        }
+
+        label {
+            margin-bottom: 0;
+        }
+    }
+
+    .right-data {
+        overflow-x: scroll;
+        max-width: calc(100% - 120px);
+
+        .block-right-side {
+            overflow-x: scroll;
+            width: 600px;
+            display: table;
+        }
+
+        .table-cell {
+            display: table-cell;
+        }
+    }
+
+}

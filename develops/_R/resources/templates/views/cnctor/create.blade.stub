@@ -1,0 +1,28 @@
+@extends('$MODULE_LOWER$::layout')
+@section('content')
+    <div class="container-fluid container-fixed-lg">
+        <div class="row">
+            <div class="col-lg-6">
+                @include('core::_messages.flash')
+                <div class="card card-default">
+                    <div class="card-body">
+                        <h5>
+                            {{ trans('Create') }} $MODEL$
+                        </h5>
+                        <form action="{{ route('cp.$ROUTES$.store') }}" method="post" enctype="multipart/form-data"
+                              class="form-horizontal form-label-left form_validation">
+                            @csrf
+$FIELDS$
+                            <div class="form-group text-right">
+                                <div class="col-md-12">
+                                    <a class="btn btn-default" href="{{ route('cp.$ROUTES$.index') }}">{{ trans('Cancel') }}</a>
+                                    <button type="submit" class="btn btn-success">{{ trans('Submit') }}</button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+@endsection

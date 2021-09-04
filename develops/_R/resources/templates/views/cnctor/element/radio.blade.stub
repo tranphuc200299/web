@@ -1,0 +1,7 @@
+                                <div class="form-group">
+                                    <label for="$FIELD_NAME$">$FIELD_LABEL$ $REQUIRED$</label>
+                                    <span class="help"></span>
+                                    <div id="$FIELD_NAME$" class="radio radio-success">
+                                        $RADIO_LIST$
+                                    </div>
+                                </div>

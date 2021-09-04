@@ -68,7 +68,7 @@ return [
     'providers' => [
         'users' => [
             'driver' => 'eloquent',
-            'model' => App\User::class,
+            'model' => \Modules\Auth\Entities\Models\User::class,
         ],
 
         // 'users' => [
@@ -114,4 +114,8 @@ return [
 
     'password_timeout' => 10800,
 
+    'social' => [
+        'google' => env('GOOGLE_AUTH', false),
+        'facebook' => env('FACEBOOK_AUTH', false),
+    ]
 ];

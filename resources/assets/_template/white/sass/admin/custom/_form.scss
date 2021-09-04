@@ -1,0 +1,194 @@
+.form {
+    padding: 10px 20px;
+    @media (max-width: 767px) {
+        padding: 10px 5px;
+    }
+
+    .form_title {
+        background: $form_header_bg 0 0 no-repeat padding-box;
+        padding: 10px 20px;
+        @media (max-width: 767px) {
+            padding: 10px 10px;
+        }
+        color: white;
+    }
+
+    .form_content {
+        background-color: rgba(240, 240, 240, .2);
+        padding: 10px 20px;
+        border: 1px solid #F5F5F5;
+
+        @media (max-width: 767px) {
+            padding: 10px 5px;
+        }
+
+        .form-group {
+            padding-top: 5px;
+            padding-bottom: 10px;
+
+            .control-label {
+                font-weight: bold;
+                color: #2B303B;
+                font-size: 12px;
+                opacity: 1;
+                padding-bottom: 10px;
+                @media (max-width: 767px) {
+                    padding-bottom: 5px;
+                }
+            }
+        }
+
+        span.required {
+            color: #ea2c54;
+            margin-left: 3px;
+        }
+
+        #thumbnail_input {
+            padding: 5px 10px;
+        }
+
+        .setting-zone {
+            border: 1px solid #eaecee;
+            padding: 0 5px;
+
+            .label-form {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                font-size: 12px;
+            }
+        }
+
+        .bottom-row {
+            width: 100%;
+            border-bottom: 1px solid #eaecee;
+            margin-top: 10px;
+        }
+
+        .help-block {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    @media (min-width: 320px) and (max-width: 480px) {
+        .form_content {
+            border: none;
+        }
+    }
+}
+
+.booking-time-infor {
+    background-color: #DFF8FE;
+    padding: 33px;
+
+    .form-group {
+        label {
+            font-weight: bold;
+            color: #0092BE;
+            font-size: 12px;
+            opacity: 1;
+            padding-bottom: 10px;
+            @media (max-width: 767px) {
+                padding-bottom: 5px;
+            }
+
+            span {
+                color: red;
+            }
+        }
+
+        label.error {
+            color: #ea2c54;
+            font-weight: 400;
+        }
+    }
+
+    .input-calendar {
+        background-color: #2CCEF4;
+
+        .input-group-text {
+            background-color: #DFF8FE;
+            color: #2CCEF4;
+            border: 1px solid #2CCEF4;
+        }
+    }
+
+    .form-group {
+        input {
+            border: 1px solid #2CCEF4;
+        }
+    }
+
+    .select2-container .select2-selection {
+        border: 1px solid #2CCEF4 !important;
+    }
+}
+
+.booking_content {
+    .generate {
+        margin-left: 11px;
+        padding-top: 20px;
+    }
+
+    .pt-32px {
+        padding-top: 32px;
+    }
+
+    .pt-42px {
+        padding-top: 42px;
+    }
+
+    .mt-40px {
+        margin-top: 40px;
+    }
+
+    .text-blue-bk {
+        color: #0092BE;
+    }
+
+    .select-birthday {
+        padding-bottom: 0px;
+        padding-top: 9px;
+        border: 1px solid rgba(0, 0, 0, 0.07) !important;
+        background: white;
+    }
+}
+
+#overlay {
+    background: #ffffff;
+    color: #666666;
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    z-index: 5000;
+    top: 0;
+    left: 0;
+    float: left;
+    text-align: center;
+    padding-top: 25%;
+    opacity: .80;
+
+    .spinner {
+        margin: 0 auto;
+        height: 64px;
+        width: 64px;
+        animation: rotate 0.8s infinite linear;
+        border: 5px solid firebrick;
+        border-right-color: transparent;
+        border-radius: 50%;
+    }
+
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+}
+
+.not-readonly {
+    background-color: #fff !important;
+    color: #373e43 !important;
+}

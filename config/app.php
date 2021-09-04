@@ -169,12 +169,13 @@ return [
         /*
          * Application Service Providers...
          */
-        App\Providers\AppServiceProvider::class,
-        App\Providers\AuthServiceProvider::class,
-        // App\Providers\BroadcastServiceProvider::class,
-        App\Providers\EventServiceProvider::class,
-        App\Providers\RouteServiceProvider::class,
-
+        Core\Providers\CoreServiceProvider::class,
+        Core\Providers\AuthServiceProvider::class,
+        //Core\Providers\BroadcastServiceProvider::class,
+        Core\Providers\EventServiceProvider::class,
+        Core\Providers\RouteServiceProvider::class,
+        Core\Providers\ModuleServiceProvider::class,
+//        Package\Providers\ServiceProvider::class
     ],
 
     /*
@@ -227,6 +228,7 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
+        'Menu' => Core\Facades\MenuFacade::class
     ],
 
 ];

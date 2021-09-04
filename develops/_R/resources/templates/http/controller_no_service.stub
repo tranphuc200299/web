@@ -1,0 +1,13 @@
+<?php
+
+namespace Modules\$MODULE$\Http\Controllers\Web;
+
+use Core\Http\Controllers\Controller;
+
+class $MODEL$Controller extends Controller
+{
+    public function index()
+    {
+         return view('$NAME_SPACE$::$NAME_SPACE$.index');
+    }
+}
