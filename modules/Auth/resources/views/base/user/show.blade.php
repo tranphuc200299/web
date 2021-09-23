@@ -50,7 +50,7 @@
                                 <div class="ln_solid"></div>
                                 <div class="form-group">
                                     <div class="col-md-6 col-md-offset-3">
-                                        @can('update', \Package\Modules\Auth\Entities\Models\User::class)
+                                        @can('update', \Modules\Auth\Entities\Models\User::class)
                                             <a class="btn btn-primary" href="{{ route('cp.users.edit', [$user->id]) }}">Edit</a>
                                         @endcan
                                     </div>

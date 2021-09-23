@@ -29,7 +29,7 @@
                     <div class="x_panel">
                         <div class="x_title">
                             <h2>User table</h2>
-                            @can('create', Package\Modules\Auth\Entities\Models\User::class)
+                            @can('create', Modules\Auth\Entities\Models\User::class)
                             <a href="{{ route('cp.users.create') }}" class="pull-right">
                                 <button type="button" class="btn btn-success btn-xs">New <i class="fa fa-plus-circle"></i></button>
                             </a>
@@ -64,13 +64,13 @@
                                             <td>{{ implode(' ', $user->roles->pluck('name')->toArray()) }}</td>
                                             <td>{{ $user->created_at }}</td>
                                             <td>
-                                                @can('update', \Package\Modules\Auth\Entities\Models\User::class)
+                                                @can('update', \Modules\Auth\Entities\Models\User::class)
                                                 <a class="btn btn-primary btn-xs" href="{{ route('cp.users.edit', [$user->id]) }}">Edit</a>
                                                 @endcan
-                                                @can('read', \Package\Modules\Auth\Entities\Models\User::class)
+                                                @can('read', \Modules\Auth\Entities\Models\User::class)
                                                 <a class="btn btn-info btn-xs" href="{{ route('cp.users.show', [$user->id]) }}">View</a>
                                                 @endcan
-                                                @can('delete', \Package\Modules\Auth\Entities\Models\User::class)
+                                                @can('delete', \Modules\Auth\Entities\Models\User::class)
                                                     <form action="{{route('cp.users.destroy', $user->id)}}"
                                                           class="d-inline" method="POST">
                                                         @method('DELETE')

@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use Package\Modules\Auth\Entities\Models\User;
+use Modules\Auth\Entities\Models\User;
 
 Route::group(['middleware' => 'guest'], function () {
     Route::get('/cp/auth', 'Web\AuthController@showLoginForm')->name('login');

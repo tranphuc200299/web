@@ -2,8 +2,8 @@
 
 namespace Modules\Auth\Policies;
 
-use Package\Modules\Auth\Constants\AuthConst;
-use Package\Modules\Auth\Entities\Models\User;
+use Modules\Auth\Constants\AuthConst;
+use Modules\Auth\Entities\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class UserPolicy

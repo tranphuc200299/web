@@ -1,6 +1,6 @@
 <?php
 
-namespace Package\Modules\Auth\Http\Controllers\Api;
+namespace Modules\Auth\Http\Controllers\Api;
 
 use App\Entities\Models\User;
 use App\Http\Controllers\Controller;

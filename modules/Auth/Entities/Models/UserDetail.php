@@ -6,7 +6,7 @@ use Core\Entities\Models\BaseModel;
 use Core\Entities\Models\Uuid;
 
 /**
- * Package\Modules\Auth\Entities\Models\UserDetail
+ * Modules\Auth\Entities\Models\UserDetail
  *
  * @property string $id
  * @property string $user_id
