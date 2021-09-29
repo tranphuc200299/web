@@ -1,6 +1,5 @@
 FROM php:7.4-fpm
 
-
 RUN apt-get update && apt-get install -y \
     cron \
     build-essential \
@@ -33,6 +32,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 RUN pecl install imagick
 RUN docker-php-ext-enable imagick
 RUN docker-php-ext-install sockets
+RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 COPY cron.txt /etc/cron.d/web
 RUN chmod 0644 /etc/cron.d/web
@@ -58,14 +58,12 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 
 
 RUN apt-get install -y gnupg2
-RUN rm -rf /var/lib/apt/lists/ && curl -sL https://deb.nodesource.com/setup_10.x | bash -
-RUN apt-get install nodejs -y
+RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+RUN apt-get install -y nodejs
+
 RUN npm install pm2 -g
 RUN cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 RUN apt-get install redis-tools -y
-
-# Install mongodb
-RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 COPY *.sh /scripts/
 RUN chmod a+x /scripts/*.sh
