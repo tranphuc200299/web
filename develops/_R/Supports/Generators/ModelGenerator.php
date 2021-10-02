@@ -72,6 +72,8 @@ class ModelGenerator extends BaseGenerator
         $templateData = get_template('model/model');
 
         $templateData = fillTemplate($this->params, [
+            '$TRAIT_NAMESPACE$' => $this->getTraitNameSpace(),
+            '$TRAIT$' => $this->getTrait(),
             '$FILLABLE$' => $this->getFillable(),
             '$CAST$' => $this->getCast(),
             '$RELATIONS$' => $this->generateRelations()
@@ -80,6 +82,32 @@ class ModelGenerator extends BaseGenerator
         $fileName = $this->params->modelName . 'Model.php';
 
         FileUtil::createFile($this->path, $fileName, $templateData);
+    }
+
+    public function getTrait()
+    {
+        $trait = '';
+
+        foreach ($this->params->fields as $field) {
+            if ($field->dbType == 'uuid_primary') {
+                $trait = 'use Uuid;';
+            }
+        }
+
+        return $trait;
+    }
+
+    public function getTraitNameSpace()
+    {
+        $trait = '';
+
+        foreach ($this->params->fields as $field) {
+            if ($field->dbType == 'uuid_primary') {
+                $trait = 'use Core\Entities\Models\Uuid;';
+            }
+        }
+
+        return $trait;
     }
 
     public function getFillable()

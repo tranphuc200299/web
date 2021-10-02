@@ -1,0 +1,23 @@
+@extends('$MODULE_LOWER$::layout')
+@section('content')
+    <div class="container-fluid bg-white">
+        <div class="row">
+            <div class="col-md-12 col-sm-12 col-xs-12">
+                    <div class="form">
+                        <div class="form_title">
+                            <span>{{ trans('core::common.edit') }}</span>
+                        </div>
+                        <div class="form_content">
+                            $FIELDS$
+                            <div class="form-group text-right">
+                                <div class="col-md-12">
+                                    <a class="btn btn-default" href="{{ route('cp.$ROUTES$.index') }}">{{ trans('core::common.cancel') }}</a>
+                                    <a class="btn btn-success pull-right" href="{{ route('cp.$ROUTES$.edit', $id) }}">{{ trans('core::common.edit') }}</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+    </div>
+@endsection

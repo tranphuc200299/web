@@ -126,6 +126,12 @@ class MigrationGenerator extends BaseGenerator
             }
 
             switch ($dbType) {
+                case 'uuid_primary':
+                    $fields .= $this->generateField($column, 'uuid', false, false, $default, true);
+                    break;
+                case 'uuid':
+                    $fields .= $this->generateField($column, 'uuid', $isNullable, $isUnique, $default);
+                    break;
                 case 'increments':
                     $fields .= $this->generateField($column, 'increments', false, false, $default);
                     break;
@@ -191,7 +197,7 @@ class MigrationGenerator extends BaseGenerator
         return $fields;
     }
 
-    private function generateField($column, $dbType, $isNullable = false, $isUnique = false, $default = false)
+    private function generateField($column, $dbType, $isNullable = false, $isUnique = false, $default = false, $primary = false)
     {
         $str = infy_tabs(3).'$table->'.$dbType."('$column')";
 
@@ -205,6 +211,10 @@ class MigrationGenerator extends BaseGenerator
 
         if ($default !== false) {
             $str .= "->default('$default')";
+        }
+
+        if ($primary !== false) {
+            $str .= "->primary()";
         }
 
         $str .= ";\n";

@@ -79,6 +79,9 @@ class FactoryGenerator extends BaseGenerator
                 $fakerData = $field->txtFactoryFaker;
             } else {
                 switch ($field->dbType) {
+                    case 'uuid':
+                        $fakerData = 'uuid';
+                        break;
                     case 'integer':
                     case 'bigInteger':
                     case 'smallInteger':

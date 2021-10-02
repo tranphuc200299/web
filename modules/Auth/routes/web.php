@@ -26,6 +26,12 @@ Route::group(['middleware' => 'guest'], function () {
 Route::get('/cp/logout', 'Web\AuthController@logout')->middleware('auth')->name('logout');
 
 Route::group(['middleware' => 'auth'], function () {
+    Route::get('/cp/users/back-to', 'Web\UserController@backToMainUser')
+        ->name('cp.users.backTo');
+
+    Route::get('/cp/users/loginAs/{user}', 'Web\UserController@loginAsUser')
+        ->name('cp.users.loginAs')->middleware('can:loginAs,user');
+
     Route::get('/cp/profile', 'Web\ProfileController@profile')
         ->name('cp.profile');
 

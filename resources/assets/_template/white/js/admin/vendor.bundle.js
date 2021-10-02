@@ -56,5 +56,4 @@ require('../../common/js/translator');
 require('../../common/js/form-validation');
 require('../../common/js/blockUI');
 require('../../common/js/table-actions');
-require('../plugins/vacxin/thumbnail')
 

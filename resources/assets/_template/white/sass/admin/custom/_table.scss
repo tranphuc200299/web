@@ -105,8 +105,6 @@ table.table {
         min-width: 1300px;
     }
 
-
-
     thead {
         tr {
             background: $table_header_color 0 0 no-repeat padding-box;
@@ -170,8 +168,7 @@ table.table {
                 color: $main_text_color;
                 border-right: 1px solid $table_border_type_2;
                 border-bottom: 1px solid $table_border_type_1;
-                padding-top: 10px;
-                padding-bottom: 10px;
+                padding: 10px 5px;
             }
 
             td:last-child {

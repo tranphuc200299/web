@@ -11,7 +11,9 @@
 </td>
 <td style="vertical-align: middle">
     @php $dbType=[
+        'uuid_primary' => 'Primary Key Uuid',
         'increments' => 'Increments',
+        'uuid' => 'Uuid v4',
         'integer' => 'Integer',
         'smallInteger' => 'SmallInteger',
         'bigInteger' => 'BigInteger',
@@ -49,6 +51,7 @@
 <td style="vertical-align: middle">
     @php $htmlType=[
         'text' => 'Text',
+        'uuid' => 'Uuid',
         'number' => 'Number',
         'email' => 'Email',
         'password' => 'Password',

@@ -1,31 +1,10 @@
 <nav class="page-sidebar" data-pages="sidebar">
-    <!-- BEGIN SIDEBAR MENU TOP TRAY CONTENT-->
-    <div class="sidebar-overlay-slide from-top" id="appMenu">
-        <div class="row">
-            <div class="col-xs-6 no-padding">
-                <a href="#" class="p-l-40"><img src="/assets/img/demo/social_app.svg" alt="socail">
-                </a>
-            </div>
-            <div class="col-xs-6 no-padding">
-                <a href="#" class="p-l-10"><img src="/assets/img/demo/email_app.svg" alt="socail">
-                </a>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-6 m-t-20 no-padding">
-                <a href="#" class="p-l-40"><img src="/assets/img/demo/calendar_app.svg" alt="socail">
-                </a>
-            </div>
-            <div class="col-xs-6 m-t-20 no-padding">
-                <a href="#" class="p-l-10"><img src="/assets/img/demo/add_more.svg" alt="socail">
-                </a>
-            </div>
-        </div>
-    </div>
-    <!-- END SIDEBAR MENU TOP TRAY CONTENT-->
     <!-- BEGIN SIDEBAR MENU HEADER-->
     <div class="sidebar-header">
-        <img src="/assets/img/logo_white.png" alt="logo" class="brand" data-src="/assets/img/logo_white.png" data-src-retina="/assets/img/logo_white_2x.png" width="78" height="22">
+        <img src="{{ public_url('assets/img/logo_white.png') }}" alt="logo" class="brand"
+             data-src="{{ public_url('assets/img/logo_white.png') }}"
+             data-src-retina="{{ public_url('assets/img/logo_white.png') }}"
+             width="78" height="22">
         <div class="sidebar-header-controls">
             <button type="button" class="btn btn-xs sidebar-slide-toggle btn-link m-l-20" data-pages-toggle="#appMenu"><i class="fa fa-angle-down fs-16"></i>
             </button>
@@ -38,13 +17,20 @@
     <div class="sidebar-menu">
         <!-- BEGIN SIDEBAR MENU ITEMS-->
         <ul class="menu-items">
-
-            <li class="m-t-30 ">
-                <a href="index.html" class="detailed">
-                    <span class="title">Dashboard</span>
-                </a>
-                <span class="bg-success icon-thumbnail"><i class="pg-home"></i></span>
+            <li class="">
+                <span class="pin-menu-custom icon-thumbnail" data-toggle-pin="sidebar" id="btnPinMenu">
+                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
+                </span>
+                <a href="javascript:;" class="menu__sub-item"></a>
             </li>
+            @can('read', Modules\Auth\Entities\Models\User::class)
+                <li class="@if(route_active('cp.users*')) item-selected @endif">
+                    <a href="{{ route('cp.users.index') }}" class="menu__sub-item">
+                        <span class="title">{{ trans('core::common.menu.users') }}</span>
+                    </a>
+                    <span class="icon-thumbnail"><i class="fa fa-user"></i></span>
+                </li>
+            @endcan
             {{ Menu::renders() }}
         </ul>
         <div class="clearfix"></div>

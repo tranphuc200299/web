@@ -1,1 +1,9 @@
+$fa-font-path: '../../../fonts';
+$font-path: '../../../fonts';
 @import "admin/style.scss";
+@import "admin/variables";
+@import "admin/themes/light.css";
+@import "admin/template/pages-icon/pages-icons.css";
+@import "admin/theme_colors";
+@import "admin/custom/style";
+@import "admin/../common/mixins";

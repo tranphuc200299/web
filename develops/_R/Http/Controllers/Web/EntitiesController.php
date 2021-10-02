@@ -47,17 +47,16 @@ class EntitiesController extends Controller
         $status = false;
 
         if ($entity) {
+            $status = $this->packageControlService->migrate($entity->module_name);
+        }
+
+        if ($status) {
             $allEntities = Entities::where('module_name', $entity->module_name)->get();
 
             foreach ($allEntities as $e) {
                 $e->status = 2;
                 $e->save();
             }
-
-            $status = $this->packageControlService->migrate($entity->module_name);
-        }
-
-        if ($status) {
             return redirect()->back()->with('success', 'Migrate successfully');
         }
 

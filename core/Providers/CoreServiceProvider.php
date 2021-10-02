@@ -20,6 +20,7 @@ class CoreServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views/' . config('view.template'), 'core');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'core');
         $this->mergeConfigFrom(__DIR__ . '/../Config/core.php', 'core');
+        $this->app->register(MacroServiceProvider::class);
         $this->app->singleton('menu', function () {
             return new Menus();
         });

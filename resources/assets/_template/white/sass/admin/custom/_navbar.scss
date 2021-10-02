@@ -119,3 +119,29 @@ body.fixed-header .header {
         }
     }
 }
+
+body .pin-menu-custom {
+    transform: rotate(90deg) !important;
+}
+
+body.sidebar-visible .pin-menu-custom {
+    transform: translate3d(-14px, 0, 0) rotate(90deg) !important;
+}
+
+[data-toggle-pin="sidebar"] > i:before {
+    content: "\F08D";
+}
+
+body.menu-pin .pin-menu-custom {
+    transform: translate3d(-14px, 0, 0) !important;
+}
+
+body.menu-pin [data-toggle-pin="sidebar"] > i:before {
+    content: "\F08D";
+}
+
+.page-sidebar{
+    a:hover{
+        text-decoration:none;
+    }
+}

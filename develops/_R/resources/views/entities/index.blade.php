@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         <div class="table-responsive">
-                            <table class="table table-striped table-responsive bulk_action jambo_table">
+                            <table class="table table-striped table-responsive bulk_action jambo_table" style="display: table;">
                                 <thead>
                                 <tr class="headings">
                                     <th class="text-center">

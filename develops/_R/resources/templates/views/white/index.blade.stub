@@ -1,18 +1,20 @@
 @extends('$MODULE_LOWER$::layout')
 @section('content')
-    <div class=" container-fluid container-fixed-lg bg-white">
-        <!-- START card -->
+    <div class="container-fluid bg-white">
+        {{--@include('$MODULE_LOWER$::$MODEL_LOWER$._filter')--}}
         <div class="card card-transparent pt-2">
             @include('core::_messages.flash')
-            <div class="card-header">
-                <div class="card-title">$MODEL$ table</div>
-                @can('create', Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
-                    <a href="{{ route('cp.$ROUTES$.create') }}" class="btn btn-success btn-xs pull-right">
-                        New <i class="fa fa-plus-circle"></i>
-                    </a>
-                @endcan
-            </div>
-            <div class="card-body">
+            <div class="">
+                <div class="row bold">
+                    <div class="col-12">
+                        @can('create', Modules\$MODULE$\Entities\Models\$MODEL$Model::class)
+                            <a href="{{ route('cp.$ROUTES$.create') }}" class="pull-right">
+                                <button type="button" class="btn btn-success btn-xs">{{ trans('core::common.new item') }} <i
+                                            class="fa fa-plus-circle"></i></button>
+                            </a>
+                        @endcan
+                    </div>
+                </div>
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
                         <thead>
@@ -75,54 +77,4 @@
     </div>
 @endsection
 @push('custom-scripts')
-<script>
-    @if(request()->has('rules') && request()->get('rules') && is_json(request()->has('rules')))
-    {!! 'var rules = ' . request()->get('rules') . ';'!!}
-    @else
-    var rules = {
-        condition: 'AND',
-        rules: [{}]
-    };
-    @endif
-    var filters = $FILTER_JSON$;
-    try {
-        $('#builder').queryBuilder({
-            plugins: [
-                'sortable',
-                'filter-description',
-                'unique-filter',
-                'bt-selectpicker',
-                'bt-checkbox',
-                'invert',
-                'not-group'
-            ],
-
-            filters: filters,
-            rules: rules
-        })
-    }
-    catch (err) {
-
-    }
-
-    $('#search').on('click', function(){
-        var Rules = $('#builder').queryBuilder('getRules');
-        console.log(Rules);
-        // return;
-        if(Rules) {
-            $('#rules').val(JSON.stringify(Rules));
-        }
-
-        $('#formSearch').submit();
-    });
-
-    $('.delete-record').click(function(e) {
-        e.preventDefault();
-
-        if (confirm('Are you sure?')) {
-            // Post the form
-            $(e.target).closest('form').submit();
-        }
-    });
-</script>
 @endpush

@@ -315,14 +315,15 @@
                 $('.chkPrimary').iCheck(getiCheckSelection(false));
 
                 $(el).find('.txtFieldName').val("id").prop('readonly', true);
-                $(el).find('.txtdbType').val("increments");
+                $(el).find('.txtdbType').val("uuid_primary");
+                $(el).find('.txtLabel').val("ID");
                 $(el).find('.chkNullable').attr('checked', false);
                 $(el).find('.chkSearchable').attr('checked', false);
                 $(el).find('.chkFillable').attr('checked', false);
                 $(el).find('.chkPrimary').attr('checked', true);
                 $(el).find('.chkInForm').attr('checked', false);
                 $(el).find('.chkInIndex').attr('checked', false);
-                $(el).find('.drdHtmlType').val('number').trigger('change');
+                $(el).find('.drdHtmlType').val('uuid').trigger('change');
             }
 
             function renderCreatedByData(el) {

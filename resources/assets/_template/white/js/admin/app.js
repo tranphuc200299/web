@@ -175,6 +175,26 @@ window.GLOBAL_CONFIG = function () {
                 $(this).datepicker(configs);
             });
 
+            $('[data-toggle=datetime-picker]').each(function (k, v) {
+                $(this).daterangepicker({
+                    autoUpdateInput: false,
+                    singleDatePicker: true,
+                    timePicker : true,
+                    timePicker24Hour : true,
+                    timePickerIncrement : 1,
+                    timePickerSeconds : true,
+                    singleClasses: "picker_3",
+                    locale : {
+                        format : 'YYYY/MM/DD HH:mm:ss'
+                    }
+                }, function(start, end, label) {
+                    //console.log(start.toISOString(), end.toISOString(), label);
+                });
+                $(this).on("apply.daterangepicker", function(e, picker) {
+                    picker.element.val(picker.startDate.format(picker.locale.format));
+                });
+            });
+
             $('[data-toggle=time-picker]').each(function (k, v) {
                 $(this).daterangepicker({
                     autoUpdateInput: false,
@@ -237,6 +257,3 @@ require('../plugins/modal-custom.js');
 require('../plugins/jquery-sortable');
 require('../plugins/toast-sweet');
 require('../plugins/dropdown-custom');
-require('../plugins/vacxin/script.js');
-require('./inventory.js');
-require('./setting_attribute.js');

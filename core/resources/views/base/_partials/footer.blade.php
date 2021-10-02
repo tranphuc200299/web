@@ -1,7 +1,7 @@
 <!-- footer content -->
 <footer>
     <div class="pull-right">
-        Design by NTQ
+        {{ \Core\Constants\AppConst::COPY_RIGHT }}
     </div>
     <div class="clearfix"></div>
 </footer>

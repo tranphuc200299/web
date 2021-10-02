@@ -4,7 +4,9 @@ namespace Modules\Auth\Http\Controllers\Web;
 
 use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 use Modules\Auth\Constants\AuthConst;
 use Modules\Auth\Entities\Models\Role;
 use Modules\Auth\Entities\Models\User;
@@ -24,6 +26,24 @@ class UserController extends Controller
         $assign['users'] = $this->userService->paginate(['with_load' => ['roles']]);
 
         return view('auth::user.index', $assign);
+    }
+
+    public function backToMainUser()
+    {
+        if (Session::get('adminId')) {
+            Auth::loginUsingId(Session::get('adminId'));
+
+            return redirect()->route('cp.users.index');
+        }
+
+        return redirect()->route('cp');
+    }
+
+    public function loginAsUser(User $user)
+    {
+        Auth::loginUsingId($user->id);
+
+        return redirect()->route('cp');
     }
 
     public function create()

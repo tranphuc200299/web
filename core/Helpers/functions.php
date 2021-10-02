@@ -27,3 +27,36 @@ if (!function_exists('storage_url')) {
         return '';
     }
 }
+
+if (!function_exists('public_url')) {
+    function public_url($path)
+    {
+        if ($path) {
+            return asset($path);
+        }
+
+        return '';
+    }
+}
+
+if (!function_exists('back_link')) {
+    function back_link()
+    {
+        return url()->previous();
+    }
+}
+
+if (!function_exists('route_active')) {
+
+    function route_active($route)
+    {
+        return request()->routeIs($route);
+    }
+}
+
+if (!function_exists('get_tenant_id')) {
+    function get_tenant_id()
+    {
+        return null;
+    }
+}
