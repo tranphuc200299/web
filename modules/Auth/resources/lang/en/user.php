@@ -3,6 +3,6 @@
 return [
     'name'     => 'Name',
     'create'   => 'New Account',
-    'Login Id' => 'Login Id',
+    'login ID' => 'Login Id',
     'email'    => 'Email',
 ];

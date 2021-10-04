@@ -5,6 +5,7 @@ namespace Modules\Auth\Constants;
 class AuthConst
 {
     const ROLE_SUPER_ADMIN = 'role.super-admin';
+    const ROLE_LEVEL_IT_ADMIN = 0;
 
     const PERMISSION_CREATE = '.create';
     const PERMISSION_READ = '.read';

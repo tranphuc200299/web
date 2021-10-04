@@ -3,9 +3,6 @@
 namespace Modules\Auth\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
-use Package\Modules\Auth\Constants\AuthConst;
-use Package\Modules\Auth\Entities\Models\Role;
-use Package\Modules\Vaccine\Services\VenueService;
 
 class UserRequest extends FormRequest
 {

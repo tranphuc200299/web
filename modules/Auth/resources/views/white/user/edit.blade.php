@@ -82,7 +82,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-12">
-                                        <button class="btn btn-success pull-right">
+                                        <button class="btn btn-success pull-right" type="submit">
                                             {{trans('core::common.save')}}
                                         </button>
                                         <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">

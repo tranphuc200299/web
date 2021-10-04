@@ -23,6 +23,7 @@ class CreateMsUsersTable extends Migration
             $table->tinyInteger('gender')->default(0);
             $table->tinyInteger('status')->nullable()->default(\Modules\Auth\Constants\AuthConst::STATUS_USER_DISABLE);
             $table->rememberToken();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

@@ -73,7 +73,7 @@
                                         <select name="role_id" id="role_id" class="form-control" required data-toggle="select2-multi">
                                             @foreach($roles as $role)
                                                 <option value="{{$role->id}}" @if(old('role_id') == $role->id) selected @endif>
-                                                    {{$role->name}}
+                                                    {{ trans($role->display_name) }}
                                                 </option>
                                             @endforeach
                                         </select>
@@ -83,7 +83,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-12">
-                                        <button class="btn btn-success pull-right">
+                                        <button class="btn btn-success pull-right" type="submit">
                                             {{trans('core::common.create')}}
                                         </button>
                                         <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">

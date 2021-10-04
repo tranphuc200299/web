@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 use Modules\Auth\Constants\AuthConst;
+use Modules\Auth\Entities\Mail\NewAccount;
 use Modules\Auth\Entities\Models\Role;
 use Modules\Auth\Entities\Models\User;
 use Modules\Auth\Services\UserService;
@@ -56,12 +57,19 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $data = $request->only(['name', 'email', 'password']);
+        $email = $data['email'];
+        $password = $data['password'] ?? $this->userService->makePassword();
         $data['password'] = Hash::make($data['password']);
 
         /* @var $user User */
         $user = $this->userService->create($data);
 
-        $user->assignRole($request->get('role_id'));
+        if (!empty($user)) {
+            $user->assignRole($request->get('role_id'));
+            activity()->send(new NewAccount($email, $password));
+
+            return redirect()->route('cp.users.index')->with('success', trans('core::message.notify.create success'));
+        }
 
         return redirect()->route('cp.users.index');
     }

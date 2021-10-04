@@ -19,7 +19,7 @@ class DatabaseSeeder extends Seeder
     {
         //New Users
         $superAdmin = factory(User::class)->create(['name' => 'SuperAdmin', 'email' => 'super@mail.io']);
-        $superAdminRole = factory(Role::class)->create(['name' => AuthConst::ROLE_SUPER_ADMIN, 'description' => 'Role super admin, allowed every action']);
+        $superAdminRole = factory(Role::class)->create(['name' => AuthConst::ROLE_SUPER_ADMIN, 'display_name' => 'auth::role.name.ITAdmin', 'description' => 'Role super admin, allowed every action']);
         $superAdmin->assignRole($superAdminRole);
 
         factory(Permission::class)->create(['name' => 'user'.AuthConst::PERMISSION_CREATE, 'description' => 'Create entities, show button create']);

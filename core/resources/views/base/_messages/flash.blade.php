@@ -49,3 +49,12 @@
         {{ $flashMessage }}
     </div>
 @endif
+
+@if ($flashMessages = Session::get('errors'))
+    @foreach($flashMessages->all() as $flashMessage)
+        <div class="alert alert-danger" role="alert">
+            <button class="close" data-dismiss="alert"></button>
+            <strong>{{ $flashMessage }}</strong>
+        </div>
+    @endforeach
+@endif

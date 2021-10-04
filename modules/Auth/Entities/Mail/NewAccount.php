@@ -1,6 +1,6 @@
 <?php
 
-namespace Package\Modules\Auth\Entities\Mail;
+namespace Modules\Auth\Entities\Mail;
 
 use Core\Entities\Mails\Mailable;
 

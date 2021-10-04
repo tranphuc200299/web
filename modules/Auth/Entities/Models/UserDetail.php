@@ -13,13 +13,11 @@ use Core\Entities\Models\Uuid;
  * @property int|null $group_id
  * @property \Illuminate\Support\Carbon|null $created_at
  * @property \Illuminate\Support\Carbon|null $updated_at
- * @property-read \Modules\Auth\Entities\Models\Group|null $group
  * @property-read \Modules\Auth\Entities\Models\User $user
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail newModelQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail newQuery()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail query()
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereCreatedAt($value)
- * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereGroupId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereId($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereUserId($value)
@@ -33,15 +31,8 @@ class UserDetail extends BaseModel
 
     protected $guarded = [];
 
-    protected $fillable = ['user_id', 'group_id'];
-
     public function user()
     {
         return $this->belongsTo(User::class);
-    }
-
-    public function group()
-    {
-        return $this->belongsTo(Group::class);
     }
 }

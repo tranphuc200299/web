@@ -20,7 +20,7 @@ class CreateMsUserDetailTable extends Migration
                 ->references('id')
                 ->on('ms_users')
                 ->onDelete('cascade');
-            $table->uuid('group_id')->nullable();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

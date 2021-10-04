@@ -4,23 +4,21 @@ namespace Core\Helpers;
 
 class Menus
 {
-    protected $defaultMenus = [];
-    protected $groups = [];
+    protected $menus = [];
 
     public function pushMenu($menu)
     {
         if (!empty($menu['group'])) {
-            $this->groups[$menu['group']][] = $menu;
+            $this->menus[$menu['group']][] = $menu;
         } else {
-            $this->defaultMenus[] = $menu;
+            $this->menus[] = $menu;
         }
     }
 
     public function renders()
     {
         $view = view('core::_partials.sidebar_extends', [
-            'defaultMenus' => $this->defaultMenus,
-            'groupsMenus' => $this->groups,
+            'groupsMenus' => $this->menus,
         ]);
 
         echo $view->render();

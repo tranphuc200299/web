@@ -4,6 +4,7 @@
 namespace Modules\Auth\Entities\Models;
 
 use Core\Entities\Models\Uuid;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Modules\Auth\Entities\Mail\ResetPassword;
@@ -11,7 +12,7 @@ use Modules\Auth\Entities\Mail\ResetPassword;
 class User extends Authenticatable
 {
     use Uuid;
-
+    use SoftDeletes;
     use Notifiable;
 
     protected $table = 'ms_users';
@@ -52,6 +53,13 @@ class User extends Authenticatable
     public function assignRole($role)
     {
         return $this->roles()->sync($role);
+    }
+
+    public function attachRoleByName($roleName)
+    {
+        $role = Role::where('name', $roleName)->first();
+
+        return $this->roles()->attach($role->id);
     }
 
     public function permissions()
