@@ -15,8 +15,10 @@ class CreateMsRolesTable extends Migration
     {
         Schema::create('ms_roles', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name');
-            $table->string('description')->nullable();
+            $table->string('name', 50);
+            $table->string('display_name', 50)->nullable();
+            $table->tinyInteger('level')->default(\Modules\Auth\Constants\AuthConst::ROLE_LEVEL_IT_ADMIN);
+            $table->string('description', 250)->nullable();
             $table->timestamps();
         });
     }

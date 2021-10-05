@@ -16,9 +16,9 @@ class CreateMsTenantConfigsTable extends Migration
         Schema::create('ms_tenant_configs', function (Blueprint $table) {
             $table->uuid('id')->primary();
             $table->uuid('tenant_id');
-            $table->string('icon')->nullable();
-            $table->string('image')->nullable();
-            $table->string('image_cover')->nullable();
+            $table->string('icon', 200)->nullable();
+            $table->string('image', 200)->nullable();
+            $table->string('image_cover', 200)->nullable();
             $table->timestamps();
             $table->softDeletes();
 

@@ -16,10 +16,10 @@ class CreateMsTenantsTable extends Migration
     {
         Schema::create('ms_tenants', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name')->nullable();
-            $table->string('email')->nullable();
-            $table->string('phone')->nullable();
-            $table->string('address')->nullable();
+            $table->string('name', 100)->nullable();
+            $table->string('email', 50)->nullable();
+            $table->string('phone', 20)->nullable();
+            $table->string('address', 250)->nullable();
             $table->string('status')->default(\Modules\Tenant\Constants\TenantConst::TENANT_STATUS_DISABLE);
             $table->uuid('created_by')->nullable();
             $table->timestamps();
