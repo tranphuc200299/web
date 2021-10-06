@@ -46,8 +46,8 @@ class BladeGenerator extends BaseGenerator
             $this->generateEditBlade();
             $this->generateDetailBlade();
         } else {
-            FileUtil::createFile($this->pathResources . 'views' . DIRECTORY_SEPARATOR . Str::lower($this->params->modelName) . DIRECTORY_SEPARATOR,
-                'index.blade.php', 'Code here');
+            $this->generateLayoutBlade();
+            $this->generateIndexEmptyBlade();
         }
     }
 
@@ -69,6 +69,16 @@ class BladeGenerator extends BaseGenerator
             '$FIELDS$'      => $this->getFields(),
             '$FILTER_JSON$' => json_encode(JqueryBuilder::getFilterJson($this->params->fields), JSON_PRETTY_PRINT),
         ], $templateData);
+        $fileName = 'index.blade.php';
+        FileUtil::createFile($this->pathResources . 'views' . DIRECTORY_SEPARATOR . Str::lower($this->params->modelName) . DIRECTORY_SEPARATOR,
+            $fileName, $templateData);
+    }
+
+    private function generateIndexEmptyBlade()
+    {
+        /*List*/
+        $templateData = get_blade_template('index_empty.blade');
+        $templateData = fillTemplate($this->params, [], $templateData);
         $fileName = 'index.blade.php';
         FileUtil::createFile($this->pathResources . 'views' . DIRECTORY_SEPARATOR . Str::lower($this->params->modelName) . DIRECTORY_SEPARATOR,
             $fileName, $templateData);

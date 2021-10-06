@@ -1,0 +1,7 @@
+@extends('$MODULE_LOWER$::layout')
+@section('content')
+    <div class="container-fluid bg-white">
+    </div>
+@endsection
+@push('custom-scripts')
+@endpush

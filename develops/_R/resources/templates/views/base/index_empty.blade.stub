@@ -1,0 +1,11 @@
+@extends('$MODULE_LOWER$::layout')
+@section('content')
+    <!-- page content -->
+    <div class="right_col" role="main">
+        <div class="">
+        </div>
+    </div>
+    <!-- /page content -->
+@endsection
+@push('custom-scripts')
+@endpush

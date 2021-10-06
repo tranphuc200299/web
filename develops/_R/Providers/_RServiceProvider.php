@@ -2,6 +2,7 @@
 
 namespace Develops\_R\Providers;
 
+use Develops\_R\Console\Commands\MakeModule;
 use Illuminate\Support\ServiceProvider;
 
 class _RServiceProvider extends ServiceProvider
@@ -26,6 +27,7 @@ class _RServiceProvider extends ServiceProvider
     function registerCommands()
     {
         $this->commands([
+            MakeModule::class
         ]);
     }
 }
