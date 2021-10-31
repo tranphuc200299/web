@@ -2,9 +2,11 @@
 
 namespace Modules\Tenant\Providers;
 
-use Illuminate\Support\ServiceProvider;
-use Illuminate\Support\Str;
 use Core\Facades\MenuFacade;
+use Illuminate\Support\ServiceProvider;
+use Modules\Tenant\Entities\Models\TenantModel;
+use Modules\Tenant\Providers\Tenant\PolicyServiceProvider;
+use Modules\Tenant\Providers\Tenant\RouteServiceProvider;
 
 class TenantServiceProvider extends ServiceProvider
 {
@@ -22,27 +24,18 @@ class TenantServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerCommands();
+        MenuFacade::pushMenu([
+            'group' => 20,
+            'group_name' => '',
+            'pos_child' => 0,
+            'name' => 'tenant::text.tenant management',
+            'class' => TenantModel::class,
+            'route' => 'cp.tenants.index',
+            'icon' => 'building',
+        ]);
 
-        $allDir = scandir(__DIR__);
-        $listMode = array_diff($allDir, array('..', '.'));
-
-        foreach ($listMode as $modelName) {
-            if (file_exists(base_path("modules/Tenant/Providers/{$modelName}/RouteServiceProvider.php"))) {
-                $this->app->register("Modules\\Tenant\\Providers\\{$modelName}\\RouteServiceProvider");
-
-                MenuFacade::pushMenu([
-                    'group' => '',
-                    'name' => $modelName,
-                    'class' => "Modules\\Tenant\\Entities\\Models\\{$modelName}Model",
-                    'route' => 'cp.' . Str::plural(strtolower($modelName)) . '.index',
-                    'icon' => 'building',
-                ]);
-            }
-
-            if (file_exists(base_path("modules/Tenant/Providers/{$modelName}/PolicyServiceProvider.php"))) {
-                $this->app->register("Modules\\Tenant\\Providers\\{$modelName}\\PolicyServiceProvider");
-            }
-        }
+        $this->app->register(RouteServiceProvider::class);
+        $this->app->register(PolicyServiceProvider::class);
 
     }
 

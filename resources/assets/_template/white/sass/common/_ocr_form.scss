@@ -1,0 +1,56 @@
+#ocr-image {
+    position: relative;
+    top: 30px;
+    max-width: 70%;
+    max-height: 550px;
+}
+
+.ocr-image-corners {
+    position: relative;
+
+    .top, .bottom {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        pointer-events: none;
+        color: #00a65a;
+    }
+
+    .top {
+        top: 15px;
+        border-top: 5px solid;
+    }
+
+    .bottom {
+        bottom: -45px;
+        border-bottom: 5px solid;
+    }
+
+    .left {
+        left: 35px;
+        border-left: 5px solid;
+    }
+
+    .right {
+        right: 35px;
+        border-right: 5px solid;
+    }
+}
+
+.full-width {
+    width: 100%;
+}
+
+#ocr-label {
+    position: relative;
+    top: 100px;
+    font-size: 20px;
+    width: 300px;
+}
+
+.ocr-failed {
+    font-size: 20px;
+    position: relative;
+    top: 40px;
+    color: #585656;
+}

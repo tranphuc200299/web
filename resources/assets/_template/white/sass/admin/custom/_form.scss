@@ -26,6 +26,14 @@
             padding-top: 5px;
             padding-bottom: 10px;
 
+            span.select2-container {
+                width: 100% !important;
+            }
+
+            label:not(.error) {
+                text-transform: none;
+            }
+
             .control-label {
                 font-weight: bold;
                 color: #2B303B;
@@ -77,118 +85,13 @@
     }
 }
 
-.booking-time-infor {
-    background-color: #DFF8FE;
-    padding: 33px;
-
-    .form-group {
-        label {
-            font-weight: bold;
-            color: #0092BE;
-            font-size: 12px;
-            opacity: 1;
-            padding-bottom: 10px;
-            @media (max-width: 767px) {
-                padding-bottom: 5px;
-            }
-
-            span {
-                color: red;
-            }
-        }
-
-        label.error {
-            color: #ea2c54;
-            font-weight: 400;
-        }
-    }
-
-    .input-calendar {
-        background-color: #2CCEF4;
-
-        .input-group-text {
-            background-color: #DFF8FE;
-            color: #2CCEF4;
-            border: 1px solid #2CCEF4;
-        }
-    }
-
-    .form-group {
-        input {
-            border: 1px solid #2CCEF4;
-        }
-    }
-
-    .select2-container .select2-selection {
-        border: 1px solid #2CCEF4 !important;
-    }
-}
-
-.booking_content {
-    .generate {
-        margin-left: 11px;
-        padding-top: 20px;
-    }
-
-    .pt-32px {
-        padding-top: 32px;
-    }
-
-    .pt-42px {
-        padding-top: 42px;
-    }
-
-    .mt-40px {
-        margin-top: 40px;
-    }
-
-    .text-blue-bk {
-        color: #0092BE;
-    }
-
-    .select-birthday {
-        padding-bottom: 0px;
-        padding-top: 9px;
-        border: 1px solid rgba(0, 0, 0, 0.07) !important;
-        background: white;
-    }
-}
-
-#overlay {
-    background: #ffffff;
-    color: #666666;
-    position: fixed;
-    height: 100%;
-    width: 100%;
-    z-index: 5000;
-    top: 0;
-    left: 0;
-    float: left;
-    text-align: center;
-    padding-top: 25%;
-    opacity: .80;
-
-    .spinner {
-        margin: 0 auto;
-        height: 64px;
-        width: 64px;
-        animation: rotate 0.8s infinite linear;
-        border: 5px solid firebrick;
-        border-right-color: transparent;
-        border-radius: 50%;
-    }
-
-    @keyframes rotate {
-        0% {
-            transform: rotate(0deg);
-        }
-        100% {
-            transform: rotate(360deg);
-        }
-    }
-}
-
 .not-readonly {
     background-color: #fff !important;
     color: #373e43 !important;
+}
+
+.form-group{
+    span.select2-container{
+        width: 100% !important;
+    }
 }

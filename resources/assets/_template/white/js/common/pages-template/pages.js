@@ -2201,12 +2201,29 @@
     Sidebar.prototype.togglePinSidebar = function (toggle) {
         if (toggle == 'hide') {
             this.$body.removeClass('menu-pin');
+            syncMenuPinServer(0);
         } else if (toggle == 'show') {
             this.$body.addClass('menu-pin');
+            syncMenuPinServer(1);
         } else {
+            if(this.$body.hasClass('menu-pin')){
+                syncMenuPinServer(0);
+            }else{
+                syncMenuPinServer(1);
+            }
+
             this.$body.toggleClass('menu-pin');
         }
+    }
 
+    function syncMenuPinServer(pin){
+        $.ajax({
+            method: 'POST',
+            url: '/cp/s/c/m',
+            dataType: 'json',
+            data: {pin: pin}
+        }).done(function (response) {
+        });
     }
 
 
@@ -2251,7 +2268,6 @@
         return false;
     })
     $(document).on('click.pg.sidebar.data-api', '[data-toggle="sidebar"]', function (e) {
-        console.log("menu open");
         var $this = $(this);
         var $target = $('[data-pages="sidebar"]');
         $target.data('pg.sidebar').toggleSidebar();

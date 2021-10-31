@@ -31,33 +31,6 @@ window.GLOBAL_CONFIG = function () {
                 ignore: [],
             });
 
-            //jquery input mask
-            $.applyDataMask();
-
-            //Summer note setup
-            // Define function to open filemanager window
-            let lfm = function (options, cb) {
-                let route_prefix = (options && options.prefix) ? options.prefix : '/laravel-filemanager';
-                window.open(route_prefix, 'FileManager', 'width=900,height=600');
-                window.SetUrl = cb;
-                window.SetUrlMultiple = cb;
-            };
-            // Define LFM summernote button
-            let LFMButton = function (context) {
-                let ui = $.summernote.ui;
-                let button = ui.button({
-                    contents: '<i class="fa fa-picture-o"></i> ',
-                    tooltip: 'Insert image',
-                    click: function () {
-                        lfm({type: 'image', prefix: ROUTE.FILE_MANAGER}, function (lfmItems, path) {
-                            context.invoke('insertImage', path);
-                        });
-
-                    }
-                });
-                return button.render();
-            };
-
             $('[data-toggle=editor-mini]').summernote({
                 height: 100,
                 toolbar: [
@@ -84,18 +57,13 @@ window.GLOBAL_CONFIG = function () {
                     ['table', ['table']],
                     ['popovers', ['lfm']],
                     ['view', ['codeview', 'fullscreen']],
-                ],
-                buttons: {
-                    lfm: LFMButton
-                }
+                ]
             });
 
             /*setup datepicker jquery-ui*/
             $('[data-toggle=select2-single]').select2({});
             $('[data-toggle=select2-group]').select2({});
             $('[data-toggle=select2-multi]').select2({
-                maximumSelectionLength: 4,
-                placeholder: "With Max Selection limit 4",
                 allowClear: true
             });
 
@@ -185,7 +153,9 @@ window.GLOBAL_CONFIG = function () {
                     timePickerSeconds : true,
                     singleClasses: "picker_3",
                     locale : {
-                        format : 'YYYY/MM/DD HH:mm:ss'
+                        format : 'YYYY/MM/DD HH:mm:ss',
+                        applyLabel: trans('message.apply') ? trans('message.apply') : 'Apply',
+                        cancelLabel: trans('message.cancel') ? trans('message.cancel') : 'Cancel',
                     }
                 }, function(start, end, label) {
                     //console.log(start.toISOString(), end.toISOString(), label);
@@ -205,7 +175,9 @@ window.GLOBAL_CONFIG = function () {
                     timePickerSeconds: true,
                     singleClasses: "picker_3",
                     locale: {
-                        format: 'HH:mm:ss'
+                        format: 'HH:mm:ss',
+                        applyLabel: trans('message.apply') ? trans('message.apply') : 'Apply',
+                        cancelLabel: trans('message.cancel') ? trans('message.cancel') : 'Cancel',
                     }
                 }).on('show.daterangepicker', function (ev, picker) {
                     picker.container.find(".calendar-table").hide();
@@ -214,6 +186,30 @@ window.GLOBAL_CONFIG = function () {
                     picker.element.val(picker.startDate.format(picker.locale.format));
                 });
             });
+
+            $('[data-toggle=time-minute-picker]').each(function (k, v) {
+                $(this).daterangepicker({
+                    autoUpdateInput: false,
+                    singleDatePicker: true,
+                    timePicker: true,
+                    timePicker24Hour: true,
+                    timePickerIncrement: 1,
+                    timePickerSeconds: false,
+                    singleClasses: "picker_3",
+                    locale: {
+                        format: 'HH:mm',
+                        applyLabel: trans('message.apply') ? trans('message.apply') : 'Apply',
+                        cancelLabel: trans('message.cancel') ? trans('message.cancel') : 'Cancel',
+                    }
+                }).on('show.daterangepicker', function (ev, picker) {
+                    picker.container.find(".calendar-table").hide();
+                });
+                $(this).on("apply.daterangepicker", function (e, picker) {
+                    $('#' + picker.element.attr('id') + '-error').remove();
+                    picker.element.val(picker.startDate.format(picker.locale.format));
+                });
+            });
+
             $(".toggle-password").click(function () {
                 $(this).toggleClass("fa-eye fa-eye-slash");
                 let input = $($(this).attr("toggle"));

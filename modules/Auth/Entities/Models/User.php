@@ -7,6 +7,7 @@ use Core\Entities\Models\Uuid;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Collection;
 use Modules\Auth\Entities\Mail\ResetPassword;
 
 class User extends Authenticatable
@@ -62,6 +63,9 @@ class User extends Authenticatable
         return $this->roles()->attach($role->id);
     }
 
+    /**
+     * @return Collection
+     */
     public function permissions()
     {
         return $this->roles->map->permissions->flatten()->pluck('name')->unique();

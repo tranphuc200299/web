@@ -4,12 +4,7 @@ namespace Modules\Tenant\Http\Controllers\Web;
 
 use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Hash;
-use Modules\Auth\Entities\Mail\NewAccount;
-use Modules\Auth\Entities\Models\Role;
-use Modules\Auth\Entities\Models\User;
 use Modules\Auth\Services\UserService;
-use Modules\Tenant\Constants\TenantConst;
 use Modules\Tenant\Entities\Models\TenantModel;
 use Modules\Tenant\Http\Requests\TenantRequest;
 use Modules\Tenant\Services\TenantService;
@@ -47,7 +42,6 @@ class TenantController extends Controller
     public function store(TenantRequest $request)
     {
         begin_transaction();
-
         /* @var $tenant TenantModel */
         $tenant = $this->tenantService->create($request->only(['name', 'email', 'phone', 'address']));
 
@@ -57,24 +51,7 @@ class TenantController extends Controller
 
         $tenant->config()->create();
 
-        $dataUser = $request->only(['user.name', 'user.email', 'user.password']);
-
-        $email = $dataUser['user']['email'];
-        $password = $dataUser['user']['password'] ?? $this->userService->makePassword();
-        $dataUser['user']['password'] = Hash::make($dataUser['user']['password']);
-
-        /* @var $user User */
-        $user = $this->userService->create($dataUser['user']);
-
-        if (empty($user)) {
-            return redirect()->back()->with('error', trans('core::error.something is wrong'));
-        }
-
-        $user->detail()->create(['tenant_id' => $tenant->id]);
-        $user->attachRoleByName(TenantConst::ROLE_TENANT_ADMIN);
-
         commit_transaction();
-        activity()->send(new NewAccount($email, $password));
 
         return redirect()->route('cp.tenants.index')->with('success', trans('core::message.notify.create success'));
     }

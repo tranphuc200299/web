@@ -13,6 +13,20 @@ jQuery.validator.addMethod("checkPhoneNumber", function (value, element) {
     return this.optional(element) || /^[0-9-]{10,13}$/.test(value);
 }, trans('message.validate.phone'));
 
+jQuery.validator.addMethod("requiredby", function (value, element) {
+    let field = $.trim($(element).attr('data-rule-requiredBy'));
+
+    if (!$(field).is(":checked")) {
+        return true;
+    }
+
+    if ($(field).is(":checked") && value) {
+        return true;
+    }
+
+    return false;
+}, trans('message.validate.required'));
+
 jQuery.validator.addMethod("checkCode", function (value, element) {
     var ticketLength = $('#code').attr('ticket-length');
     if (typeof ticketLength !== "undefined") {
@@ -57,7 +71,11 @@ jQuery.validator.addMethod("checkPhone", function (value, element) {
 
 jQuery.validator.addMethod("validKatagana", function (value, element) {
     return this.optional(element) || /^([ァ-ヶー]+)$/.test(value) || /^([ｧ-ﾝﾞﾟ]+)$/.test(value);
-}, trans('message.validate.kataganaCheck'));
+}, trans('message.validate.katakana'));
+
+jQuery.validator.addMethod("validHiragana", function(value, element) {
+        return this.optional(element) || /^[ぁ-ん 　]+$/.test(value);
+}, trans('message.validate.hiragana'));
 
 jQuery.validator.addMethod("validPassword", function (value, element) {
     return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%*?&]{8,20}$/.test(value) || !value;
@@ -168,9 +186,10 @@ FormValidation = function () {
 
             }
 
-            $('form.form_submit_check input').on('keyup keydown change', function () {
+            $('form.form_submit_check input, form.form_submit_check select, form.form_submit_check textarea').on('keyup keydown change select2:close', function () {
                 let $this = $(this);
                 let form = $this.parents('form');
+                form.validate().element($(this));
                 if (form.hasClass('form_validation') && !form.validate().checkForm()) {
                     form.find('button[type="submit"]').prop('disabled', true);
                     form.find('#btn-next-step').prop('disabled', true);
@@ -185,6 +204,7 @@ FormValidation = function () {
                 let $this = $(this);
                 let form = $this.parents('form');
                 if (form.hasClass('form_validation') && !form.validate().checkForm()) {
+                    form.valid();
                     return false;
                 }
 
@@ -192,7 +212,7 @@ FormValidation = function () {
                 form.find('button[type="submit"]').prop('disabled', true);
             });
 
-            $.each($('form.form_validation'), function (i, v) {
+            $.each($('form.form_submit_check'), function (i, v) {
                 let form = $(v);
                 if (form.hasClass('form_validation') && !form.validate().checkForm()) {
                     form.find('button[type="submit"]').prop('disabled', true);

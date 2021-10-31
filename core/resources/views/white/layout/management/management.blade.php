@@ -14,8 +14,9 @@
     <link rel="icon" type="image/x-icon" href="{{ url('/assets/ico/favicon.ico') }}"/>
     <link href="{{ mix('assets/admin/css/vendor.css') }}" rel="stylesheet" type="text/css" class="main-stylesheet"/>
     <link href="{{ mix('assets/admin/css/style.css') }}" rel="stylesheet" type="text/css"/>
+    @stack('custom-styles')
 </head>
-<body class="fixed-header ">
+<body class="fixed-header @if(\Illuminate\Support\Facades\Cookie::get('pin')) menu-pin @endif">
 @include('core::_partials.sidebar')
 <div class="page-container ">
     @include('core::_partials.header')
@@ -26,9 +27,11 @@
         @include('core::_partials.footer')
     </div>
 </div>
+<script src="{{ public_url('assets/admin/js/'.app()->getLocale().'.js') }}"></script>
 <script src="{{ mix('assets/admin/js/vendor.bundle.js') }}"></script>
 <script src="{{ mix('assets/admin/js/modernizr.custom.js') }}"></script>
 <script src="{{ mix('assets/admin/js/template-core.js') }}"></script>
 <script src="{{ mix('assets/admin/js/app.js') }}"></script>
+@stack('custom-scripts')
 </body>
 </html>

@@ -2,6 +2,7 @@
 
 namespace Core\Providers;
 
+use Core\Facades\Breadcrumb\Handler;
 use Core\Helpers\Menus;
 use Illuminate\Support\Facades\URL;
 use Illuminate\Support\ServiceProvider;
@@ -23,6 +24,9 @@ class CoreServiceProvider extends ServiceProvider
         $this->app->register(MacroServiceProvider::class);
         $this->app->singleton('menu', function () {
             return new Menus();
+        });
+        $this->app->singleton('breadcrumb', function () {
+            return new Handler();
         });
 
     }

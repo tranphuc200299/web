@@ -7,3 +7,6 @@ $font-path: '../../../fonts';
 @import "admin/theme_colors";
 @import "admin/custom/style";
 @import "admin/../common/mixins";
+@import "admin/../common/form_request";
+@import "admin/page/common";
+@import "admin/../common/ocr_form";

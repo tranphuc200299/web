@@ -2,11 +2,11 @@
     <!-- Previous Page Link -->
     @if ($paginator->onFirstPage())
         <li class="paginate_button previous disabled">
-            <a href="javascript:void(0)">Previous</a>
+            <a href="javascript:void(0)">{{ trans('core::common.previous') }}</a>
         </li>
     @else
         <li class="paginate_button previous">
-            <a href="{{ $paginator->previousPageUrl() }}">Previous</a>
+            <a href="{{ $paginator->previousPageUrl() }}">{{ trans('core::common.previous') }}</a>
         </li>
     @endif
 
@@ -34,11 +34,11 @@
 <!-- Next Page Link -->
     @if ($paginator->hasMorePages())
         <li class="paginate_button next">
-            <a href="{{ $paginator->nextPageUrl() }}">Next</a>
+            <a href="{{ $paginator->nextPageUrl() }}">{{ trans('core::common.next') }}</a>
         </li>
     @else
         <li class="paginate_button next disabled">
-            <a href="javascript:void(0)">Next</a>
+            <a href="javascript:void(0)">{{ trans('core::common.next') }}</a>
         </li>
     @endif
 </ul>

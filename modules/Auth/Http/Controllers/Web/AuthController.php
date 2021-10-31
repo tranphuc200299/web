@@ -3,15 +3,18 @@
 namespace Modules\Auth\Http\Controllers\Web;
 
 use Core\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\JsonResponse;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
+use Illuminate\Validation\ValidationException;
+use Modules\Auth\Constants\AuthConst;
 
 class AuthController extends Controller
 {
     use AuthenticatesUsers;
 
-    protected $redirectTo = '/cp';
+    protected $redirectTo = '/cp/users';
 
     public function __construct()
     {
@@ -31,6 +34,8 @@ class AuthController extends Controller
     {
         $credentials = $this->credentials($request);
 
+        $credentials['status'] = AuthConst::STATUS_USER_ENABLE;
+
         return $this->guard()->attempt($credentials, $request->filled('remember'));
     }
 
@@ -43,16 +48,14 @@ class AuthController extends Controller
             return redirect($url);
         }
 
-        return redirect(route('cp'));
+        return redirect(route('cp.users.index'));
     }
 
     /**
-     * Handle a login request to the application.
+     * @param  Request  $request
+     * @return bool|JsonResponse|\Illuminate\Http\RedirectResponse|\Symfony\Component\HttpFoundation\Response
      *
-     * @param  \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\Response|\Illuminate\Http\JsonResponse
-     *
-     * @throws \Illuminate\Validation\ValidationException
+     * @throws ValidationException
      */
     public function login(Request $request)
     {
@@ -65,7 +68,9 @@ class AuthController extends Controller
             $this->hasTooManyLoginAttempts($request)) {
             $this->fireLockoutEvent($request);
 
-            return $this->sendLockoutResponse($request);
+            $this->sendLockoutResponse($request);
+
+            return false;
         }
 
         if ($this->attemptLogin($request)) {
@@ -78,6 +83,43 @@ class AuthController extends Controller
         $this->incrementLoginAttempts($request);
 
         return $this->sendFailedLoginResponse($request);
+    }
+
+
+    /**
+     * Send the response after the user was authenticated.
+     *
+     * @param \Illuminate\Http\Request $request
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendLoginResponse(Request $request)
+    {
+        $request->session()->regenerate();
+        if (fn_auth()->hasRoleName(AuthConst::ROLE_SUPER_ADMIN)) {
+            Session::put('adminId', auth()->user()->id);
+        }
+
+        $this->clearLoginAttempts($request);
+
+        if ($response = $this->authenticated($request, $this->guard()->user())) {
+            return $response;
+        }
+
+        return $request->wantsJson()
+            ? new JsonResponse([], 204)
+            : redirect()->intended($this->redirectPath());
+    }
+
+    /**
+     * @param Request $request
+     *
+     * @throws ValidationException
+     */
+    protected function sendFailedLoginResponse(Request $request)
+    {
+        throw ValidationException::withMessages([
+            $this->username() => [trans('auth::message.Login fail')],
+        ]);
     }
 
     /**

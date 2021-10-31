@@ -28,6 +28,7 @@ return [
     'search'          => 'Search',
     'clear filter'    => 'Clear filter',
     'back'            => 'Back',
+    'new item'        => 'New Item',
 
     /* Menu title */
     'menu'            => [

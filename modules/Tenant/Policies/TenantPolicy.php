@@ -2,61 +2,32 @@
 
 namespace Modules\Tenant\Policies;
 
+use Illuminate\Auth\Access\HandlesAuthorization;
 use Modules\Auth\Constants\AuthConst;
 use Modules\Auth\Entities\Models\User;
-use Illuminate\Auth\Access\HandlesAuthorization;
+use Modules\Tenant\Entities\Models\TenantModel;
 
 class TenantPolicy
 {
-    use HandlesAuthorization;
+    use HandlesAuthorization, TenantOwner;
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  User  $user
-     * @return mixed
-     */
-    public function read(User $user)
+    public function read(User $auth, TenantModel $tenant = null)
     {
-        //Return true if a user has permission to view-tenant
-        return $user->permissions()->contains('tenant'.AuthConst::PERMISSION_READ);
+        return $auth->permissions()->contains('tenant' . AuthConst::PERMISSION_READ) && $this->hasOwnerEntity($auth, $tenant);
     }
 
-    /**
-     * Determine whether the user can create models.
-     *
-     * @param  User  $user
-     * @return mixed
-     */
-    public function create(User $user)
+    public function create(User $auth)
     {
-        //Return true if a user has permission to create-tenant
-        return $user->permissions()->contains('tenant'.AuthConst::PERMISSION_CREATE);
+        return $auth->permissions()->contains('tenant' . AuthConst::PERMISSION_CREATE);
     }
 
-    /**
-     * Determine whether the user can update the model.
-     *
-     * @param  User  $user
-     * @return mixed
-     */
-    public function update(User $user)
+    public function update(User $auth, TenantModel $tenant = null)
     {
-        //Return true if the authenticated user has the same id with specified model/user id 
-        //or has permission to update-tenant
-        return $user->permissions()->contains('tenant'.AuthConst::PERMISSION_UPDATE);
+        return $auth->permissions()->contains('tenant' . AuthConst::PERMISSION_UPDATE) && $this->hasOwnerEntity($auth, $tenant);
     }
 
-    /**
-     * Determine whether the user can delete the model.
-     *
-     * @param  User  $user
-     * @param  User  $model
-     * @return mixed
-     */
-    public function delete(User $user)
+    public function delete(User $auth, TenantModel $tenant = null)
     {
-        //Return true if an authenticated user has permission to delete-tenant
-        return $user->permissions()->contains('tenant'.AuthConst::PERMISSION_DELETE);
+        return $auth->permissions()->contains('tenant' . AuthConst::PERMISSION_DELETE) && $this->hasOwnerEntity($auth, $tenant);
     }
 }

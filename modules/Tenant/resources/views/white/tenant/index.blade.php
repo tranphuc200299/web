@@ -1,7 +1,7 @@
 @extends('tenant::layout')
 @section('content')
     <div class="container-fluid bg-white">
-        {{--@include('tenant::tenant._filter')--}}
+        @include('tenant::tenant._partials.filter')
         <div class="card card-transparent pt-2">
             @include('core::_messages.flash')
             <div class="">
@@ -19,42 +19,42 @@
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
                         <thead>
-                        <tr>
-                            <th style="width:1%" class="text-center">
-                                <button class="btn btn-link"><i class="pg-trash"></i>
-                                </button>
-                            </th>
-                            <th>{{ trans('tenant::text.tenant name') }}</th>
-                            <th>{{ trans('tenant::text.tenant email') }}</th>
-                            <th>{{ trans('tenant::text.tenant phone') }}</th>
-                            <th>{{ trans('tenant::text.tenant address') }}</th>
-                            <th></th>
-                        </tr>
+                            <tr>
+                                {!!  Html::renderHeader(
+                                 [
+                                 'id' => ['name' => trans('core::common.No'), 'style' => 'width: 80px'],
+                                 'name' => ['name' => trans('tenant::text.tenant name') , 'sortable' => true],
+                                 'email' => ['name' => trans('tenant::text.tenant email') , 'sortable' => true],
+                                 'phone' => ['name' => trans('tenant::text.tenant phone') , 'sortable' => true],
+                                 'address' => ['name' => trans('tenant::text.tenant address')  , 'sortable' => true],
+                                 'created_at' => ['name' => trans('core::common.created at'), 'sortable' => true],
+                                 'action' => ['name' => '', 'sortable' => false, 'style' => "width: 270px"],
+                                 ],'id', route(Route::currentRouteName()), false)  !!}
+                            </tr>
                         </thead>
                         <tbody>
                         @foreach($list as $tenant)
                             <tr>
-                                <td class="v-align-middle">
+                                <td class="v-align-middle text-center">
                                     <div class="checkbox text-center">
-                                        <input type="checkbox" value="{{ $tenant->id }}" name="record[]"
-                                               id="checkbox_{{$tenant->id}}">
-                                        <label for="checkbox_{{$tenant->id}}" class="no-padding no-margin"></label>
+                                        {{($users->currentpage()-1)*$users->perpage()+ $key + 1}}
                                     </div>
                                 </td>
-                                <td class="v-align-middle">{{$tenant->name}}</td>
+                                <td class="v-align-middle text-center">{{$tenant->name}}</td>
                                 <td class="v-align-middle">{{$tenant->email}}</td>
-                                <td class="v-align-middle">{{$tenant->phone}}</td>
+                                <td class="v-align-middle text-center">{{$tenant->phone}}</td>
                                 <td class="v-align-middle">{{$tenant->address}}</td>
-                                <td class="v-align-middle">
-                                    @can('update', \Modules\Tenant\Entities\Models\TenantModel::class)
+                                <td class="v-align-middle text-center">{{$tenant->created_at}}</td>
+                                <td class="v-align-middle text-center">
+                                    @can('update', $tenant)
                                         <a class="btn btn-primary btn-xs"
                                            href="{{ route('cp.tenants.edit', [$tenant->id]) }}">Edit</a>
                                     @endcan
-                                    @can('read', \Modules\Tenant\Entities\Models\TenantModel::class)
+                                    @can('read', $tenant)
                                         <a class="btn btn-info btn-xs"
                                            href="{{ route('cp.tenants.show', [$tenant->id]) }}">View</a>
                                     @endcan
-                                    @can('delete', \Modules\Tenant\Entities\Models\TenantModel::class)
+                                    @can('delete', $tenant)
                                         <form method="POST" action="{{ route('cp.tenants.destroy', [$tenant->id]) }}"
                                               style="display: initial;">
                                             @csrf

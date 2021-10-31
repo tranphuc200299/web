@@ -30,7 +30,9 @@
             border-radius: 0;
             text-align: center;
             cursor: pointer;
-
+            display: flex;
+            align-items: center;
+            justify-content: center;
             .ui-icon {
                 border: solid #000;
                 border-width: 0 2px 2px 0;

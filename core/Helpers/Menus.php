@@ -8,17 +8,23 @@ class Menus
 
     public function pushMenu($menu)
     {
-        if (!empty($menu['group'])) {
-            $this->menus[$menu['group']][] = $menu;
+        $group = (int) $menu['group'] ?? null;
+        $groupName = $menu['group_name'] ?? '';
+
+        if ($groupName) {
+            $this->menus[$group]['name'] = $groupName;
+            $this->menus[$group]['child'][$menu['pos_child']] = $menu;
         } else {
-            $this->menus[] = $menu;
+            $this->menus[$group]['single'] = $menu;
         }
     }
 
     public function renders()
     {
+        ksort($this->menus);
+
         $view = view('core::_partials.sidebar_extends', [
-            'groupsMenus' => $this->menus,
+            'menus' => $this->menus,
         ]);
 
         echo $view->render();

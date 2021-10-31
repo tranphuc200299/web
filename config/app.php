@@ -228,7 +228,8 @@ return [
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
 
-        'Menu' => Core\Facades\MenuFacade::class
+        'Menu' => Core\Facades\MenuFacade::class,
+        'Breadcrumb' => \Core\Facades\Breadcrumb\Breadcrumb::class,
     ],
 
 ];

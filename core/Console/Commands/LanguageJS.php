@@ -39,7 +39,7 @@ class LanguageJS extends Command
      */
     public function handle()
     {
-        $this->process('ja');
+        $this->process(app()->getLocale());
     }
 
     public function process($lang)

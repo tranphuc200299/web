@@ -8,5 +8,5 @@ return [
     'Send' => 'Send',
     'account management' => 'Account Management',
     'Back to login' => 'Back to login',
-    'Return to main account' => 'Return to main account'
+    'Return to main account' => 'メインアカウントへ戻る'
 ];

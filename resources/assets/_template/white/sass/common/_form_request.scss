@@ -1,0 +1,339 @@
+.flex-box {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.form-register {
+    .row {
+        margin-left: -10px !important;
+        margin-right: -10px !important;
+
+        > div {
+            padding-left: 10px !important;
+            padding-right: 10px !important;
+        }
+    }
+
+    input:focus, select:focus {
+        outline: none !important;
+        border: 1px solid #719ECE;
+        box-shadow: 0 0 10px #719ECE;
+    }
+
+    input.error, select.error {
+        outline: none !important;
+        border: 1px solid red;
+    }
+
+    /* Remove icon in input number */
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
+    /* -------------------------------------------- */
+
+    .form-control-feedback {
+        float: right;
+        width: 100%;
+    }
+
+    color: black;
+    padding: 15px 0;
+
+    .card.card-default .card-header {
+        font-weight: 700;
+    }
+
+    .block-list-symptom {
+        .checkbox {
+            margin-top: 10px !important;
+        }
+    }
+
+    .block-list-symptom .row [class*='col-']:first-child {
+        top: -5px;
+    }
+
+    label {
+        font-size: 13px;
+    }
+
+    label.title-form {
+        margin: 0;
+    }
+    .input_fever{
+        width: 25% !important;
+        min-width: 150px;
+    }
+
+    .checkbox input[type=checkbox] {
+        display: inherit;
+    }
+
+    .checkbox input[type="checkbox"]:focus + label:before {
+        background: none;
+    }
+
+    .form-register-group {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: stretch;
+        margin-bottom: 10px;
+        --text-width: 85px;
+
+        .block-text {
+            flex: var(--text-width);
+            max-width: var(--text-width);
+            margin-top: calc((37px - 20px) / 2);
+            @media(max-width: 560px) {
+                &.text-spacing {
+                    padding-left: 25px;
+                }
+            }
+
+        }
+
+        .block-control {
+            padding-left: 10px;
+            flex: calc(100% - var(--text-width));
+            max-width: calc(100% - var(--text-width));
+
+            & > input, & > select {
+                width: 100%;
+            }
+
+            input[data-toggle="date-picker"] {
+                width: 50%;
+            }
+
+            &.has-unit {
+                display: flex;
+                align-items: center;
+                flex-wrap: wrap;
+                --unit-width: 30px;
+                --input-width: calc(100% - var(--unit-width));
+
+                .unit {
+                    width: var(--unit-width);
+                    padding: 0 0 0 5px;
+                    margin: 0;
+                }
+
+                input {
+                    width: var(--input-width);
+                }
+
+                &.unit-width-70 {
+                    --unit-width: 70px;
+                }
+            }
+
+            .radio-success {
+                margin-top: 8px;
+            }
+
+            @media(max-width: 560px) {
+                &.has-unit {
+                    input[type="number"] {
+                        width: 50%;
+                    }
+                }
+            }
+        }
+    }
+
+    .btn-form-line {
+        padding: 10px 60px;
+    }
+
+    .block-area.line {
+        label {
+            width: 50%;
+        }
+    }
+
+    .block-area {
+        .card-body {
+            padding-top: 15px !important;
+        }
+    }
+
+    .datetimepicker.line .title-datetime-entry {
+        margin-left: 32px;
+    }
+
+    .border-bottom-white {
+        border-bottom: 1px solid white;
+        margin-bottom: 10px;
+        margin-left: -20px;
+        margin-right: -20px;
+        padding: 0 20px;
+        @media(max-width: 560px) {
+            margin-bottom: 0;
+        }
+    }
+
+    .municipal .title-form {
+        margin-right: 34px;
+    }
+
+    .title-tel {
+        margin-right: 4px !important;
+    }
+
+    .title-sex {
+        margin-right: 25px !important;
+    }
+
+    .form-radio .radio {
+        margin-top: 5px;
+        margin-bottom: 0;
+    }
+
+    .form-checkbox .checkbox {
+        margin-top: 0;
+    }
+
+    .card.card-default {
+        background-color: #f2f2f2;
+    }
+
+    .main-title-form {
+        text-align: center;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+
+    .text-note {
+        margin: 10px 0;
+    }
+
+    span.required {
+        color: red;
+    }
+
+    .unit {
+        margin: 8px;
+    }
+
+    .datetimepicker .title-form, .name-kana .title-form {
+        //margin-right: 21px;
+    }
+
+
+    .datetimepicker input[type='text']::placeholder, .datetimepicker input[type='text']::placeholder, .close-contact-date input[type='text']::placeholder {
+        text-align: right;
+    }
+
+    .datetimepicker input.input-date, .datetimepicker input.input-time, .close-contact-date input {
+        font-family: FontAwesome, Arial;
+        font-style: normal;
+        font-size: 13px;
+    }
+
+    .datetimepicker input.input-time {
+        width: 23%;
+    }
+
+
+    .travel-contact-content span {
+        margin-left: 70px;
+        font-size: 10px;
+        color: red;
+    }
+
+    .fever-form-input .unit {
+        margin: 8px;
+    }
+
+    .fever-form-input .input-form {
+        width: 55%;
+    }
+
+    .m-r-0 {
+        margin-right: 0 !important;
+    }
+
+    @media (min-width: 768px) and (max-width: 1024px) {
+        .checkbox-close-contact {
+            margin-left: 0;
+        }
+
+        .municipal .title-form, .center .title-form {
+            margin-right: 5px;
+            margin-left: 5px;
+        }
+
+
+        input.input-form, select.input-form {
+            width: 72%;
+        }
+
+        .temperature input, .age input {
+            width: 68%;
+        }
+
+        .municipal .title-form {
+            margin-right: 29px;
+        }
+
+        .center .title-form {
+            margin-right: 11px;
+        }
+
+        .fix-row {
+            margin-left: -7px;
+        }
+
+        .fever-form-input .input-form {
+            width: 54%;
+        }
+    }
+
+    @media (max-width: 480px) {
+        .block-information-resident {
+            & > .card {
+                padding-top: 10px;
+            }
+        }
+        .text-note {
+            padding: 0 10px;
+        }
+    }
+}
+
+@media(min-width: 992px) {
+    .w-lg-50 {
+        width: 50% !important;
+    }
+    .w-lg-100 {
+        width: 100% !important;
+    }
+}
+
+@media(min-width: 768px) {
+    .w-md-50 {
+        width: 50% !important;
+    }
+    .w-md-100 {
+        width: 100% !important;
+    }
+}
+
+@media(min-width: 560px) {
+    .w-sm-50 {
+        width: 50% !important;
+    }
+    .w-sm-100 {
+        width: 100% !important;
+    }
+}
+

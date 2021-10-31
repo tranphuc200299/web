@@ -25,6 +25,7 @@
 <div class="login-wrapper ">
     @yield('body-inside')
 </div>
+<script src="{{ public_url('assets/admin/js/'.app()->getLocale().'.js') }}"></script>
 <script src="{{ mix('assets/admin/js/vendor.bundle.js') }}"></script>
 <script src="{{ mix('assets/admin/js/modernizr.custom.js') }}"></script>
 <script src="{{ mix('assets/admin/js/template-core.js') }}"></script>

@@ -59,7 +59,7 @@
 }
 
 .table-responsive{
-    margin-top: 20px;
+    margin-top: 8px;
 }
 
 table.table {
@@ -98,11 +98,19 @@ table.table {
     }
 
     &.mw-1400 {
-        min-width: 1300px;
+        min-width: 1400px;
     }
 
     &.mw-1500 {
-        min-width: 1300px;
+        min-width: 1500px;
+    }
+
+    &.mw-1600 {
+        min-width: 1600px;
+    }
+
+    &.mw-1700 {
+        min-width: 1700px;
     }
 
     thead {
@@ -173,6 +181,18 @@ table.table {
 
             td:last-child {
                 border-right: 0;
+            }
+
+            &.disabled{
+                td{
+                    background: $main_border;
+                }
+
+                &:hover{
+                    td{
+                        background: $main_border !important;
+                    }
+                }
             }
         }
     }

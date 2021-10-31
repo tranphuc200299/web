@@ -1,6 +1,7 @@
 <?php
 
 return [
+    'tenant management' => 'Tenant Management',
     'tenant name' => 'Tenant Name',
     'tenant email' => 'Tenant Email',
     'tenant phone' => 'Tenant Phone',
