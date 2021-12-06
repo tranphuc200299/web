@@ -12,7 +12,7 @@ class TenantServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views/' . config('view.template'), 'tenant');
+        $this->loadViewsFrom(__DIR__.'/../resources/views/', 'tenant');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'tenant');
         $this->loadMigrationsFrom(__DIR__.'/../Database/Migrations');
         $this->loadFactoriesFrom(__DIR__.'/../Database/Factories');

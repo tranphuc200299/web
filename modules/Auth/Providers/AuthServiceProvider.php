@@ -10,7 +10,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/' . config('view.template'), 'auth');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'auth');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/', 'auth');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
         $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');

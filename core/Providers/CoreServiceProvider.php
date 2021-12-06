@@ -18,7 +18,7 @@ class CoreServiceProvider extends ServiceProvider
     {
         require_once(__DIR__ . '/../Helpers/functions.php');
 
-        $this->loadViewsFrom(__DIR__ . '/../resources/views/' . config('view.template'), 'core');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'core');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang', 'core');
         $this->mergeConfigFrom(__DIR__ . '/../Config/core.php', 'core');
         $this->app->register(MacroServiceProvider::class);
