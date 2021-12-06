@@ -64,6 +64,8 @@ RUN apt-get install -y nodejs
 RUN npm install pm2 -g
 RUN cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
 RUN apt-get install redis-tools -y
+RUN composer global require "phpstan/phpstan:^1.1.1"
+RUN chmod +x /composer/vendor/bin/phpstan
 
 COPY *.sh /scripts/
 RUN chmod a+x /scripts/*.sh

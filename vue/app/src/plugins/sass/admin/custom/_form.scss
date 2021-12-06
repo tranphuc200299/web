@@ -1,0 +1,97 @@
+.form {
+    padding: 10px 20px;
+    @media (max-width: 767px) {
+        padding: 10px 5px;
+    }
+
+    .form_title {
+        background: $form_header_bg 0 0 no-repeat padding-box;
+        padding: 10px 20px;
+        @media (max-width: 767px) {
+            padding: 10px 10px;
+        }
+        color: white;
+    }
+
+    .form_content {
+        background-color: rgba(240, 240, 240, .2);
+        padding: 10px 20px;
+        border: 1px solid #F5F5F5;
+
+        @media (max-width: 767px) {
+            padding: 10px 5px;
+        }
+
+        .form-group {
+            padding-top: 5px;
+            padding-bottom: 10px;
+
+            span.select2-container {
+                width: 100% !important;
+            }
+
+            label:not(.error) {
+                text-transform: none;
+            }
+
+            .control-label {
+                font-weight: bold;
+                color: #2B303B;
+                font-size: 12px;
+                opacity: 1;
+                padding-bottom: 10px;
+                @media (max-width: 767px) {
+                    padding-bottom: 5px;
+                }
+            }
+        }
+
+        span.required {
+            color: #ea2c54;
+            margin-left: 3px;
+        }
+
+        #thumbnail_input {
+            padding: 5px 10px;
+        }
+
+        .setting-zone {
+            border: 1px solid #eaecee;
+            padding: 0 5px;
+
+            .label-form {
+                display: flex;
+                align-items: center;
+                height: 100%;
+                font-size: 12px;
+            }
+        }
+
+        .bottom-row {
+            width: 100%;
+            border-bottom: 1px solid #eaecee;
+            margin-top: 10px;
+        }
+
+        .help-block {
+            margin-bottom: 0 !important;
+        }
+    }
+
+    @media (min-width: 320px) and (max-width: 480px) {
+        .form_content {
+            border: none;
+        }
+    }
+}
+
+.not-readonly {
+    background-color: #fff !important;
+    color: #373e43 !important;
+}
+
+.form-group{
+    span.select2-container{
+        width: 100% !important;
+    }
+}

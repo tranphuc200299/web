@@ -1,0 +1,21 @@
+.modal-backdrop {
+    display: none;
+}
+
+.modal {
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1051;
+}
+
+.modal.right .right-modal-dialog {
+    position: fixed;
+    margin: auto;
+    height: 100%;
+    right: 0;
+    min-height: 100%;
+}
+
+.modal.right .right-modal-content {
+    height: 100%;
+    min-height: 100%;
+}

@@ -1,0 +1,808 @@
+$base-img-url :"../../../assets/";
+body{
+    b, strong {
+        font-weight: bold;
+    }
+}
+.help-block-error{
+    color: red;
+}
+.select2-container--open {
+    z-index: 1080;
+}
+.page-sidebar {
+    z-index:1051;
+}
+h3.popover-header {
+    font-size: 14px;
+}
+.nav-item a.active{
+    font-weight: bold;
+}
+#menu_tab_setting {
+    margin-top: 20px;
+}
+.form-body{
+    padding: 15px;
+}
+.content-notice{
+    font-size: 12px;
+}
+#modal_notice_view .modal-header{
+    padding:15px;
+    border-bottom: 1px solid #ccc;
+}
+#modal_notice_view .modal-body{
+    padding-top:15px;
+}
+.control-button{
+    display: flex;
+}
+.bg-form-staff{
+    background-color: #eee;
+    padding: 20px;
+    margin: 0 20px;
+}
+.list-staff {
+    border: 1px solid #eee;
+}
+.bg-chain-create{
+    background: #eee;
+    padding: 20px;
+}
+.content-popup-choose{
+    padding-top: 20px;
+}
+.header-choose-user{
+    text-align: center;
+}
+.choose-user{
+    position: relative;
+}
+.choose-user:before{
+    position: absolute;
+    content: '';
+    border: 1px dashed #ccc;
+    height: 2px;
+    width: 28%;
+    left: 0;
+    top: 45%;
+}
+.choose-user:after{
+    position: absolute;
+    content: '';
+    border: 1px dashed #ccc;
+    height: 2px;
+    width: 28%;
+    right: 0;
+    top: 45%;
+}
+.choose-user-chain{
+    width: 100%;
+}
+.select-user-chain{
+    position: relative;
+}
+.select-user-chain:after{
+    position: absolute;
+}
+.header-create-new-user{
+    position: relative;
+}
+.header-create-new-user:before{
+    position: absolute;
+    content: '';
+    border: 1px dashed #ccc;
+    height: 1px;
+    width: 30%;
+    left: 0;
+    top: 45%;
+}
+.header-create-new-user:after{
+    position: absolute;
+    content: '';
+    border: 1px dashed #ccc;
+    height: 1px;
+    width: 30%;
+    right: 0;
+    top: 45%;
+}
+#modal_chain_view .modal-header{
+    border-bottom: 1px solid #ccc;
+    padding: 15px;
+}
+.list-user-of-chain{
+    border-top:1px solid #ccc;
+  margin-top:15px;
+}
+#modal_create_new_user .modal-content{
+    box-shadow: 0 3px 9px rgba(0,0,0,.5);
+}
+.check-user-role{
+    display: none;
+}
+.chain-success .alert-success{
+    width: 100%;
+}
+/** tags **/
+.tagmanagerTag{
+    height: auto !important;
+}
+#susessTag {
+    padding: 15px;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    color: #a94442;
+    background-color: #f2dede;
+    border-color: #ebccd1;
+    margin-bottom: 10px;
+    display: none;
+}
+/** tag shop **/
+.tagmanagerTag{height: auto !important;}
+.kasikiru-tag label {
+    background: none repeat scroll 0 0 #cde69c;
+    border: 1px solid #a5d24a;
+    border-radius: 3px;
+    color: #638421;
+    display: block;
+    float: left;
+    font-size: 13px;
+    margin-bottom: 5px;
+    margin-right: 5px;
+    padding: 6px 5px 5px 5px;
+    text-decoration: none;
+    vertical-align: middle;
+    -webkit-box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    box-shadow: 0 1px 1px rgba(0, 0, 0, 0.075) inset;
+    cursor: pointer;
+}
+.kasikiru-tag input[type=checkbox] {
+    display: none;
+}
+.kasikiru-tag input:checked + label {
+    border: solid 1px red;
+}
+.kasikiru-tag input:checked + label:after {
+    content: "\2713 ";padding-left: 5px; color: #F00;
+}
+.kasikiru-tag .check {
+    visibility: hidden;
+}
+.kasikiru-tag input:checked + label .check {
+    visibility: visible;
+}
+.marginTopKasikiru{margin-top: 15px;}
+
+@media (min-width: 576px){
+    #modal_store_of_chain_view .modal-dialog{
+        max-width: 80%;
+    }
+    #modal_booking_detail .modal-dialog{
+        max-width: 80%;
+    }
+}
+.booking-unopen{
+    color:red;
+}
+
+.sort-item {
+    min-width: 100px;
+}
+
+@media (min-width: 1200px) {
+    .sort-item{
+        width: 6%;
+    }
+    .sort-image{
+        width: 10%;
+    }
+    .sort-item-staff{
+        width: 12%;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 1200px){
+    .sort-item{
+        width: 20%;
+    }
+    .sort-item-staff{
+        width: 20%;
+    }
+}
+
+@media (max-width: 768px) {
+    .sort-item{
+        width: 25%;
+    }
+    .sort-item-staff{
+        width: 20%;
+    }
+}
+.box-item-intro, .gallery-item:hover.box-item-intro{
+  cursor: move;
+}
+.add-new-image{
+    position: absolute; left: 96%;
+}
+.upload-file-booking{
+    width: 100%;
+}
+
+.shop-type-2, .shop-type-9, .admin-booking-item-4, .admin-booking-item-7, .notify-close, .notify-contracted, .booking-contracted {
+    background: #f7dadd;
+}
+.backgroud-status-0, .admin-booking-item-5, .notify-note-lost{
+    background: #dddddd;
+}
+
+.color-mold{
+    width: 100%;
+    height: 100%;
+}
+
+#waiting_cancel_detail, #deleteBooking {
+    .modal-header {
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+    .modal-footer {
+        padding: 15px;
+        border-top: 1px solid #ccc;
+    }
+    .modal-body {
+        padding-top: 20px;
+    }
+}
+
+.place-status-0{
+    background:#E0E0E0;
+}
+
+.select2-container--default .select2-results__option[aria-selected="true"] {
+    background-color: #ddd;
+}
+
+.filter-booking {
+    .filter-condition {
+        .filter-status, .filter-media, .date-checkbox{
+            .checkbox + .checkbox {
+                margin-top: 10px;
+            }
+            .col-lg-5:first-child {
+                .checkbox {
+                    margin-left: 7px;
+                }
+            }
+        }
+        .event-date {
+            .input-group-addon {
+                border-color: rgba(0,0,0,.1);
+                background-color: #f0f0f0;
+                padding: 10px 5px;
+            }
+            .input-lg {
+                font-size: 14px;
+            }
+        }
+        .filter-media {
+            padding-right: 7px;
+        }
+    }
+    .show-readonly {
+        .form-control[readonly] {
+            color: #010101 !important;
+        }
+    }
+    .customer-margin-p {
+        margin: 5px 0 5px 0;
+    }
+}
+
+#add_new_user_form {
+    .modal-dialog {
+        .modal-content {
+            box-shadow: 0 5px 15px rgba(0,0,0,.5);
+        }
+    }
+}
+
+.dropdown-file.show > .btn.dropdown-toggle {
+    z-index: 789 !important;
+}
+
+// summernote table
+.note-dimension-picker {
+  font-size: 18px;
+  .note-dimension-picker-mousecatcher {
+    position: absolute !important;
+    z-index: 3;
+    width: 10em;
+    height: 10em;
+    cursor: pointer;
+  }
+  .note-dimension-picker-unhighlighted {
+    position: relative !important;
+    z-index: 1;
+    width: 5em;
+    height: 5em;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIj4+Pjp6ekKlAqjAAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKhmnaJzPAAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+  }
+  .note-dimension-picker-highlighted {
+    position: absolute !important;
+    z-index: 2;
+    width: 1em;
+    height: 1em;
+    background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABIAAAASAgMAAAAroGbEAAAACVBMVEUAAIjd6vvD2f9LKLW+AAAAAXRSTlMAQObYZgAAAAFiS0dEAIgFHUgAAAAJcEhZcwAACxMAAAsTAQCanBgAAAAHdElNRQfYAR0BKwNDEVT0AAAAG0lEQVQI12NgAAOtVatWMTCohoaGUY+EmIkEAEruEzK2J7tvAAAAAElFTkSuQmCC') repeat;
+  }
+}
+
+.note-editor {
+    .dropdown-toggle {
+        &:after {
+            content: none;
+        }
+    }
+}
+
+.modal-open .confirmation{
+  z-index:1060 !important;
+}
+
+.waiting-cancel {
+    thead {
+        tr {
+            th {
+                &.custom-width {
+                    width: 12%;
+                }
+            }
+        }
+    }
+}
+.form-group-default.focused label {
+    opacity: 1!important;
+}
+
+.select-time {
+    .form-group-default{
+        width: 45%!important;
+    }
+    .input-group-addon {
+        width: 10%;
+    }
+}
+.fill-booking-details {
+    .form-group-default {
+        width: 49%!important;
+    }
+}
+.notify-not-seen {
+    background: #FFECB3;
+}
+.notify-new {
+    background: #ebb067;
+}
+.notify-contact {
+    background: #b4cbdb;
+}
+.notify-cancel, .booking-canceled {
+    background: #ccc;
+}
+.notify-established {
+    background: #658fe1;
+}
+.shop-notify-admin {
+    position:absolute;
+    margin: -15px 0 0 -15px;
+    z-index: -1;
+}
+.line-chart-plan{
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    line-height: 21px;
+    height: 147px;
+    -webkit-line-clamp: 7;
+    -webkit-box-orient: vertical;
+}
+.table-invoice {
+    thead {
+        tr {
+            th {
+                border-top: 1px solid rgba(230, 230, 230, 0.7);
+            }
+        }
+    }
+    tbody {
+        tr {
+            td {
+                background: none;
+            }
+        }
+    }
+    .invoice-sent {
+        background: #f7dadd !important;
+    }
+}
+.btn-custom-style {
+    label {
+        &.btn-complete , &.btn-complete:focus{
+            color: #333333;
+            background-color: #ffffff;
+            border-color: rgba(0, 0, 0, 0.07);
+        }
+        &.btn-complete.active {
+            background-color: #3a8fc8;
+            border-color: #3a8fc8;
+            color: #fff;
+        }
+    }
+}
+
+.chain-upload-file {
+    .modal-body {
+        input[name='booking[url]'] {
+            width: 100%;
+            border: none;
+            background: #fff;
+            color: #333;
+        }
+    }
+}
+.avoid-clicks {
+    pointer-events: none;
+}
+.cursor-not-allowed {
+    &:hover {
+        cursor: not-allowed;
+    }
+}
+#select2-chain-switch-container {
+    line-height: 20px;
+}
+#custom-timetable-arrow {
+    .select2-selection__arrow {
+        height: 25px !important;
+    }
+    .datepicker{
+        padding: 0 !important;
+    }
+}
+
+.note-request {
+    border: 1px solid rgba(0, 0, 0, 0.07);
+    padding: 10px
+}
+
+.choice-booking.active{
+    border: 2px solid rgba(29, 0, 0, 0.6) !important;
+}
+
+input[disabled], textarea[disabled] {
+    cursor: not-allowed !important;
+    color: #333!important;
+}
+
+.ad-key-search {
+    font-size: 13px!important;
+}
+.filter-total-result {
+    padding: 0px 10px 10px 0px;
+}
+
+.ad-key-search {
+    font-size: 13px!important;
+}
+
+.row-total-invoice {
+    tr {
+        td {
+            border: none;
+        }
+    }
+}
+
+.checkbox-tag-setting {
+    display: block;
+    position: relative;
+    cursor: pointer;
+    height: calc(1.5em + 0.75rem + 2px);
+    line-height: 1.5;
+    z-index: 2;
+}
+
+.checkbox-tag-setting.checkbox-inline {
+    display: inline-block;
+}
+
+.checkbox-tag-setting > input {
+    position: absolute;
+    opacity: 1;
+    display: none;
+}
+
+.checkbox-tag-setting > input:checked ~ span.control {
+    //background-color: #AEA280;
+    background-color: #e4e4e4;
+    z-index: 1;
+}
+
+.checkbox-tag-setting .text {
+    position: relative;
+    z-index: 2;
+    padding: 0.5rem 0.75rem;
+    display: block;
+    color: #444;
+}
+
+.checkbox-tag-setting span.control {
+    border: 1px solid #dee2e6;
+    border-radius: 3px;
+    height: calc(1.5em + 0.75rem + 2px);
+    width: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1;
+}
+
+.checkbox-tag-setting span.control:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-left: -2px;
+    margin-top: -9px;
+    width: 7px;
+    height: 13px;
+    border: solid #dee2e6;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    display: block;
+}
+
+.checkbox-tag-setting > input:checked ~ span.control:after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: 10px;
+    margin-left: -2px;
+    margin-top: -9px;
+    width: 7px;
+    height: 13px;
+    border: solid #444;
+    border-width: 0 3px 3px 0;
+    -webkit-transform: rotate(45deg);
+    transform: rotate(45deg);
+    display: block;
+}
+
+.checkbox-tag-setting.checkbox-inline span.control:after {
+    border: none;
+}
+
+.checkbox-tag-inline.row {
+    margin-left: 0;
+    margin-right: 0;
+}
+
+.checkbox-tag-inline.row > [class*="col-"] {
+    padding-right: .5rem;
+    padding-left: 0;
+}
+
+.people-avaiable {
+    margin-bottom: 5px;
+    padding-left: 7px !important;
+}
+
+.upload-btn-wrapper {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+    top: -4px;
+    cursor: pointer;
+    .btn {
+        border: 2px solid #10cfbd;
+        color: #fff;
+        padding: 5px 15px;
+        border-radius: 4px;
+        font-size: 14px;
+        font-weight: bold;
+        background-color: #10cfbd;
+    }
+    input[type=file] {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+        width: 100%;
+    }
+}
+.booking-files, .booking-list-index {
+    a {
+        &.disabled {
+            opacity: .5;
+            pointer-events: none;
+            cursor: not-allowed !important;
+        }
+    }
+
+    .dropdown-toggle {
+        min-width: 200px!important;
+        max-width: 350px!important;
+    }
+    .dropdown-file {
+        min-width: 200px!important;
+        max-width: 350px!important;
+    }
+    .chain-toggle-btn {
+        min-width: 200px!important;
+        max-width: 400px!important;
+    }
+}
+
+#modal_booking_detail {
+    .dropdown-toggle {
+        min-width: 300px!important;
+        max-width: 350px!important;
+    }
+    .dropdown-file {
+        min-width: 300px!important;
+        max-width: 350px!important;
+    }
+    .chain-toggle-btn {
+        min-width: 300px!important;
+        max-width: 400px!important;
+    }
+}
+.modal-open  {
+    .modal {
+        &.chain-upload-file, &.booking-upload-file {
+            z-index: 1060!important;
+        }
+        .modal-content{
+            box-shadow: 0 3px 9px rgba(0,0,0,.5);
+        }
+    }
+}
+.booking-of-month, .booking-close-3month {
+    cursor: pointer;
+}
+.booking-list {
+    table {
+        tr {
+            td:first-child {
+                cursor: pointer;
+                a {
+                    &.fa {
+                        font-size: 20px;
+                    }
+                }
+            }
+        }
+    }
+}
+.warning-area {
+    font-size: 13px;
+    color: #b18300;
+}
+.chain-upload-file, .booking-upload-file {
+    .upload-multiple-file {
+        height: 100% !important;
+    }
+}
+.booking-files {
+    .file-booking-name {
+        white-space: initial;
+    }
+    .file-booking-name-detail {
+      white-space: initial;
+      word-break: break-all;
+    }
+}
+
+@media screen and (max-width: 800px){
+    #modal_booking_detail {
+        &.modal {
+            .modal-body{
+                padding: 15px;
+            }
+        }
+    }
+}
+
+.step-arrow {
+    font-size: 35pt;
+    text-align: center;
+
+    .arrow-right-to-left {
+        margin-top: 10px;
+    }
+}
+.show-image-lp {
+    max-height: 250px;
+}
+
+// Modal
+.modal .modal-header {
+    margin-bottom: 15px;
+}
+
+.modal .modal-header .modal-title {
+    margin: 0;
+}
+
+// Hotel Calendar
+.custom-calendar table th {
+    width: calc(100% / 7);
+    text-align: center;
+    color: black !important;
+    background-color: #f1f1f1 !important;
+    cursor: pointer;
+    font-size: 16px !important;
+    padding: 5px !important;
+    line-height: 30px !important;
+}
+
+.custom-calendar table th:nth-of-type(1) {
+    color: red !important;
+    background-color: #ffe4e1 !important;
+}
+
+.custom-calendar table th:nth-of-type(7) {
+    color: blue !important;
+    background-color: #e0ffff !important;
+}
+
+.custom-calendar table td {
+    height: 50px;
+    text-align: center;
+    vertical-align: middle;
+    cursor: pointer;
+}
+
+.custom-calendar table td[data-object] {
+    vertical-align: top;
+}
+
+.custom-calendar table td.disabled {
+    background-color: #999 !important;
+}
+
+.custom-calendar table .other-month {
+    cursor: not-allowed;
+}
+
+// Hotel booking schedule
+.outside-business-hours {
+    background: gray !important;
+    cursor: not-allowed !important;
+}
+
+
+.time-schedule .sc_main_box {
+    position: relative;
+}
+
+#show-schedule.current_date .sc_header .sc_header_scroll:before, #show-schedule.current_date .sc_main_box:before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 2px;
+    height: 100%;
+    background-color: red;
+}
+
+// System log
+#SystemLogForm pre {outline: 1px solid #ccc; padding: 5px; margin: 5px;max-height: 400px; }
+#SystemLogForm .string { color: green; }
+#SystemLogForm .number { color: darkorange; }
+#SystemLogForm .boolean { color: blue; }
+#SystemLogForm .null { color: magenta; }
+#SystemLogForm .key { color: red; }

@@ -1,0 +1,30 @@
+.pagination{
+    .page-item{
+        &:first-child{
+            .page-link {
+                margin-left: 0;
+                border-top-left-radius: 0;
+                border-bottom-left-radius: 0;
+            }
+        }
+        &:last-child {
+            .page-link {
+                margin-left: 0;
+                border-top-right-radius: 0;
+                border-bottom-right-radius: 0;
+            }
+        }
+        .page-link{
+            border-color: #DADADA;
+            color: #0092BE;
+            padding: 0.75rem 1rem;
+        }
+        &.active{
+            .page-link{
+                background: #0092BE;
+                border-color: #0092BE;
+                color: #FFFFFF;
+            }
+        }
+    }
+}

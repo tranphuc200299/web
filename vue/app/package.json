@@ -1,0 +1,40 @@
+{
+  "name": "line",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "deploy-s3": "chmod +x ./deploy-s3.sh && ./deploy-s3.sh"
+  },
+  "dependencies": {
+    "axios": "^0.24.0",
+    "bootstrap": "^4.6.0",
+    "core-js": "^3.6.5",
+    "cross-env": "^7.0",
+    "jquery": "^3.6.0",
+    "jquery-ui": "^1.12.1",
+    "vee-validate": "^4.5.5",
+    "vue": "^3.0.0",
+    "vue-i18n": "^9.2.0-beta.15",
+    "vue-router": "^4.0.0-0",
+    "vuex": "^4.0.0-0"
+  },
+  "devDependencies": {
+    "@vue/cli-plugin-babel": "~4.5.0",
+    "@vue/cli-plugin-router": "~4.5.0",
+    "@vue/cli-plugin-vuex": "~4.5.0",
+    "@vue/cli-service": "~4.5.0",
+    "@vue/compiler-sfc": "^3.0.0",
+    "bootstrap-colorpicker": "^3.4.0",
+    "bootstrap-confirmation2": "^4.2.1",
+    "bootstrap-datepicker": "^1.8.0",
+    "bootstrap-daterangepicker": "^3.1.0",
+    "bootstrap-select": "^1.13.14",
+    "font-awesome": "^4.7.0",
+    "jquery-validation": "^1.19.3",
+    "select2": "^4.0.6-rc.1",
+    "selectize": "^0.12.6"
+  }
+}

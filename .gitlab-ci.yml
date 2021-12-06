@@ -16,6 +16,13 @@ stages:
   chmod 700 ~/.ssh
   [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
+.init_ssh_stg: &init_ssh_stg |
+  eval $(ssh-agent -s)
+  echo "$SSH_PRIVATE_KEY_STG" | tr -d '\r' | ssh-add - > /dev/null
+  mkdir -p ~/.ssh
+  chmod 700 ~/.ssh
+  [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
+
 .init_ssh_prod: &init_ssh_prod |
   eval $(ssh-agent -s)
   echo "$SSH_PRIVATE_KEY_PROD" | tr -d '\r' | ssh-add - > /dev/null
@@ -23,13 +30,15 @@ stages:
   chmod 700 ~/.ssh
   [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
-PSR2 Coding Standard:
-  image: devopsntqsolution/phpcs:7.2.19-3.4.2
+PHP Stan:
+  image: nguyentruongson93/php:7.4.22
   stage: quality
   <<: *tags-default
   script:
     - git fetch origin
-    - phpcs-gitlab ./
+    - git branch
+    - composer i
+    - php -d memory_limit=1G /composer/vendor/bin/phpstan analyse core modules --level 0
 
 dev:
   image: nguyentruongson93/php:7.4
@@ -40,6 +49,19 @@ dev:
     - /composer/vendor/bin/envoy run deploy --server=dev --npm=prod
   only:
     - dev
+  when: manual
+
+staging:
+  image: nguyentruongson93/php:7.4
+  stage: deploy
+  <<: *tags-default
+  script:
+    - *init_ssh_stg
+    - /composer/vendor/bin/envoy run deploy --server=staging --npm=prod
+  only:
+    - staging
+  when: manual
+
 honban:
   image: nguyentruongson93/php:7.4
   stage: deploy
@@ -47,11 +69,6 @@ honban:
   script:
     - *init_ssh_prod
     - /composer/vendor/bin/envoy run deploy --server=prod --npm=prod
-  cache:
-    paths:
-      - /composer/vendor
-  artifacts:
-    paths:
-      - /composer/vendor
+  when: manual
   only:
     - master
