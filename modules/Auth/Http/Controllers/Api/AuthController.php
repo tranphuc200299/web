@@ -2,8 +2,7 @@
 
 namespace Modules\Auth\Http\Controllers\Api;
 
-use App\Entities\Models\User;
-use App\Http\Controllers\Controller;
+use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Tymon\JWTAuth\Exceptions\TokenBlacklistedException;
 use Tymon\JWTAuth\Exceptions\TokenExpiredException;
@@ -11,19 +10,6 @@ use Tymon\JWTAuth\Facades\JWTAuth;
 
 class AuthController extends Controller
 {
-    public function register(Request $request)
-    {
-        $user           = new User();
-        $user->email    = $request->email;
-        $user->name     = $request->name;
-        $user->password = bcrypt($request->password);
-        $user->save();
-        return response([
-            'status' => 'success',
-            'data'   => $user
-        ], 200);
-    }
-
     public function login(Request $request)
     {
         $credentials = $request->only('email', 'password');
@@ -50,7 +36,9 @@ class AuthController extends Controller
     public function logout(Request $request)
     {
         try {
+            /** @phpstan-ignore-next-line */
             $token = JWTAuth::getToken();
+            /** @phpstan-ignore-next-line */
             JWTAuth::setToken($token)->invalidate();
         } catch (TokenExpiredException $e) {
             return response()->json(['token_expired'], 401);
@@ -64,7 +52,9 @@ class AuthController extends Controller
     public function refresh()
     {
         try {
+            /** @phpstan-ignore-next-line */
            $token = JWTAuth::getToken();
+            /** @phpstan-ignore-next-line */
            if (!$user = JWTAuth::parseToken()->authenticate()) {
                return response()->json(['user_not_found'], 404);
            }

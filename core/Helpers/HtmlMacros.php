@@ -93,7 +93,7 @@ class HtmlMacros extends HtmlBuilder
             $iconSort = '';
             $sortable = !empty($v['sortable']);
 
-            if (!empty($sortUrl) && $sortable) {
+            if ($sortable) {
                 $col_class = 'class="sorting"';
                 if (isset($current_sort[$k])) {
                     $col_class = 'class="sorting desc"';

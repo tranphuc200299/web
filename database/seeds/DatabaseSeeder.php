@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Modules\Auth\Database\Seed\PermissionSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,5 +14,6 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(Modules\Auth\Database\Seed\DatabaseSeeder::class);
         $this->call(Modules\Tenant\Database\Seed\DatabaseSeeder::class);
+        $this->call(Modules\Auth\Database\Seed\PermissionSeeder::class);
     }
 }

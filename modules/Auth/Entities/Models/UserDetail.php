@@ -22,6 +22,10 @@ use Core\Entities\Models\Uuid;
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereUpdatedAt($value)
  * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereUserId($value)
  * @mixin \Eloquent
+ * @property string|null $tenant_id
+ * @property string|null $deleted_at
+ * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereDeletedAt($value)
+ * @method static \Illuminate\Database\Eloquent\Builder|UserDetail whereTenantId($value)
  */
 class UserDetail extends BaseModel
 {

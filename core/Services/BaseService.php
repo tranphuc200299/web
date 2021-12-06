@@ -3,13 +3,9 @@
 namespace Core\Services;
 
 use Core\Repositories\BaseRepository;
-use Core\Services\QueryBuilderParser\QueryBuilderParser;
 use Illuminate\Database\Eloquent\Builder;
-use Illuminate\Database\Eloquent\Collection;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
 
@@ -47,7 +43,7 @@ abstract class BaseService
      * @param $id
      * @param  array  $options
      *
-     * @return BaseRepository|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model
+     * @return BaseRepository|BaseRepository[]|\Illuminate\Database\Eloquent\Collection|\Illuminate\Database\Eloquent\Model|null
      */
     public function findOr404($id, $options = [])
     {
@@ -119,11 +115,6 @@ abstract class BaseService
     {
         $options['limit'] = $limit;
         $this->makeBuilder($options);
-
-        if (request('rules') && is_json(request('rules'))) {
-            $qbp = new QueryBuilderParser();
-            $this->builder = $qbp->parse(request('rules'), $this->builder);
-        }
 
         return $this->endFilter();
     }

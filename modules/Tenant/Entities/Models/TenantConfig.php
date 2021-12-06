@@ -33,6 +33,8 @@ use Illuminate\Database\Eloquent\SoftDeletes;
  * @method static \Illuminate\Database\Query\Builder|TenantConfig withTrashed()
  * @method static \Illuminate\Database\Query\Builder|TenantConfig withoutTrashed()
  * @mixin \Eloquent
+ * @property string $tenant_id
+ * @method static \Illuminate\Database\Eloquent\Builder|TenantConfig whereTenantId($value)
  */
 class TenantConfig extends BaseModel
 {
