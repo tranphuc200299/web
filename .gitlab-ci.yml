@@ -38,7 +38,7 @@ PHP Stan:
     - git fetch origin
     - git branch
     - composer i
-    - php -d memory_limit=1G /composer/vendor/bin/phpstan analyse core modules --level 0
+    - php -d memory_limit=1G /composer/vendor/bin/phpstan analyse core modules --level 1
 
 dev:
   image: nguyentruongson93/php:7.4
