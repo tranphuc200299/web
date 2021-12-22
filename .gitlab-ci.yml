@@ -30,6 +30,26 @@ stages:
   chmod 700 ~/.ssh
   [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
 
+PHP CPD:
+  image: nguyentruongson93/phpqa:7.4
+  stage: quality
+  <<: *tags-default
+  script:
+    - git fetch origin
+    - git branch
+    - composer i
+    - phpcpd core modules
+
+PHP Security:
+  image: nguyentruongson93/phpqa:7.4
+  stage: quality
+  <<: *tags-default
+  script:
+    - git fetch origin
+    - git branch
+    - composer i
+    - local-php-security-checker
+
 PHP Stan:
   image: nguyentruongson93/php:7.4.22
   stage: quality

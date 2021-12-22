@@ -32,6 +32,7 @@ RUN pecl install redis && docker-php-ext-enable redis
 RUN pecl install imagick
 RUN docker-php-ext-enable imagick
 RUN docker-php-ext-install sockets
+RUN docker-php-ext-install pcntl
 RUN pecl install mongodb && docker-php-ext-enable mongodb
 
 COPY cron.txt /etc/cron.d/web
