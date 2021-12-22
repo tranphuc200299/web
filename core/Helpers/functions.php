@@ -21,6 +21,7 @@ if (!function_exists('storage_url')) {
     function storage_url($path)
     {
         if ($path) {
+            /** @phpstan-ignore-next-line */
             return \Illuminate\Support\Facades\Storage::url($path);
         }
 
