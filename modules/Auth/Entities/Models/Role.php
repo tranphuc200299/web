@@ -3,7 +3,9 @@
 namespace Modules\Auth\Entities\Models;
 
 use Core\Entities\Models\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Auth\Database\Factories\RoleFactory;
 
 /**
  * Modules\Auth\Entities\Models\Role
@@ -34,6 +36,12 @@ use Illuminate\Database\Eloquent\Model;
 class Role extends Model
 {
     use Uuid;
+    use HasFactory;
+
+    protected static function newFactory()
+    {
+        return RoleFactory::new();
+    }
 
     protected $guarded = [];
 

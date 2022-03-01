@@ -4,10 +4,12 @@
 namespace Modules\Auth\Entities\Models;
 
 use Core\Entities\Models\Uuid;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Collection;
+use Modules\Auth\Database\Factories\UserFactory;
 use Modules\Auth\Entities\Mail\ResetPassword;
 
 /**
@@ -55,6 +57,12 @@ class User extends Authenticatable
     use Uuid;
     use SoftDeletes;
     use Notifiable;
+    use HasFactory;
+
+    protected static function newFactory()
+    {
+        return UserFactory::new();
+    }
 
     protected $table = 'ms_users';
 

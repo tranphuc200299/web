@@ -29,11 +29,11 @@ class PermissionSeeder extends Seeder
 
     protected function assignUserPermission(Role $superAdmin)
     {
-        $p_user_create = factory(Permission::class)->create(['name' => 'user' . AuthConst::PERMISSION_CREATE, 'description' => 'Create entities, show button create']);
-        $p_user_read = factory(Permission::class)->create(['name' => 'user' . AuthConst::PERMISSION_READ, 'description' => 'View list entities,show link in menu']);
-        $p_user_update = factory(Permission::class)->create(['name' => 'user' . AuthConst::PERMISSION_UPDATE, 'description' => 'Update entities, show button edit']);
-        $p_user_delete = factory(Permission::class)->create(['name' => 'user' . AuthConst::PERMISSION_DELETE, 'description' => 'Delete entities, show button delete']);
-        $p_user_loginAs = factory(Permission::class)->create(['name' => 'user.loginAs', 'description' => 'Login as user']);
+        $p_user_create = Permission::factory()->create(['name' => 'user' . AuthConst::PERMISSION_CREATE, 'description' => 'Create entities, show button create']);
+        $p_user_read = Permission::factory()->create(['name' => 'user' . AuthConst::PERMISSION_READ, 'description' => 'View list entities,show link in menu']);
+        $p_user_update = Permission::factory()->create(['name' => 'user' . AuthConst::PERMISSION_UPDATE, 'description' => 'Update entities, show button edit']);
+        $p_user_delete = Permission::factory()->create(['name' => 'user' . AuthConst::PERMISSION_DELETE, 'description' => 'Delete entities, show button delete']);
+        $p_user_loginAs = Permission::factory()->create(['name' => 'user.loginAs', 'description' => 'Login as user']);
 
         $superAdmin->allowTo($p_user_create);
         $superAdmin->allowTo($p_user_read);

@@ -4,6 +4,9 @@ namespace Modules\Auth\Providers;
 
 use Core\Facades\MenuFacade;
 use Illuminate\Support\ServiceProvider;
+use Modules\Auth\Database\Factories\PermissionFactory;
+use Modules\Auth\Database\Factories\RoleFactory;
+use Modules\Auth\Database\Factories\UserFactory;
 use Modules\Auth\Entities\Models\User;
 
 class AuthServiceProvider extends ServiceProvider
@@ -13,8 +16,10 @@ class AuthServiceProvider extends ServiceProvider
         $this->loadViewsFrom(__DIR__ . '/../resources/views/', 'auth');
         $this->loadTranslationsFrom(__DIR__ . '/../resources/lang/', 'auth');
         $this->loadMigrationsFrom(__DIR__ . '/../Database/Migrations');
-        $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');
-
+//        $this->loadFactoriesFrom(__DIR__ . '/../Database/Factories');
+        UserFactory::new();
+        RoleFactory::new();
+        PermissionFactory::new();
         require_once(__DIR__ . '/../Helpers/functions.php');
     }
 

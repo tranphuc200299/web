@@ -15,7 +15,7 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        factory(Role::class)->create([
+        Role::factory()->create([
             'name'         => TenantConst::ROLE_TENANT_ADMIN,
             'level'        => TenantConst::ROLE_LEVEL_TENANT,
             'display_name' => 'tenant::role.name.tenant',

@@ -29,19 +29,18 @@ stages:
   mkdir -p ~/.ssh
   chmod 700 ~/.ssh
   [[ -f /.dockerenv ]] && echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
-
-PHP CPD:
-  image: nguyentruongson93/phpqa:7.4
+PHP Stan:
+  image: lyni/phpqa:7.4-latest
   stage: quality
   <<: *tags-default
   script:
     - git fetch origin
     - git branch
     - composer i
-    - phpcpd core modules
+    - phpstan analyse core modules --level 1
 
 PHP Security:
-  image: nguyentruongson93/phpqa:7.4
+  image: lyni/phpqa:7.4-latest
   stage: quality
   <<: *tags-default
   script:
@@ -50,18 +49,29 @@ PHP Security:
     - composer i
     - local-php-security-checker
 
-PHP Stan:
-  image: nguyentruongson93/php:7.4.22
+PHP Copy/Paste Detector:
+  image: lyni/phpqa:7.4-latest
   stage: quality
   <<: *tags-default
   script:
     - git fetch origin
     - git branch
     - composer i
-    - php -d memory_limit=1G /composer/vendor/bin/phpstan analyse core modules --level 1
+    - phpcpd core modules
+
+PHP Magic Number:
+  image: lyni/phpqa:7.4-latest
+  stage: quality
+  <<: *tags-default
+  script:
+    - git fetch origin
+    - git branch
+    - composer i
+    - phpmnd core modules --ignore-numbers=2,-1 --ignore-funcs=round,sleep --exclude=tests --progress \
+      --extensions=default_parameter,-return,argument
 
 dev:
-  image: nguyentruongson93/php:7.4
+  image: lyni/php-cd:7.4-latest
   stage: deploy
   <<: *tags-default
   script:
@@ -72,7 +82,7 @@ dev:
   when: manual
 
 staging:
-  image: nguyentruongson93/php:7.4
+  image: lyni/php-cd:7.4-latest
   stage: deploy
   <<: *tags-default
   script:
@@ -83,7 +93,7 @@ staging:
   when: manual
 
 honban:
-  image: nguyentruongson93/php:7.4
+  image: lyni/php-cd:7.4-latest
   stage: deploy
   <<: *tags-default
   script:
