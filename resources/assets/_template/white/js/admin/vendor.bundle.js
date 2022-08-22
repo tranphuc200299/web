@@ -41,7 +41,6 @@ require('jquery.repeater');
 require('jquery-ui/ui/i18n/datepicker-ja.js');
 require('jquery-ui/ui/widgets/autocomplete');
 require('tagmanager');
-require('summernote');
 require('selectize');
 require('bootstrap-daterangepicker');
 require('selectize/dist/css/selectize.default.css');

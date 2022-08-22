@@ -38,9 +38,9 @@ mix.copyDirectory([
     'node_modules/slick-carousel/slick/fonts',
 ], 'public/assets/admin/css/fonts');
 
-mix.copyDirectory([
-    'node_modules/summernote/dist/font',
-], 'public/assets/admin/css/font');
+// mix.copyDirectory([
+//     'node_modules/summernote/dist/font',
+// ], 'public/assets/admin/css/font');
 
 mix.copyDirectory([
     'node_modules/slick-carousel/slick/ajax-loader.gif',
