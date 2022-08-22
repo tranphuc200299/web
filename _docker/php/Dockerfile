@@ -18,6 +18,8 @@ RUN apt-get update && apt-get install -y \
     git \
     graphviz \
     curl \
+    nodejs \
+    npm \
     supervisor
 
 RUN apt-get update
@@ -59,8 +61,8 @@ RUN curl -s https://getcomposer.org/installer | php -- --install-dir=/usr/local/
 
 
 RUN apt-get install -y gnupg2
-RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
-RUN apt-get install -y nodejs
+#RUN curl -sL https://deb.nodesource.com/setup_12.x | bash -
+#RUN apt-get install -y nodejs
 
 RUN npm install pm2 -g
 RUN cp /usr/share/zoneinfo/Asia/Ho_Chi_Minh /etc/localtime
