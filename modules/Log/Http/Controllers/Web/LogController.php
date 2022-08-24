@@ -35,7 +35,11 @@ class LogController extends Controller
 
     public function destroy(Request $request)
     {
-        $this->logService->deleteMultiRecord($request->id);
-        return true;
+        if ($request->id) {
+            $this->logService->deleteMultiRecord($request->id);
+            return true;
+        }
+
+        return false;
     }
 }

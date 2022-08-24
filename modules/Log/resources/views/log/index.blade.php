@@ -19,8 +19,8 @@
                              'stt' => ['name' => 'STT', 'style' => 'width: 80px'],
                              'id' => ['name' => 'ID'],
                              'image' => ['name' => 'image'],
-                             'gender' => ['name' => 'gender' , 'sortable' => true],
-                             'age' => ['name' => 'Age' , 'sortable' => true],
+                             'gender' => ['name' => 'gender'],
+                             'age' => ['name' => 'Age'],
                              'check_in_date' => ['name' => 'Check in date' ],
                              'check_in_time' => ['name' => 'Check in time'],
                              ],'id', route(Route::currentRouteName()), false)  !!}
@@ -46,15 +46,24 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-5">
-                        <nav class="mt-3">
-                            @include('core::_pagination.counting', ['paginator' => $list])
-                        </nav>
-                    </div>
+                    @if(!empty($list) && count($list) > 0)
+                        <div class="col-xs-12 col-sm-5">
+                            <nav class="mt-3">
+                                @include('core::_pagination.counting', ['paginator' => $list])
+                            </nav>
+                        </div>
+                    @else
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="text-center top-20 pull-left">
+                                {{ trans('core::message.paging.No corresponding record') }}
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="col-xs-12 col-sm-7">
                         <nav class="mt-3">
                             @if(!empty($list))
-                                {{ $list->appends(request()->input())->links() }}
+                                {{ $list->appends($_GET)->links('vendor.pagination.custom') }}
                             @endif
                         </nav>
                     </div>
