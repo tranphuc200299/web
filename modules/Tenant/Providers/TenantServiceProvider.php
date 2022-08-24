@@ -24,15 +24,15 @@ class TenantServiceProvider extends ServiceProvider
     public function register()
     {
         $this->registerCommands();
-        MenuFacade::pushMenu([
-            'group' => 20,
-            'group_name' => '',
-            'pos_child' => 0,
-            'name' => 'tenant::text.tenant management',
-            'class' => TenantModel::class,
-            'route' => 'cp.tenants.index',
-            'icon' => 'building',
-        ]);
+//        MenuFacade::pushMenu([
+//            'group' => 20,
+//            'group_name' => '',
+//            'pos_child' => 0,
+//            'name' => 'tenant::text.tenant management',
+//            'class' => TenantModel::class,
+//            'route' => 'cp.tenants.index',
+//            'icon' => 'building',
+//        ]);
 
         $this->app->register(RouteServiceProvider::class);
         $this->app->register(PolicyServiceProvider::class);
