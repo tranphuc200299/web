@@ -24,8 +24,9 @@ class UserFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->name,
-            'email' => $this->faker->unique()->safeEmail,
+            'full_name' => $this->faker->name,
+            'user_name' => $this->faker->unique()->name,
+            'email' => $this->faker->safeEmail,
             'status' => \Modules\Auth\Constants\AuthConst::USER_ENABLE,
             'email_verified_at' => now(),
             'password' => Hash::make('123456'), // password

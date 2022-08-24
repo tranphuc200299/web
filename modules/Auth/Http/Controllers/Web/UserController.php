@@ -11,6 +11,7 @@ use Modules\Auth\Constants\AuthConst;
 use Modules\Auth\Entities\Mail\NewAccount;
 use Modules\Auth\Entities\Models\Role;
 use Modules\Auth\Entities\Models\User;
+use Modules\Auth\Http\Requests\UserRequest;
 use Modules\Auth\Services\UserService;
 
 class UserController extends Controller
@@ -54,19 +55,19 @@ class UserController extends Controller
         return view('auth::user.create', $assign);
     }
 
-    public function store(Request $request)
+    public function store(UserRequest $request)
     {
-        $data = $request->only(['name', 'email', 'password']);
-        $email = $data['email'];
-        $password = $data['password'] ?? $this->userService->makePassword();
+        $data = $request->only(['full_name', 'user_name', 'password']);
         $data['password'] = Hash::make($data['password']);
 
         /* @var $user User */
         $user = $this->userService->create($data);
 
         if (!empty($user)) {
+//            $email = $data['email'];
+//            $password = $data['password'] ?? $this->userService->makePassword();
             $user->assignRole($request->get('role_id'));
-            activity()->send(new NewAccount($email, $password));
+//            activity()->send(new NewAccount($email, $password));
 
             return redirect()->route('cp.users.index')->with('success', trans('core::message.notify.create success'));
         }
@@ -77,12 +78,13 @@ class UserController extends Controller
     public function show($id)
     {
         /* @var $assign ['user'] User */
-        $assign['user'] = $this->userService->findOr404($id);
-
-        $assign['roles'] = Role::all();
-        $assign['user']->loadMissing('roles');
-
-        return view('auth::user.show', $assign);
+//        $assign['user'] = $this->userService->findOr404($id);
+//
+//        $assign['roles'] = Role::all();
+//        $assign['user']->loadMissing('roles');
+//
+//        return view('auth::user.show', $assign);
+        abort(404);
     }
 
     public function edit($id)
@@ -99,7 +101,7 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $assign['user'] = $this->userService->findOr404($id);
-        $data = $request->only(['name', 'password']);
+        $data = $request->only(['full_name', 'password']);
 
 
         if ($data['password']) {
@@ -110,11 +112,11 @@ class UserController extends Controller
 
         $user = $this->userService->update($id, $data);
 
-        $roleIds = array_filter($request->get('role_id'), function ($value) {
-            return !is_null($value) && $value !== '';
-        });
-
-        $user->roles()->sync($roleIds);
+//        $roleIds = array_filter($request->get('role_id'), function ($value) {
+//            return !is_null($value) && $value !== '';
+//        });
+//
+//        $user->roles()->sync($roleIds);
 
         return redirect()->route('cp.users.index');
     }
@@ -124,9 +126,15 @@ class UserController extends Controller
         $assign['user'] = $this->userService->findOr404($id);
         $assign['user']->loadMissing('roles');
 
-        if (!in_array(AuthConst::ROLE_SUPER_ADMIN, $assign['user']->roles->pluck('name')->toArray())) {
+//        if (!in_array(AuthConst::ROLE_SUPER_ADMIN, $assign['user']->roles->pluck('name')->toArray())) {
+//            $assign['user']->delete();
+//        }
+        $count = $this->userService->getAll()->count();
+
+        if($count > 1) {
             $assign['user']->delete();
         }
+
 
         return redirect()->route('cp.users.index');
     }

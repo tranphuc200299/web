@@ -3,7 +3,7 @@
     <div class="login-container">
         <div class="w-100 px-3 px-md-5">
             <div class="text-center mb-4 account-box-title">
-                {{ trans('auth::text.Login') }}
+                {{ trans('auth::text.Welcome') }}
             </div>
             <div class="login-area box_border_type_1 px-3 py-3 px-md-5 py-5">
                 {!!
@@ -26,12 +26,12 @@
                             <span class="input-group-text transparent"><i class="fa fa-envelope"></i>
                               </span>
                         </div>
-                        <input type="email" name="email" placeholder="{{ trans('auth::text.Email') }}"
+                        <input type="text" name="user_name" placeholder="{{ trans('auth::user.user_name') }}"
                                class="form-control" required>
                     </div>
-                    @if ($errors->has('email'))
+                    @if ($errors->has('user_name'))
                         <label class="invalid-feedback error" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('user_name') }}</strong>
                         </label>
                     @endif
                 </div>
@@ -58,13 +58,6 @@
                                 disabled>
                             <span>{{ trans('auth::text.Login') }}</span>
                         </button>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="m-auto align-items-center pt-4">
-                        <a href="{{ route('password.email') }}" class="text-info small">
-                            {{ trans('auth::message.If you forget your password') }}
-                        </a>
                     </div>
                 </div>
                 {!! Form::close() !!}

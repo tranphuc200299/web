@@ -46,7 +46,7 @@ require('bootstrap-daterangepicker');
 require('selectize/dist/css/selectize.default.css');
 
 require('../plugins/file-manager/stand-alone-button');
-require('../plugins/summernote-fontawesome');
+// require('../plugins/summernote-fontawesome');
 require('../plugins/jquery.ioslist.min');
 require('../plugins/jquery.schedule/pages.calendar');
 

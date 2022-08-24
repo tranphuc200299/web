@@ -31,34 +31,34 @@ window.GLOBAL_CONFIG = function () {
                 ignore: [],
             });
 
-            $('[data-toggle=editor-mini]').summernote({
-                height: 100,
-                toolbar: [
-                    ['style', ['highlight', 'bold', 'italic', 'underline', 'clear']]
-                ]
-            });
-
-            $('[data-toggle=editor]').summernote({
-                height: 100,
-                toolbar: [
-                    ['style', ['highlight', 'bold', 'italic', 'underline', 'clear']],
-                    ['font', ['strikethrough', 'superscript', 'subscript']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['view', ['codeview', 'fullscreen']],
-                ]
-            });
-
-            $('[data-toggle=editor-adv]').summernote({
-                height: 300,
-                toolbar: [
-                    ['style', ['highlight', 'bold', 'italic', 'underline', 'clear']],
-                    ['font', ['bold', 'underline', 'clear'], ['strikethrough', 'superscript', 'subscript']],
-                    ['para', ['ul', 'ol', 'paragraph']],
-                    ['table', ['table']],
-                    ['popovers', ['lfm']],
-                    ['view', ['codeview', 'fullscreen']],
-                ]
-            });
+            // $('[data-toggle=editor-mini]').summernote({
+            //     height: 100,
+            //     toolbar: [
+            //         ['style', ['highlight', 'bold', 'italic', 'underline', 'clear']]
+            //     ]
+            // });
+            //
+            // $('[data-toggle=editor]').summernote({
+            //     height: 100,
+            //     toolbar: [
+            //         ['style', ['highlight', 'bold', 'italic', 'underline', 'clear']],
+            //         ['font', ['strikethrough', 'superscript', 'subscript']],
+            //         ['para', ['ul', 'ol', 'paragraph']],
+            //         ['view', ['codeview', 'fullscreen']],
+            //     ]
+            // });
+            //
+            // $('[data-toggle=editor-adv]').summernote({
+            //     height: 300,
+            //     toolbar: [
+            //         ['style', ['highlight', 'bold', 'italic', 'underline', 'clear']],
+            //         ['font', ['bold', 'underline', 'clear'], ['strikethrough', 'superscript', 'subscript']],
+            //         ['para', ['ul', 'ol', 'paragraph']],
+            //         ['table', ['table']],
+            //         ['popovers', ['lfm']],
+            //         ['view', ['codeview', 'fullscreen']],
+            //     ]
+            // });
 
             /*setup datepicker jquery-ui*/
             $('[data-toggle=select2-single]').select2({});

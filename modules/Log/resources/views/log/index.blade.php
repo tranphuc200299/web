@@ -19,8 +19,8 @@
                              'stt' => ['name' => 'STT', 'style' => 'width: 80px'],
                              'id' => ['name' => 'ID'],
                              'image' => ['name' => 'image'],
-                             'gender' => ['name' => 'gender' , 'sortable' => true],
-                             'age' => ['name' => 'Age' , 'sortable' => true],
+                             'gender' => ['name' => 'gender'],
+                             'age' => ['name' => 'Age'],
                              'check_in_date' => ['name' => 'Check in date' ],
                              'check_in_time' => ['name' => 'Check in time'],
                              ],'id', route(Route::currentRouteName()), false)  !!}
@@ -30,10 +30,10 @@
                         @foreach($list as $log)
                             <tr>
                                 <td class="v-align-middle text-center">
-                                    <input type="checkbox">
+                                    <input type="checkbox" id="delete-log" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{ $loop->iteration }}</td>
-                                <td class="v-align-middle text-center">{{$log->id}}</td>
+                                <td class="v-align-middle text-center" id="UserId">{{$log->id}}</td>
                                 <td class="v-align-middle text-center"><a href="#">Xem ảnh</a></td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
@@ -46,15 +46,24 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-5">
-                        <nav class="mt-3">
-                            @include('core::_pagination.counting', ['paginator' => $list])
-                        </nav>
-                    </div>
+                    @if(!empty($list) && count($list) > 0)
+                        <div class="col-xs-12 col-sm-5">
+                            <nav class="mt-3">
+                                @include('core::_pagination.counting', ['paginator' => $list])
+                            </nav>
+                        </div>
+                    @else
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="text-center top-20 pull-left">
+                                {{ trans('core::message.paging.No corresponding record') }}
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="col-xs-12 col-sm-7">
                         <nav class="mt-3">
                             @if(!empty($list))
-                                {{ $list->appends(request()->input())->links() }}
+                                {{ $list->appends($_GET)->links('vendor.pagination.custom') }}
                             @endif
                         </nav>
                     </div>
@@ -65,9 +74,6 @@
     </div>
 @endsection
 @push('custom-scripts')
-    {{--<script type="text/javascript" src="https://cdn.jsdelivr.net/jquery/latest/jquery.min.js"></script>--}}
-    {{--<script type="text/javascript" src="https://cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>--}}
-    {{--<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>--}}
     <script>
         $(function() {
 
@@ -86,6 +92,38 @@
                 $(this).val('');
             });
 
+            $("input:checkbox").on( "click", function() {
+                $('.btn-delete-list').removeAttr('disabled');
+            });
+
+            $( "#delete-log" ).on( "click", function() {
+                event.preventDefault();
+                let dataId = [];
+                $("input:checkbox").each(function(){
+                    let $this = $(this);
+                    if($this.is(":checked")){
+                        $('.btn-delete-list').removeAttr('disabled');
+                        dataId.push($this.val());
+                    }
+                });
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                    "url": '{{ route('cp.logs.destroy') }}',
+                    "method": "POST",
+                    data: {
+                        id: dataId,
+                    },
+                    success: function(data) {
+                        location.reload();
+                    }, error: function (error) {
+                        console.log(error);
+                    }
+                });
+            });
         });
     </script>
 @endpush

@@ -32,7 +32,7 @@ class AuthController extends Controller
 
     protected function attemptLogin(Request $request)
     {
-        $credentials = $this->credentials($request);
+        $credentials = $request->only('user_name', 'password');
 
         $credentials['status'] = AuthConst::STATUS_USER_ENABLE;
 
@@ -59,7 +59,7 @@ class AuthController extends Controller
      */
     public function login(Request $request)
     {
-        $this->validateLogin($request);
+        $this->validateRequestLogin($request);
 
         // If the class is using the ThrottlesLogins trait, we can automatically throttle
         // the login attempts for this application. We'll key this by the username and
@@ -135,5 +135,13 @@ class AuthController extends Controller
         $request->session()->invalidate();
 
         return $this->loggedOut($request) ?: redirect(route('login'));
+    }
+
+    public function validateRequestLogin(Request $request)
+    {
+        $request->validate([
+            'user_name' => 'required|string',
+            'password' => 'required|string',
+        ]);
     }
 }

@@ -49,4 +49,10 @@ class LogService extends BaseService
 
         return $this->endFilter();
     }
+
+    public function deleteMultiRecord($listId)
+    {
+        return $this->mainRepository->deleteMultiRecord($listId);
+    }
+
 }

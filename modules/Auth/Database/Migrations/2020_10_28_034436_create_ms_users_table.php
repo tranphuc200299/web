@@ -15,13 +15,14 @@ class CreateMsUsersTable extends Migration
     {
         Schema::create('ms_users', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('name', 100);
-            $table->string('email', 50)->unique();
+            $table->string('full_name', 100);
+            $table->string('user_name', 100);
+            $table->string('email', 50)->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password', 100);
             $table->string('picture')->nullable();
             $table->tinyInteger('gender')->default(0);
-            $table->tinyInteger('status')->nullable()->default(\Modules\Auth\Constants\AuthConst::STATUS_USER_DISABLE);
+            $table->tinyInteger('status')->nullable()->default(\Modules\Auth\Constants\AuthConst::STATUS_USER_ENABLE);
             $table->rememberToken();
             $table->softDeletes();
             $table->timestamps();

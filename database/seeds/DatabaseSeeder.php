@@ -13,7 +13,6 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
         $this->call(Modules\Auth\Database\Seed\DatabaseSeeder::class);
-        $this->call(Modules\Tenant\Database\Seed\DatabaseSeeder::class);
         $this->call(Modules\Auth\Database\Seed\PermissionSeeder::class);
     }
 }

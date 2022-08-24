@@ -11,4 +11,10 @@ class LogRepository extends BaseRepository
     {
         return LogModel::class;
     }
+
+    public function deleteMultiRecord($listId)
+    {
+        return $this->model->whereIn('id', $listId)->delete();
+    }
+
 }
