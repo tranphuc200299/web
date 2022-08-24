@@ -7,6 +7,8 @@ Route::group(['middleware' => ['auth']], function () {
     /*List*/
     Route::get('/cp/logs', 'Web\LogController@index')
         ->name('cp.logs.index');
+    Route::post('/cp/destroy', 'Web\LogController@destroy')
+        ->name('cp.logs.destroy');
 
 //    /*Create*/
 //    Route::get('/cp/logs/create', 'Web\LogController@create')

@@ -49,6 +49,7 @@
                 <button class="btn btn-secondary">
                     <a href="{{route('cp.logs.index')}}">{{trans('core::common.clear filter')}}</a>
                 </button>
+                    <button class="btn btn-danger btn-delete-list" href="#" id="delete-log" disabled="disabled">{{trans('core::common.delete')}}</button>
             </div>
         </div>
     </div>

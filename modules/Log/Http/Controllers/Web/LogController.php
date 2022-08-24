@@ -3,6 +3,7 @@
 namespace Modules\Log\Http\Controllers\Web;
 
 use Core\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Modules\Log\Services\LogService;
 use Modules\Log\Entities\Models\LogModel;
 
@@ -32,14 +33,9 @@ class LogController extends Controller
 
 //
 
-    public function destroy(LogModel $Log)
+    public function destroy(Request $request)
     {
-        try {
-            $Log->delete();
-        } catch (\Exception $e) {
-
-        };
-
-        return redirect()->route("cp.logs.index")->with('success', 'Deleted successfully.');
+        $this->logService->deleteMultiRecord($request->id);
+        return true;
     }
 }
