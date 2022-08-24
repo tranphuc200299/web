@@ -14,30 +14,45 @@
                             @csrf
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ trans('auth::user.name') }}
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ trans('auth::user.full_name') }}
                                         <span class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="name" class="form-control" value="{{ old('name') }}"
-                                               data-validate-length-range="6" data-validate-words="2" name="name" maxlength="50" required="required" type="text">
+                                        <input id="name" class="form-control" value="{{ old('full_name') }}"
+                                               data-validate-length-range="6" data-validate-words="2" name="full_name" maxlength="100" required="required" type="text">
                                     </div>
                                 </div>
                             </div>
+
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">{{ trans('auth::user.login ID') }}（{{trans('core::common.email')}}）<span
-                                                class="required">*</span>
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ trans('auth::user.user_name') }} ({{ trans('auth::user.login ID') }})
+                                        <span class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" id="email" name="email" required="required" value="{{ old('email') }}"
-                                               class="form-control">
+                                        <input id="user_name" class="form-control" value="{{ old('user_name') }}"
+                                               data-validate-length-range="6" data-validate-words="2" name="user_name" maxlength="100" required="required" type="text">
                                     </div>
                                 </div>
                             </div>
+
+                            {{--<div class="form-group">--}}
+                                {{--<div class="row">--}}
+                                    {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">{{ trans('auth::user.login ID') }}（{{trans('core::common.email')}}）<span--}}
+                                                {{--class="required">*</span>--}}
+                                    {{--</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                                        {{--<input type="email" id="email" name="email" required="required" value="{{ old('email') }}"--}}
+                                               {{--class="form-control">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="form-group">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">{{trans('core::common.password')}}

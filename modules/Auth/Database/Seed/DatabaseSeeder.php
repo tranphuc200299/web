@@ -18,11 +18,13 @@ class DatabaseSeeder extends Seeder
     public function run()
     {
 
-        $superAdmin = User::factory()->create(['name' => 'SuperAdmin', 'email' => 'super@mail.io']);
+        $superAdmin = User::factory()->create(
+            ['full_name' => 'SuperAdmin', 'user_name' => 'Admin', 'email' => 'super@ntq.cms']
+        );
 
         $superAdmin->detail()->create();
 
-        $superAdminRole = Role::factory()->create(['name' => AuthConst::ROLE_SUPER_ADMIN, 'display_name' => 'auth::role.name.ITAdmin', 'description' => 'Role super admin, allowed every action']);
+        $superAdminRole = Role::factory()->create(['name' => AuthConst::ROLE_SUPER_ADMIN, 'display_name' => 'auth::role.name.Admin', 'description' => 'Role super admin, allowed every action']);
 
         $superAdmin->assignRole($superAdminRole);
     }

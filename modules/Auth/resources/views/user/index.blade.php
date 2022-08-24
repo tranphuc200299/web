@@ -16,15 +16,16 @@
                     </div>
                 </div>
                 <div class="table-responsive">
-                    <table class="table table-hover mw-1500">
+                    <table class="table table-hover ">
                         <thead>
                             <tr>
                                 {!!  Html::renderHeader(
                                  [
                                  'id' => ['name' => trans('core::common.No'), 'style' => 'width: 80px'],
-                                 'name' => ['name' => trans('auth::user.name'), 'sortable' => true],
-                                 'email' => ['name' => trans('core::common.email'), 'sortable' => true],
+                                 'full_name' => ['name' => trans('auth::user.full_name'), 'sortable' => true],
+                                 'user_name' => ['name' => trans('auth::user.user_name'), 'sortable' => true],
                                  'created_at' => ['name' => trans('core::common.created at'), 'sortable' => true],
+                                 'updated_at' => ['name' => trans('core::common.updated at'), 'sortable' => true],
                                  'action' => ['name' => '', 'sortable' => false, 'style' => "width: 270px"],
                                  ],'id', route(Route::currentRouteName()), false)  !!}
                             </tr>
@@ -34,14 +35,11 @@
                             <tr>
                                 <td class="v-align-middle text-center">
                                     {{($users->currentpage()-1)*$users->perpage()+ $key + 1}}
-                                    @can('loginAs', $user)
-                                        <a href="{{ route('cp.users.loginAs', $user->id) }}"><i
-                                                    class="fa fa-external-link" aria-hidden="true"></i></a>
-                                    @endcan
                                 </td>
-                                <td class="v-align-middle  text-center">{{ $user->name }}</td>
-                                <td class="v-align-middle">{{ $user->email }}</td>
+                                <td class="v-align-middle  text-center">{{ $user->full_name }}</td>
+                                <td class="v-align-middle">{{ $user->user_name }}</td>
                                 <td class="v-align-middle  text-center">{{ $user->created_at }}</td>
+                                <td class="v-align-middle  text-center">{{ $user->updated_at }}</td>
                                 <td class="v-align-middle  text-center">
                                     @can('update', $user)
                                         <a class="btn btn-primary btn-xs"

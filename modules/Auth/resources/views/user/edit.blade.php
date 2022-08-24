@@ -15,31 +15,47 @@
 
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ trans('auth::user.name') }}<span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ trans('auth::user.full_name') }}<span
                                                 class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="name" class="form-control" value="{{ old('name', $user->name) }}"
-                                               data-validate-length-range="6" data-validate-words="2" name="name"
-                                               placeholder="Your name" required="required" type="text" maxlength="50">
+                                        <input id="full_name" class="form-control" value="{{ old('full_name', $user->full_name) }}"
+                                               data-validate-length-range="6" data-validate-words="2" name="full_name"
+                                               placeholder="Your name" required="required" type="text" maxlength="100">
                                     </div>
                                 </div>
                             </div>
+
+
                             <div class="form-group">
                                 <div class="row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">{{ trans('auth::user.login ID') }}（{{trans('core::common.email')}}）<span
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="name">{{ trans('auth::user.user_name') }} ({{ trans('auth::user.login ID') }})<span
                                                 class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input type="email" id="email" name="email" disabled value="{{ old('email', $user->email) }}"
-                                               class="form-control">
+                                        <input id="user_name" class="form-control" disabled value="{{ old('user_name', $user->user_name) }}"
+                                               data-validate-length-range="6" data-validate-words="2" name="user_name"
+                                               placeholder="Your name" required="required" type="text" maxlength="100">
                                     </div>
                                 </div>
                             </div>
+                            {{--<div class="form-group">--}}
+                                {{--<div class="row">--}}
+                                    {{--<label class="control-label col-md-3 col-sm-3 col-xs-12" for="email">{{ trans('auth::user.login ID') }}（{{trans('core::common.email')}}）<span--}}
+                                                {{--class="required">*</span>--}}
+                                    {{--</label>--}}
+                                {{--</div>--}}
+                                {{--<div class="row">--}}
+                                    {{--<div class="col-md-6 col-sm-6 col-xs-12">--}}
+                                        {{--<input type="email" id="email" name="email" disabled value="{{ old('email', $user->email) }}"--}}
+                                               {{--class="form-control">--}}
+                                    {{--</div>--}}
+                                {{--</div>--}}
+                            {{--</div>--}}
                             <div class="form-group">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">{{trans('core::common.password')}}
@@ -48,7 +64,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="password" id="password" name="password" class="form-control"
-                                               data-rule-validPassword="true">
+                                               data-rule-validPassword="true" autocomplete="new-password">
                                     </div>
                                 </div>
                             </div>
@@ -73,7 +89,7 @@
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <select name="role_id" id="role_id" class="form-control" data-toggle=select2-multi disabled>
                                             @foreach($roles as $role)
-                                                <option value="{{$role->id}}" @if(in_array($role->id, $user->roles->pluck('id')->toArray())) selected @endif>{{$role->name}}</option>
+                                                <option value="{{$role->id}}" @if(in_array($role->id, $user->roles->pluck('id')->toArray())) selected @endif>{{ trans($role->display_name) }}</option>
                                             @endforeach
                                         </select>
                                     </div>

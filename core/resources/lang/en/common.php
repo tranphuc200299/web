@@ -29,6 +29,7 @@ return [
     'clear filter'    => 'Clear filter',
     'back'            => 'Back',
     'new item'        => 'New Item',
+    'save'            => 'Save',
 
     /* Menu title */
     'menu'            => [

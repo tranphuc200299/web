@@ -17,4 +17,9 @@ class UserService extends BaseService
     {
         return Str::random(8);
     }
+
+    public function getAll()
+    {
+        return $this->mainRepository->getAll();
+    }
 }

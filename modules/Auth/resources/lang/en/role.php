@@ -2,6 +2,7 @@
 
 return [
     'name' => [
-        'ITAdmin' => 'IT Admin'
+        'ITAdmin' => 'IT Admin',
+        'Admin' => 'Admin'
     ],
 ];

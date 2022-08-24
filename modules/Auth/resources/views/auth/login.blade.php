@@ -26,12 +26,12 @@
                             <span class="input-group-text transparent"><i class="fa fa-envelope"></i>
                               </span>
                         </div>
-                        <input type="email" name="email" placeholder="{{ trans('auth::text.Email') }}"
+                        <input type="text" name="user_name" placeholder="{{ trans('auth::user.user_name') }}"
                                class="form-control" required>
                     </div>
-                    @if ($errors->has('email'))
+                    @if ($errors->has('user_name'))
                         <label class="invalid-feedback error" role="alert">
-                            <strong>{{ $errors->first('email') }}</strong>
+                            <strong>{{ $errors->first('user_name') }}</strong>
                         </label>
                     @endif
                 </div>
