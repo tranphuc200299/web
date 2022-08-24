@@ -16,12 +16,12 @@
     <link href="{{ mix('assets/admin/css/style.css') }}" rel="stylesheet" type="text/css"/>
 </head>
 <body class="fixed-header ">
-<div class="header px-0">
-    <div class="header-box">
-        <div class="s-title">Project Name</div>
-        <div class="header-underline"></div>
-    </div>
-</div>
+{{--<div class="header px-0">--}}
+{{--    <div class="header-box">--}}
+{{--        <div class="s-title">Project Name</div>--}}
+{{--        <div class="header-underline"></div>--}}
+{{--    </div>--}}
+{{--</div>--}}
 <div class="login-wrapper ">
     @yield('body-inside')
 </div>
