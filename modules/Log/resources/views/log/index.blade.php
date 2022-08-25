@@ -9,6 +9,16 @@
                     <div class="col-12">
                     </div>
                 </div>
+                <div class="row bold">
+                    <div class="col-12">
+                        <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
+                            <button type="button" class="btn btn-success btn btn-secondary" >
+                                Export Csv
+                            </button>
+                        </a>
+                    </div>
+                </div>
+
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
                         <thead>
@@ -33,12 +43,12 @@
                                     <input type="checkbox" id="delete-log" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{ $loop->iteration }}</td>
-                                <td class="v-align-middle text-center" id="UserId">{{$log->id}}</td>
+                                <td class="v-align-middle text-center" id="UserId">{{$log->customer->id}}</td>
                                 <td class="v-align-middle text-center"><a href="#">Xem ảnh</a></td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y-m-d') }}</td>
-                                <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('h:i:s') }}</td>
+                                <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('H:i:s') }}</td>
                                 </td>
                             </tr>
                         @endforeach
@@ -77,18 +87,40 @@
     <script>
         $(function() {
 
+            $('.time-filter').daterangepicker({
+                timePicker : true,
+                singleDatePicker:true,
+                timePicker24Hour : true,
+                timePickerIncrement : 1,
+                timePickerSeconds : true,
+                autoUpdateInput: false,
+                locale : {
+                    format : 'HH:mm:ss'
+                }
+            }).on('show.daterangepicker', function(ev, picker) {
+                picker.container.find(".calendar-table").hide();
+            });
+
             $('.date-filter').daterangepicker({
+                singleDatePicker: true,
+                showDropdowns: true,
+                minYear: 2000,
+                maxYear: parseInt(moment().format('YYYY'),10),
                 autoUpdateInput: false,
                 locale: {
                     cancelLabel: 'Clear'
                 }
             });
 
-            $('.date-filter').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('MM/DD/YYYY') + ' - ' + picker.endDate.format('MM/DD/YYYY'));
+            $('.time-filter').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('HH:mm:ss'));
             });
 
-            $('.date-filter').on('cancel.daterangepicker', function(ev, picker) {
+            $('.date-filter').on('apply.daterangepicker', function(ev, picker) {
+                $(this).val(picker.startDate.format('yy/MM/DD'));
+            });
+
+            $('.date-filter, .time-filter').on('cancel.daterangepicker', function(ev, picker) {
                 $(this).val('');
             });
 
