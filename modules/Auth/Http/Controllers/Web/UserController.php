@@ -136,6 +136,6 @@ class UserController extends Controller
         }
 
 
-        return redirect()->route('cp.users.index');
+        return redirect()->route('cp.users.log');
     }
 }

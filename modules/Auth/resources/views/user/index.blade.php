@@ -22,11 +22,11 @@
                                 {!!  Html::renderHeader(
                                  [
                                  'id' => ['name' => trans('core::common.No'), 'style' => 'width: 80px'],
-                                 'full_name' => ['name' => trans('auth::user.full_name'), 'sortable' => true],
-                                 'user_name' => ['name' => trans('auth::user.user_name'), 'sortable' => true],
-                                 'created_at' => ['name' => trans('core::common.created at'), 'sortable' => true],
-                                 'updated_at' => ['name' => trans('core::common.updated at'), 'sortable' => true],
-                                 'action' => ['name' => '', 'sortable' => false, 'style' => "width: 270px"],
+                                 'full_name' => ['name' => trans('auth::user.full_name')],
+                                 'user_name' => ['name' => trans('auth::user.user_name')],
+                                 'created_at' => ['name' => trans('core::common.created at')],
+                                 'updated_at' => ['name' => trans('core::common.updated at')],
+                                 'action' => ['name' => '','style' => "width: 270px"],
                                  ],'id', route(Route::currentRouteName()), false)  !!}
                             </tr>
                         </thead>

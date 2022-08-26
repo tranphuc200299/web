@@ -34,7 +34,7 @@
 
     <div class="col-lg-3">
         <div class="form-group">
-            <label for="age">Check in date</label>
+            <label for="age">{{ trans('log::text.check in date') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
                     <input class="form-control date-filter" name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
@@ -49,7 +49,7 @@
 
     <div class="col-lg-3">
         <div class="form-group">
-            <label for="time">Check in time</label>
+            <label for="time">{{ trans('log::text.check in time') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
                     <input class="form-control time-filter" name="start_time" type="text" value="{{ request('start_time') }}" readonly autocomplete="off">
