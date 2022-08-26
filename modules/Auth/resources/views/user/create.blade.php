@@ -56,6 +56,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">{{trans('core::common.password')}}
+                                        <span class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
@@ -68,6 +69,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation">{{trans('core::common.password repeat')}}
+                                        <span class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">

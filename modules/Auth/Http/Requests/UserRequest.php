@@ -47,4 +47,14 @@ class UserRequest extends FormRequest
             'role_id' => trans('core::common.role'),
         ];
     }
+
+    public function messages()
+    {
+        return [
+            'full_name.max' => 'A title is required',
+            'full_name.required' => 'A message is required',
+            'user_name.unique' => 'ユーザー名は既に存在しています。',
+            'password.confirmed' => 'パスワードと確認用パスワードが一致しません。',
+        ];
+    }
 }

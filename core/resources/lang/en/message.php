@@ -49,7 +49,8 @@ return [
         'resident existed' => 'Resident is existed'
     ],
     'paging' => [
-        'table detail' => 'Showing :start to :end of :total entries',
+//        'table detail' => 'Showing :start to :end of :total entries',
+        'table detail' => ':start-:end件/:total件',
         'No corresponding record' => 'No corresponding record'
     ],
     'yes' =>'Yes',

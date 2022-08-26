@@ -9,7 +9,7 @@
     </div>
     <div class="col-lg-1">
         <div class="form-group">
-            <label for="gender">Gender</label>
+            <label for="gender"> {{ trans('log::text.gender') }}</label>
             <select name="gender" class="form-control" data-toggle="select2-single">
                 <option value="" disabled selected>Chọn...</option>
                 <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>Male </option>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-lg-2">
         <div class="form-group">
-            <label for="age">Age</label>
+            <label for="age">{{ trans('log::text.age') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
                     <input class="form-control" name="age_start" type="number" value="{{ request('age_start') }}">

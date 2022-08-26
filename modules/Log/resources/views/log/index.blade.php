@@ -39,13 +39,13 @@
                             {!!  Html::renderHeader(
                              [
                              '' => ['style' => 'width: 80px'],
-                             'stt' => ['name' => 'STT', 'style' => 'width: 80px'],
+                             'stt' => ['name' => trans('log::text.stt'), 'style' => 'width: 80px'],
                              'id' => ['name' => 'ID'],
-                             'image' => ['name' => 'image'],
-                             'gender' => ['name' => 'gender'],
-                             'age' => ['name' => 'Age'],
-                             'check_in_date' => ['name' => 'Check in date' ],
-                             'check_in_time' => ['name' => 'Check in time'],
+                             'image' => ['name' => trans('log::text.image')],
+                             'gender' => ['name' => trans('log::text.gender')],
+                             'age' => ['name' => trans('log::text.age')],
+                             'check_in_date' => ['name' => trans('log::text.check in date')],
+                             'check_in_time' => ['name' => trans('log::text.check in time')],
                              ],'id', route(Route::currentRouteName()), false)  !!}
                         </tr>
                         </thead>
@@ -53,7 +53,7 @@
                         @foreach($list as $log)
                             <tr>
                                 <td class="v-align-middle text-center">
-                                    <input type="checkbox" id="delete-log" value="{{$log->id}}">
+                                    <input type="checkbox" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{ $loop->iteration }}</td>
                                 <td class="v-align-middle text-center" id="UserId">{{$log->customer->id}}</td>
@@ -98,7 +98,7 @@
 @endsection
 @push('custom-scripts')
     <script>
-        $(function() {
+        $(function () {
 
             $('.time-filter').daterangepicker({
                 timePicker : true,
@@ -138,38 +138,63 @@
                 $(this).val('');
             });
 
-            $("input:checkbox").on( "click", function() {
-                $('.btn-delete-list').removeAttr('disabled');
+            $("input:checkbox").change(function () {
+                let $this = $(this);
+                if ($this.is(":checked")) {
+                    $('.btn-delete-list').removeAttr('disabled');
+                } else {
+                    $('.btn-delete-list').attr('disabled', 'disabled');
+                }
             });
-
-            $( "#delete-log" ).on( "click", function() {
-                event.preventDefault();
-                let dataId = [];
-                $("input:checkbox").each(function(){
-                    let $this = $(this);
-                    if($this.is(":checked")){
-                        $('.btn-delete-list').removeAttr('disabled');
-                        dataId.push($this.val());
+            //handel delete checkbox log
+            $(document).on('click', '#delete-log', function (e) {
+                e.preventDefault();
+                Swal.fire({
+                    title: '選択されているXXレコードを削除しても ',
+                    text: "よろしいですか。",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'はい',
+                    cancelButtonText: 'いいえ'
+                }).then((result) => {
+                    if (result.value) {
+                        let dataId = [];
+                        $("input:checkbox").each(function () {
+                            let $this = $(this);
+                            if ($this.is(":checked")) {
+                                dataId.push($this.val());
+                            }
+                        });
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            "url": '{{ route('cp.logs.destroy') }}',
+                            "method": "POST",
+                            data: {
+                                id: dataId,
+                            },
+                            success: function (data) {
+                                Swal.fire(
+                                    'Deleted!',
+                                    'Your file has been deleted.',
+                                    'success',
+                                ).then((result) => {
+                                    if (result.value) {
+                                        location.reload();
+                                    }
+                                })
+                            }, error: function (error) {
+                                console.log(error);
+                            }
+                        });
                     }
-                });
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                    "url": '{{ route('cp.logs.destroy') }}',
-                    "method": "POST",
-                    data: {
-                        id: dataId,
-                    },
-                    success: function(data) {
-                        location.reload();
-                    }, error: function (error) {
-                        console.log(error);
-                    }
-                });
-            });
+                })
+            })
         });
     </script>
 @endpush

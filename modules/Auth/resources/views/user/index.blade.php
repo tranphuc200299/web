@@ -1,7 +1,7 @@
 @extends('auth::layout')
 @section('content')
     <div class=" container-fluid bg-white">
-        @include('auth::user._partials.filter')
+{{--        @include('auth::user._partials.filter')--}}
         <div class="card card-transparent pt-2">
             @include('core::_messages.flash')
             <div class="">
@@ -41,13 +41,6 @@
                                 <td class="v-align-middle  text-center">{{ $user->created_at }}</td>
                                 <td class="v-align-middle  text-center">{{ $user->updated_at }}</td>
                                 <td class="v-align-middle  text-center">
-                                    @can('update', $user)
-                                        <a class="btn btn-primary btn-xs"
-                                           href="{{ route('cp.users.edit', [$user->id]) }}">
-                                            <i class="fa fa-pencil"></i>
-                                            {{ trans('core::common.edit') }}
-                                        </a>
-                                    @endcan
                                     @can('delete', $user)
                                         <form action="{{route('cp.users.destroy', $user->id)}}"
                                               class="d-inline" method="POST">
@@ -59,6 +52,13 @@
                                                 <i class="fa fa-remove"></i> {{ trans('core::common.delete') }}
                                             </button>
                                         </form>
+                                    @endcan
+                                    @can('update', $user)
+                                        <a class="btn btn-primary btn-xs"
+                                           href="{{ route('cp.users.edit', [$user->id]) }}">
+                                            <i class="fa fa-pencil"></i>
+                                            {{ trans('core::common.edit') }}
+                                        </a>
                                     @endcan
                                 </td>
                             </tr>
@@ -86,4 +86,30 @@
     </div>
 @endsection
 @push('custom-scripts')
+{{--    <script>--}}
+{{--        $(function () {--}}
+{{--            //handel delete checkbox log--}}
+{{--            $(document).on('click', '.btn-delete-user', function (e) {--}}
+{{--                e.preventDefault();--}}
+{{--                Swal.fire({--}}
+{{--                    // title: 'Có X bản ghi được chọn ',--}}
+{{--                    text: "X を削除してもよろしいですか ?",--}}
+{{--                    type: 'warning',--}}
+{{--                    showCancelButton: true,--}}
+{{--                    confirmButtonColor: '#3085d6',--}}
+{{--                    cancelButtonColor: '#d33',--}}
+{{--                    confirmButtonText: 'はい',--}}
+{{--                    cancelButtonText: 'いいえ'--}}
+{{--                }).then((result) => {--}}
+{{--                    if (result.value) {--}}
+{{--                        Swal.fire(--}}
+{{--                            'Deleted!',--}}
+{{--                            'Your file has been deleted.',--}}
+{{--                            'success'--}}
+{{--                        )--}}
+{{--                    }--}}
+{{--                })--}}
+{{--            })--}}
+{{--        });--}}
+{{--    </script>--}}
 @endpush
