@@ -56,7 +56,7 @@
                                     <input type="checkbox" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{ $loop->iteration }}</td>
-                                <td class="v-align-middle text-center" id="UserId">{{$log->customer->id}}</td>
+                                <td class="v-align-middle text-center">ID{{$log->customer->id}}</td>
                                 <td class="v-align-middle text-center"><a href="#">Xem ảnh</a></td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
@@ -167,6 +167,7 @@
                                 dataId.push($this.val());
                             }
                         });
+                        console.log(dataId);
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')

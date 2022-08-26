@@ -37,7 +37,6 @@ use Illuminate\Database\Eloquent\Model;
  */
 class LogModel extends Model
 {
-    use Uuid;
     protected $guarded = [];
 
     protected $table = 'clogs';
