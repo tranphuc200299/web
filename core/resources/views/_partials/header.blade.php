@@ -6,7 +6,7 @@
     <div class="">
         <div class="brand inline">
             <a href="{{route('cp')}}">
-                <img src="/assets/img/logo.png" alt="logo" data-src="/assets/img/logo.png" data-src-retina="/assets/img/logo_2x.png" width="78" height="22">
+                <img src="/assets/img/logo_admin.jpg" alt="logo" data-src="/assets/img/logo_admin.jpg" data-src-retina="/assets/img/logo_admin.jpg" width="80%">
             </a>
         </div>
     </div>

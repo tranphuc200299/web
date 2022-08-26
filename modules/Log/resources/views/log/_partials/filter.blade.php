@@ -9,7 +9,7 @@
     </div>
     <div class="col-lg-1">
         <div class="form-group">
-            <label for="gender">Gender</label>
+            <label for="gender"> {{ trans('log::text.gender') }}</label>
             <select name="gender" class="form-control" data-toggle="select2-single">
                 <option value="" disabled selected>Chọn...</option>
                 <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>Male </option>
@@ -19,7 +19,7 @@
     </div>
     <div class="col-lg-2">
         <div class="form-group">
-            <label for="age">Age</label>
+            <label for="age">{{ trans('log::text.age') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
                     <input class="form-control" name="age_start" type="number" value="{{ request('age_start') }}">
@@ -34,7 +34,7 @@
 
     <div class="col-lg-3">
         <div class="form-group">
-            <label for="age">Check in date</label>
+            <label for="age">{{ trans('log::text.check in date') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
                     <input class="form-control date-filter" name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
@@ -49,7 +49,7 @@
 
     <div class="col-lg-3">
         <div class="form-group">
-            <label for="time">Check in time</label>
+            <label for="time">{{ trans('log::text.check in time') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
                     <input class="form-control time-filter" name="start_time" type="text" value="{{ request('start_time') }}" readonly autocomplete="off">

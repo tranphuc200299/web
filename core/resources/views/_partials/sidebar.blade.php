@@ -22,7 +22,7 @@
             {{ Menu::renders() }}
             <li>
                 <a href="{{ route('logout') }}" class="menu__sub-item">
-                    <span class="title">{{ trans('core::text.Logout') }}</span>
+                    <span class="title">{{ trans('auth::text.Logout') }}</span>
                 </a>
                 <span class="icon-thumbnail"><i class="fa fa-sign-out"></i></span>
             </li>

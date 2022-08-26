@@ -42,6 +42,17 @@ return [
         'permission denied' => '403：アクセス権限がありません',
         'permission when create account' => 'このアカウントを作成する権限がありません',
         'ip incorrect, please authenticate again' => 'IP incorrect, please authenticate again',
-    ]
+    ],
+    'paging' => [
+//        'table detail' => 'Showing :start to :end of :total entries',
+        'table detail' => ':start-:end件/:total件',
+        'No corresponding record' => 'No corresponding record'
+    ],
+    'yes' =>'はい',
+    'no' =>'いいえ',
+    'cancel' => 'Cancel',
+    'apply' => 'Apply',
+    'confirm delete' =>'削除してもよろしいですか？',
+    'delete message confirmed' => '削除してもよろしいですか？',
 ];
 

@@ -56,6 +56,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password">{{trans('core::common.password')}}
+                                        <span class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
@@ -68,6 +69,7 @@
                             <div class="form-group">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="password_confirmation">{{trans('core::common.password repeat')}}
+                                        <span class="required">*</span>
                                     </label>
                                 </div>
                                 <div class="row">
@@ -77,33 +79,33 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
-                                <div class="row">
-                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_id">{{trans('core::common.role')}}
-                                        <span class="required">*</span>
-                                    </label>
-                                </div>
-                                <div class="row">
-                                    <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <select name="role_id" id="role_id" class="form-control" required data-toggle="select2-multi">
-                                            @foreach($roles as $role)
-                                                <option value="{{$role->id}}" @if(old('role_id') == $role->id) selected @endif>
-                                                    {{ trans($role->display_name) }}
-                                                </option>
-                                            @endforeach
-                                        </select>
-                                    </div>
-                                </div>
-                            </div>
+{{--                            <div class="form-group">--}}
+{{--                                <div class="row">--}}
+{{--                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_id">{{trans('core::common.role')}}--}}
+{{--                                        <span class="required">*</span>--}}
+{{--                                    </label>--}}
+{{--                                </div>--}}
+{{--                                <div class="row">--}}
+{{--                                    <div class="col-md-6 col-sm-6 col-xs-12">--}}
+{{--                                        <select name="role_id" id="role_id" class="form-control" required data-toggle="select2-multi">--}}
+{{--                                            @foreach($roles as $role)--}}
+{{--                                                <option value="{{$role->id}}" @if(old('role_id') == $role->id) selected @endif>--}}
+{{--                                                    {{ trans($role->display_name) }}--}}
+{{--                                                </option>--}}
+{{--                                            @endforeach--}}
+{{--                                        </select>--}}
+{{--                                    </div>--}}
+{{--                                </div>--}}
+{{--                            </div>--}}
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-12">
                                         <button class="btn btn-success pull-right" type="submit">
                                             {{trans('core::common.create')}}
                                         </button>
-                                        <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">
-                                            {{trans('core::common.back')}}
-                                        </a>
+{{--                                        <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">--}}
+{{--                                            {{trans('core::common.back')}}--}}
+{{--                                        </a>--}}
                                     </div>
                                 </div>
                             </div>

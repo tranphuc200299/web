@@ -3,6 +3,12 @@
     <div class="login-container">
         <div class="w-100 px-3 px-md-5">
             <div class="text-center mb-4 account-box-title">
+                <img src="{{ public_url('assets/img/logo_admin.jpg') }}" alt="logo" class="brand"
+                     data-src="{{ public_url('assets/img/logo_admin.jpg') }}"
+                     data-src-retina="{{ public_url('assets/img/logo_admin.jpg') }}"
+                     width="78" height="22">
+            </div>
+            <div class="text-center mb-4 account-box-title">
                 {{ trans('auth::text.Welcome') }}
             </div>
             <div class="login-area box_border_type_1 px-3 py-3 px-md-5 py-5">
