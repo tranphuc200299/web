@@ -4,9 +4,13 @@ namespace Modules\Log\Services;
 
 use Carbon\Carbon;
 use Core\Services\BaseService;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Storage;
 use League\Csv\Writer;
 use Modules\Log\Repositories\LogRepository;
 use Core\Constants\AppConst;
+use ZipArchive;
 
 class LogService extends BaseService
 {
@@ -72,7 +76,7 @@ class LogService extends BaseService
             $csv->insertOne([
                 $k,
                 $log->customer->id,
-                $log->face_image_url,
+                env('URL_AI') . $log->face_image_url,
                 $log->customer->gender,
                 $log->customer->age,
                 Carbon::parse($log->created_at)->format('Y-m-d'),
@@ -83,6 +87,38 @@ class LogService extends BaseService
         $fileName = Carbon::now()->timestamp . '_logs.csv';
 
         $csv->output($fileName);
+    }
+
+    public function download()
+    {
+        try {
+            $logs = $this->getAll([], false);
+            $now = Carbon::now()->timestamp;
+            foreach ($logs as $log) {
+                $url = env('URL_AI') . $log->face_image_url;
+                $contents = file_get_contents($url);
+                $name = $now . '/' . substr($url, strrpos($url, '/') + 1);
+                Storage::put($name, $contents);
+            };
+
+            $zip = new ZipArchive;
+            $fileName = 'storage/download/' . Auth::id() . '__' . $now . 'download.zip';
+            if ($zip->open(public_path($fileName), ZipArchive::CREATE) === TRUE) {
+                $files = File::files(public_path('storage/' . $now));
+                foreach ($files as $key => $value) {
+                    $relativeName = basename($value);
+                    $zip->addFile($value, $relativeName);
+                }
+                $zip->close();
+
+            }
+            Storage::deleteDirectory($now);
+            return response()->download(public_path($fileName));
+        } catch (\Exception $e)
+        {
+            return false;
+        }
+
     }
 
 }
