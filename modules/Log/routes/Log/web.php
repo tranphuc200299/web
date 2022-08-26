@@ -11,6 +11,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'cp'], function () {
             ->name('cp.logs.destroy');
         Route::get('/export', 'Web\LogController@export')
             ->name('cp.logs.export');
+        Route::get('/download', 'Web\LogController@download')
+            ->name('cp.logs.download');
     });
 });
 

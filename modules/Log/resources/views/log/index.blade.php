@@ -9,15 +9,28 @@
                     <div class="col-12">
                     </div>
                 </div>
+
                 <div class="row bold">
                     <div class="col-12">
-                        <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
-                            <button type="button" class="btn btn-success btn btn-secondary" >
-                                Export Csv
-                            </button>
-                        </a>
+                        @if(count($list) > 0)
+                        <div class="col-12">
+                            <a href="{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
+                                <button type="button" class="btn btn-success btn btn-secondary" >
+                                    Download
+                                </button>
+                            </a>
+                        </div>
+                        @endif
+                        <div class="col-11">
+                            <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
+                                <button type="button" class="btn btn-success btn btn-secondary" >
+                                    Export Csv
+                                </button>
+                            </a>
+                        </div>
                     </div>
                 </div>
+
 
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
@@ -108,7 +121,8 @@
                 maxYear: parseInt(moment().format('YYYY'),10),
                 autoUpdateInput: false,
                 locale: {
-                    cancelLabel: 'Clear'
+                    cancelLabel: 'Clear',
+                    format : 'yy/MM/DD'
                 }
             });
 

@@ -38,4 +38,14 @@ class LogController extends Controller
         $this->logService->export();
         die;
     }
+
+    public function download()
+    {
+        if($this->logService->download())
+        {
+            return $this->logService->download();
+        }
+
+        return redirect()->route('cp.logs.index')->with('error', 'Download false');
+    }
 }
