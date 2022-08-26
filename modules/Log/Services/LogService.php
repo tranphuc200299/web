@@ -42,7 +42,7 @@ class LogService extends BaseService
                 })->when($this->filter->has('gender'), function ($q) {
                     $q->where('gender', $this->filter->get('gender'));
                 })->when($this->filter->has('id'), function ($q) {
-                    $q->where('id', $this->filter->get('id'));
+                    $q->where('id', str_replace('ID', '', $this->filter->get('id')));
                 });
             });
 
@@ -75,7 +75,7 @@ class LogService extends BaseService
         foreach ($logs as $k => $log) {
             $csv->insertOne([
                 $k,
-                $log->customer->id,
+                'ID' . $log->customer->id,
                 env('URL_AI') . $log->face_image_url,
                 $log->customer->gender,
                 $log->customer->age,
