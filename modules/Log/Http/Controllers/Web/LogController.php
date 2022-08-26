@@ -5,7 +5,6 @@ namespace Modules\Log\Http\Controllers\Web;
 use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Log\Services\LogService;
-use Modules\Log\Entities\Models\LogModel;
 
 class LogController extends Controller
 {
@@ -24,15 +23,6 @@ class LogController extends Controller
         return view('log::log.index', $assign);
     }
 
-//    public function ajaxSearch()
-//    {
-//        $assign['list'] = $this->logService->ajaxSearch([], 30);
-//
-//        return json_encode($assign['list']);
-//    }
-
-//
-
     public function destroy(Request $request)
     {
         if ($request->id) {
@@ -41,5 +31,11 @@ class LogController extends Controller
         }
 
         return false;
+    }
+
+    public function export()
+    {
+        $this->logService->export();
+        die;
     }
 }
