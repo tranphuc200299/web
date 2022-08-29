@@ -80,7 +80,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group" style="display: none">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_id">{{trans('core::common.role')}}
                                     </label>
