@@ -41,6 +41,8 @@ class LogModel extends Model
 
     protected $table = 'clogs';
 
+    use Uuid;
+
     protected $fillable = ['user_id', 'face_image_url', 'created_at'];
 
     /**
