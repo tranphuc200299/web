@@ -44,7 +44,7 @@ class LogService extends BaseService
                 })->when($this->filter->has('id'), function ($q) {
                     $q->where('id', str_replace('ID', '', $this->filter->get('id')));
                 });
-            });
+            })->orderByDesc('created_at');
 
         $this->cleanFilterBuilder(['id', 'age_start', 'age_end', 'gender']);
 

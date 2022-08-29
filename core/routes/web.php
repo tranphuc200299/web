@@ -9,7 +9,7 @@ if (config('core.enable_view_log') === true) {
 
 Route::group(['middleware' => ['auth']], function () {
     Route::get('/', function () {
-        return redirect(route('cp'));
+        return redirect(route('cp.logs.index'));
     })->name('home');
 
     Route::get('/cp', 'Web\TopController@index')

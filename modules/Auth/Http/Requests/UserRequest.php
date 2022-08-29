@@ -26,7 +26,7 @@ class UserRequest extends FormRequest
     {
         $rule['full_name'] = 'required|max:50';
         $rule['user_name'] = ['required', 'max:50',  Rule::unique('ms_users', 'user_name')->withoutTrashed()];
-        $rule['password'] = 'nullable|confirmed|min:8|max:20';
+        $rule['password'] = 'required|confirmed|min:6';
         $rule['role_id'] = 'required';
 
         if ($this->route('user')) {
