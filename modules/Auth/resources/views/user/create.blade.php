@@ -6,9 +6,9 @@
             <div class="col-md-12 col-sm-12 col-xs-12">
                 <form action="{{route('cp.users.store')}}" method="post" class="form-horizontal form-label-left form_validation form_submit_check" autocomplete="off">
                     <div class="form">
-                        <div class="form_title">
-                            <span>{{ trans('core::common.register') }}</span>
-                        </div>
+{{--                        <div class="form_title">--}}
+{{--                            <span>{{ trans('core::common.register') }}</span>--}}
+{{--                        </div>--}}
                         <div class="form_content">
                             @include('core::_messages.flash')
                             @csrf

@@ -79,7 +79,7 @@ jQuery.validator.addMethod("validHiragana", function(value, element) {
 
 jQuery.validator.addMethod("validPassword", function (value, element) {
     return this.optional(element) || /^[A-Za-z\d!@#$%*?&]{6,50}$/.test(value) || !value;
-}, trans('message.validate.password'));
+}, 'パスワードは6文字以上入力してください。');
 
 jQuery.validator.addMethod('IP4Checker', function (value) {
     if (!value) {
@@ -233,3 +233,7 @@ jQuery(document).ready(function () {
     FormValidation.init()
 });
 
+jQuery.extend(jQuery.validator.messages, {
+    required: "この項目は入力必須です。",
+    equalTo: "同じパスワードを再度入力してください。",
+});

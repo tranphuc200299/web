@@ -24,7 +24,7 @@
                         <div class="col-11">
                             <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
                                 <button type="button" class="btn btn-success btn btn-secondary" >
-                                    Export Csv
+                                    {{trans('log::text.csv')}}
                                 </button>
                             </a>
                         </div>
@@ -57,8 +57,8 @@
                                 </td>
                                 <td class="v-align-middle text-center">{{($list->currentpage()-1)*$list->perpage()+ $k + 1}}</td>
                                 <td class="v-align-middle text-center">ID{{$log->customer->id}}</td>
-                                <td class="v-align-middle text-center"><a href="#" class="show-image" data-image={{ env('URL_AI') . $log->face_image_url }}>Xem ảnh</a></td>
-                                <td class="v-align-middle text-center">{{$log->customer->gender}}</td>
+                                <td class="v-align-middle text-center"><a href="#" class="show-image" data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a></td>
+                                <td class="v-align-middle text-center">{{$log->customer->gender ==  'Male' ? '男性' : '女性'}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y-m-d') }}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('H:i:s') }}</td>
@@ -177,8 +177,8 @@
             $(document).on('click', '#delete-log', function (e) {
                 e.preventDefault();
                 Swal.fire({
-                    title: '選択されているXXレコードを削除しても ',
-                    text: "よろしいですか。",
+                    // title: '選択されているXXレコードを削除しても ',
+                    text: "選択されている○○レコードを削除してもよろしいですか。",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -207,15 +207,16 @@
                                 id: dataId,
                             },
                             success: function (data) {
-                                Swal.fire(
-                                    'Deleted!',
-                                    'Your file has been deleted.',
-                                    'success',
-                                ).then((result) => {
-                                    if (result.value) {
-                                        location.reload();
-                                    }
-                                })
+                                // Swal.fire(
+                                //     'Deleted!',
+                                //     'Your file has been deleted.',
+                                //     'success',
+                                // ).then((result) => {
+                                //     if (result.value) {
+                                //         location.reload();
+                                //     }
+                                // })
+                                location.reload();
                             }, error: function (error) {
                                 console.log(error);
                             }
@@ -235,6 +236,13 @@
                     showConfirmButton: false
                 })
             })
+        });
+
+        $(document).on('keypress','.filter_age', function(event) {
+            if (((event.which != 46 || (event.which == 46 && $(this).val() == '')) ||
+                $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                event.preventDefault();
+            }
         });
     </script>
 @endpush
