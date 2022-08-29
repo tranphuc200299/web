@@ -5,33 +5,26 @@
         <div class="card card-transparent pt-2">
             @include('core::_messages.flash')
             <div class="">
-                <div class="row bold">
-                    <div class="col-12">
+                <div class="d-flex justify-content-end">
+                    <div class="">
+                        <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}"
+                           class="pull-right">
+                            <button type="button" class="btn btn-success btn btn-secondary">
+                                {{trans('log::text.csv')}}
+                            </button>
+                        </a>
                     </div>
-                </div>
-
-                <div class="row bold">
-                    <div class="col-12">
-                        @if(count($list) > 0)
-                        <div class="col-12">
-                            <a href="{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
-                                <button type="button" class="btn btn-success btn btn-secondary" >
+                    @if(count($list) > 0)
+                        <div class="m-l-5">
+                            <a href="{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}"
+                               class="pull-right">
+                                <button type="button" class="btn btn-success btn btn-secondary">
                                     ダウンロード画像
                                 </button>
                             </a>
                         </div>
-                        @endif
-                        <div class="col-11">
-                            <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
-                                <button type="button" class="btn btn-success btn btn-secondary" >
-                                    {{trans('log::text.csv')}}
-                                </button>
-                            </a>
-                        </div>
-                    </div>
+                    @endif
                 </div>
-
-
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
                         <thead>
@@ -109,8 +102,8 @@
                 autoUpdateInput: false,
                 locale : {
                     format : 'HH:mm:ss',
-                    "applyLabel": "キャンセル",
-                    "cancelLabel": "申し込み",
+                    "applyLabel": "申し込み",
+                    "cancelLabel": "キャンセル",
                 }
             }).on('show.daterangepicker', function(ev, picker) {
                 picker.container.find(".calendar-table").hide();
@@ -148,8 +141,8 @@
                         "十一月",
                         "十二月"
                     ],
-                    "applyLabel": "キャンセル",
-                    "cancelLabel": "申し込み",
+                    "applyLabel": "申し込み",
+                    "cancelLabel": "キャンセル",
                 }
             });
 
