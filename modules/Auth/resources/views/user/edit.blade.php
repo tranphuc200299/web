@@ -7,9 +7,9 @@
                     @method('PUT')
                     @csrf
                     <div class="form">
-                        <div class="form_title">
-                            <span>{{ trans('core::common.edit') }}</span>
-                        </div>
+{{--                        <div class="form_title">--}}
+{{--                            <span>{{ trans('core::common.edit') }}</span>--}}
+{{--                        </div>--}}
                         <div class="form_content">
                             @include('core::_messages.flash')
 
@@ -101,9 +101,9 @@
                                         <button class="btn btn-success pull-right" type="submit">
                                             {{trans('core::common.save')}}
                                         </button>
-                                        <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">
-                                            {{trans('core::common.back')}}
-                                        </a>
+{{--                                        <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">--}}
+{{--                                            {{trans('core::common.back')}}--}}
+{{--                                        </a>--}}
                                     </div>
                                 </div>
                             </div>
