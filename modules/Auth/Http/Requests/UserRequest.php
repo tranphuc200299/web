@@ -55,6 +55,7 @@ class UserRequest extends FormRequest
             'full_name.required' => 'A message is required',
             'user_name.unique' => 'ユーザー名は既に存在しています。',
             'password.confirmed' => 'パスワードと確認用パスワードが一致しません。',
+            'password.min' => 'パスワードは6文字以上入力してください。',
         ];
     }
 }

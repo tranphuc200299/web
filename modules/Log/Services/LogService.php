@@ -63,13 +63,13 @@ class LogService extends BaseService
         $csv = Writer::createFromFileObject(new \SplTempFileObject);
 
         $csv->insertOne([
-            'STT',
+            '項番',
             'ID',
-            'Image',
-            'Gender',
-            'Age',
-            'Check In Date',
-            'Check In Time'
+            '画像',
+            '性別',
+            '年齢',
+            'チェックイン日付',
+            'チェックイン時刻'
         ]);
 
         foreach ($logs as $k => $log) {

@@ -11,9 +11,9 @@
         <div class="form-group">
             <label for="gender"> {{ trans('log::text.gender') }}</label>
             <select name="gender" class="form-control" data-toggle="select2-single">
-                <option value="" disabled selected>Chọn...</option>
-                <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>Male </option>
-                <option value="Female" {{ request('gender') == 'Female' ? 'selected' : '' }}>Female</option>
+                <option value="" disabled selected>{{trans('log::text.gender')}}</option>
+                <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>{{trans('log::text.gender male')}} </option>
+                <option value="Female" {{ request('gender') == 'Female' ? 'selected' : '' }}>{{trans('log::text.gender female')}}</option>
             </select>
         </div>
     </div>
@@ -22,11 +22,12 @@
             <label for="age">{{ trans('log::text.age') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
-                    <input class="form-control" name="age_start" type="number" value="{{ request('age_start') }}">
+                    <input class="form-control filter_age" name="age_start" id="ageId" autocomplete="off"
+                           value="{{ request('age_start') }}">
                 </div>
                 <i class="fa fa-arrow-right"></i>
                 <div class="col-5">
-                    <input class="form-control" name="age_end" type="number" value="{{ request('age_end') }}">
+                    <input class="form-control filter_age" name="age_end" autocomplete="off" value="{{ request('age_end') }}">
                 </div>
             </div>
         </div>
@@ -73,7 +74,7 @@
                     {{--<a href="{{route('cp.logs.index')}}">{{trans('core::common.clear filter')}}</a>--}}
                 {{--</button>--}}
                 <button class="btn btn-danger btn-delete-list" href="#" id="delete-log"
-                        disabled="disabled">{{trans('core::common.delete')}}</button>
+                        disabled="disabled">{{trans('log::text.delete')}}</button>
             </div>
         </div>
     </div>
