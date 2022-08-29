@@ -37,7 +37,7 @@ use Illuminate\Database\Eloquent\Model;
  */
 class CustomerModel extends Model
 {
-    use Uuid;
+//    use Uuid;
     protected $guarded = [];
 
     protected $table = 'users';
