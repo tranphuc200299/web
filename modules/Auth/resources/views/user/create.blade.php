@@ -62,7 +62,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="password" id="password" name="password" data-rule-validPassword="true"
-                                               class="form-control" autocomplete="new-password">
+                                               class="form-control" autocomplete="new-password" required="required">
                                     </div>
                                 </div>
                             </div>
@@ -75,7 +75,7 @@
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
                                         <input type="password" id="password_confirmation" name="password_confirmation"
-                                               data-rule-validPassword="true" data-rule-equalTo="input[name=password]" class="form-control" autocomplete="new-password">
+                                               data-rule-validPassword="true" data-rule-equalTo="input[name=password]" class="form-control" autocomplete="new-password" required="required">
                                     </div>
                                 </div>
                             </div>

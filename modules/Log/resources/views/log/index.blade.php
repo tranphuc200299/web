@@ -16,7 +16,7 @@
                         <div class="col-12">
                             <a href="{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}" class="pull-right">
                                 <button type="button" class="btn btn-success btn btn-secondary" >
-                                    Download
+                                    ダウンロード画像
                                 </button>
                             </a>
                         </div>
@@ -50,14 +50,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        @foreach($list as $log)
+                        @foreach($list as $k => $log)
                             <tr>
                                 <td class="v-align-middle text-center">
                                     <input type="checkbox" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
-                                <td class="v-align-middle text-center">{{ $loop->iteration }}</td>
+                                <td class="v-align-middle text-center">{{($list->currentpage()-1)*$list->perpage()+ $k + 1}}</td>
                                 <td class="v-align-middle text-center">ID{{$log->customer->id}}</td>
-                                <td class="v-align-middle text-center"><a href="#">Xem ảnh</a></td>
+                                <td class="v-align-middle text-center"><a href="#" class="show-image" data-image={{ env('URL_AI') . $log->face_image_url }}>Xem ảnh</a></td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y-m-d') }}</td>
@@ -108,7 +108,9 @@
                 timePickerSeconds : true,
                 autoUpdateInput: false,
                 locale : {
-                    format : 'HH:mm:ss'
+                    format : 'HH:mm:ss',
+                    "applyLabel": "キャンセル",
+                    "cancelLabel": "申し込み",
                 }
             }).on('show.daterangepicker', function(ev, picker) {
                 picker.container.find(".calendar-table").hide();
@@ -122,7 +124,32 @@
                 autoUpdateInput: false,
                 locale: {
                     cancelLabel: 'Clear',
-                    format : 'yy/MM/DD'
+                    format : 'yy/MM/DD',
+                    "daysOfWeek": [
+                        "日",
+                        "月",
+                        "火",
+                        "水",
+                        "木",
+                        "金",
+                        "土"
+                    ],
+                    "monthNames": [
+                        "一月",
+                        "二月",
+                        "三月",
+                        "四月",
+                        "五月",
+                        "六月",
+                        "七月",
+                        "八月",
+                        "九月",
+                        "十月",
+                        "十一月",
+                        "十二月"
+                    ],
+                    "applyLabel": "キャンセル",
+                    "cancelLabel": "申し込み",
                 }
             });
 
@@ -194,6 +221,18 @@
                             }
                         });
                     }
+                })
+            })
+
+            $('.show-image').on('click', function(e) {
+                e.preventDefault()
+                let image = $(this).attr('data-image');
+                Swal.fire({
+                    imageUrl: `${image}`,
+                    imageHeight: '100%',
+                    imageAlt: 'Image Logs',
+                    showCloseButton: true,
+                    showConfirmButton: false
                 })
             })
         });

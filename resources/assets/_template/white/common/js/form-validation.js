@@ -78,7 +78,7 @@ jQuery.validator.addMethod("validHiragana", function(value, element) {
 }, trans('message.validate.hiragana'));
 
 jQuery.validator.addMethod("validPassword", function (value, element) {
-    return this.optional(element) || /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[A-Za-z\d!@#$%*?&]{8,20}$/.test(value) || !value;
+    return this.optional(element) || /^[A-Za-z\d!@#$%*?&]{6,50}$/.test(value) || !value;
 }, trans('message.validate.password'));
 
 jQuery.validator.addMethod('IP4Checker', function (value) {

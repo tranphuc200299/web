@@ -67,15 +67,24 @@
                     </table>
                 </div>
                 <div class="row">
-                    <div class="col-xs-12 col-sm-5">
-                        <nav class="mt-3">
-                            @include('core::_pagination.counting', ['paginator' => $users])
-                        </nav>
-                    </div>
+                    @if(!empty($users) && count($users) > 0)
+                        <div class="col-xs-12 col-sm-5">
+                            <nav class="mt-3">
+                                @include('core::_pagination.counting', ['paginator' => $users])
+                            </nav>
+                        </div>
+                    @else
+                        <div class="col-xs-12 col-sm-12">
+                            <div class="text-center top-20 pull-left">
+                                {{ trans('core::message.paging.No corresponding record') }}
+                            </div>
+                        </div>
+                    @endif
+
                     <div class="col-xs-12 col-sm-7">
                         <nav class="mt-3">
                             @if(!empty($users))
-                                {{ $users->appends(request()->input())->links() }}
+                                {{ $users->appends($_GET)->links('vendor.pagination.custom') }}
                             @endif
                         </nav>
                     </div>
