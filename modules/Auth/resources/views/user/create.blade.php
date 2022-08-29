@@ -79,24 +79,24 @@
                                     </div>
                                 </div>
                             </div>
-{{--                            <div class="form-group">--}}
-{{--                                <div class="row">--}}
-{{--                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_id">{{trans('core::common.role')}}--}}
-{{--                                        <span class="required">*</span>--}}
-{{--                                    </label>--}}
-{{--                                </div>--}}
-{{--                                <div class="row">--}}
-{{--                                    <div class="col-md-6 col-sm-6 col-xs-12">--}}
-{{--                                        <select name="role_id" id="role_id" class="form-control" required data-toggle="select2-multi">--}}
-{{--                                            @foreach($roles as $role)--}}
-{{--                                                <option value="{{$role->id}}" @if(old('role_id') == $role->id) selected @endif>--}}
-{{--                                                    {{ trans($role->display_name) }}--}}
-{{--                                                </option>--}}
-{{--                                            @endforeach--}}
-{{--                                        </select>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="form-group" style="display: none">
+                                <div class="row">
+                                    <label class="control-label col-md-3 col-sm-3 col-xs-12" for="role_id">{{trans('core::common.role')}}
+                                        <span class="required">*</span>
+                                    </label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 col-sm-6 col-xs-12">
+                                        <select name="role_id" id="role_id" class="form-control" required data-toggle="select2-multi">
+                                            @foreach($roles as $role)
+                                                <option value="{{$role->id}}" @if(old('role_id') == $role->id) selected @endif>
+                                                    {{ trans($role->display_name) }}
+                                                </option>
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
                             <div class="form-group">
                                 <div class="row">
                                     <div class="col-12">
