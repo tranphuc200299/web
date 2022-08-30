@@ -111,6 +111,7 @@
 
             $('.date-filter').daterangepicker({
                 singleDatePicker: true,
+                autoApply: true,
                 showDropdowns: true,
                 minYear: 2000,
                 maxYear: 2030,
