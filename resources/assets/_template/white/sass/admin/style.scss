@@ -799,6 +799,10 @@ input[disabled], textarea[disabled] {
     background-color: red;
 }
 
+.date-filter[readonly], .time-filter[readonly]{
+    color : #373e43 ;
+}
+
 // System log
 #SystemLogForm pre {outline: 1px solid #ccc; padding: 5px; margin: 5px;max-height: 400px; }
 #SystemLogForm .string { color: green; }
