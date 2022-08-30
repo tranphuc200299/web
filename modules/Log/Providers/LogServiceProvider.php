@@ -25,7 +25,7 @@ class LogServiceProvider extends ServiceProvider
     {
         $this->registerCommands();
         MenuFacade::pushMenu([
-            'group' => 30,
+            'group' => 5,
             'group_name' => '',
             'pos_child' => 0,
             'name' => 'log::text.log management',
