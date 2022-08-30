@@ -45,13 +45,13 @@ body.fixed-header .header {
     > a {
         color: white !important;
     }
-    background: transparent linear-gradient(270deg, $main_color_gradient_start 0%, $main_color_gradient_end 100%) 0 0 no-repeat padding-box !important;
+    background: #2A367E no-repeat padding-box !important;
     opacity: 1;
 }
 
 .menu-items > li:hover {
     color: white !important;
-    background: transparent linear-gradient(270deg, $main_color_gradient_start 0%, $main_color_gradient_end 100%) 0 0 no-repeat padding-box;
+    background: #2A367E no-repeat padding-box !important;
     opacity: 1;
 }
 

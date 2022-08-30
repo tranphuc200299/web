@@ -43,8 +43,9 @@
     }
 
     .btn-yellow {
-        background-color: #FFCC00;
+        background-color: #2A367E;
         border: 0px;
+        color:white;
     }
 
     .input-calendar {
@@ -115,7 +116,7 @@ table.table {
 
     thead {
         tr {
-            background: $table_header_color 0 0 no-repeat padding-box;
+            background: #2A367E 0 0 no-repeat padding-box;
 
             th {
                 color: #FFFFFF;

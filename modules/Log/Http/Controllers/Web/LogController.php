@@ -2,6 +2,7 @@
 
 namespace Modules\Log\Http\Controllers\Web;
 
+use Core\Facades\Breadcrumb\Breadcrumb;
 use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Modules\Log\Services\LogService;
@@ -18,6 +19,7 @@ class LogController extends Controller
 
     public function index()
     {
+        Breadcrumb::push('ユーザー管理', route('cp.logs.index'));
         $assign['list'] = $this->logService->getAll(['with_load' => 'customer']);
 
         return view('log::log.index', $assign);
