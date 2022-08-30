@@ -102,8 +102,8 @@
                 autoUpdateInput: false,
                 locale : {
                     format : 'HH:mm:ss',
-                    "applyLabel": "申し込み",
-                    "cancelLabel": "キャンセル",
+                    applyLabel: "申し込み",
+                    cancelLabel: "キャンセル",
                 }
             }).on('show.daterangepicker', function(ev, picker) {
                 picker.container.find(".calendar-table").hide();
@@ -113,10 +113,9 @@
                 singleDatePicker: true,
                 showDropdowns: true,
                 minYear: 2000,
-                maxYear: parseInt(moment().format('YYYY'),10),
+                maxYear: 2030,
                 autoUpdateInput: false,
                 locale: {
-                    cancelLabel: 'Clear',
                     format : 'yy/MM/DD',
                     "daysOfWeek": [
                         "日",
@@ -141,8 +140,8 @@
                         "十一月",
                         "十二月"
                     ],
-                    "applyLabel": "申し込み",
-                    "cancelLabel": "キャンセル",
+                    applyLabel: "申し込み",
+                    cancelLabel: "キャンセル",
                 }
             });
 
@@ -160,7 +159,7 @@
 
             $("input:checkbox").change(function () {
                 let $this = $(this);
-                if ($this.is(":checked")) {
+                if ($("input:checkbox").is(":checked")) {
                     $('.btn-delete-list').removeAttr('disabled');
                 } else {
                     $('.btn-delete-list').attr('disabled', 'disabled');
@@ -169,9 +168,17 @@
             //handel delete checkbox log
             $(document).on('click', '#delete-log', function (e) {
                 e.preventDefault();
+                let dataId = [];
+                $("input:checkbox").each(function () {
+                    let $this = $(this);
+                    if ($this.is(":checked")) {
+                        dataId.push($this.val());
+                    }
+                });
+                console.log(dataId);
                 Swal.fire({
                     // title: '選択されているXXレコードを削除しても ',
-                    text: "選択されている○○レコードを削除してもよろしいですか。",
+                    text: `選択されている${dataId.length}レコードを削除してもよろしいですか。`,
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -180,14 +187,6 @@
                     cancelButtonText: 'いいえ'
                 }).then((result) => {
                     if (result.value) {
-                        let dataId = [];
-                        $("input:checkbox").each(function () {
-                            let $this = $(this);
-                            if ($this.is(":checked")) {
-                                dataId.push($this.val());
-                            }
-                        });
-                        console.log(dataId);
                         $.ajaxSetup({
                             headers: {
                                 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
