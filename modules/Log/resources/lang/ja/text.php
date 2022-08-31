@@ -2,6 +2,7 @@
 
 return [
     'gender' => '性別',
+    'choose gender' => 'すべて',
     'gender male' => '男性',
     'gender female' => '女性',
     'select' => '選択する',

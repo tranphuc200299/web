@@ -32,9 +32,9 @@ return [
         'IPv4Check' => 'IPV4アドレスが無効です'
     ],
     'notify' => [
-        'create success' => '作成が完了しました',
-        'update success' => '変更が完了しました',
-        'delete success' => '削除が完了しました',
+        'create success' => 'ユーザー名が追加されました。',
+        'update success' => 'ユーザー名が編集されました。',
+        'delete success' => 'ユーザー名が削除されました。',
         'create fail' => '作成が失敗しました。再度試してください',
         'update fail' => '変更が失敗しました。再度試してください',
         'delete fail' => '削除が失敗しました。再度試してください',

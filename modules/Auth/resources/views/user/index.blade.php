@@ -43,12 +43,11 @@
                                 <td class="v-align-middle  text-center">
                                     @can('delete', $user)
                                         <form action="{{route('cp.users.destroy', $user->id)}}"
-                                              class="d-inline" method="POST">
+                                              class="d-inline form-delete" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger btn-xs" type="submit"
-                                                    data-toggle="confirmation"
-                                                    data-original-title="{{ trans('core::message.delete message confirmed') }}">
+                                            <button class="btn btn-danger btn-xs user-delete-disable" type="submit"
+                                                  >
                                                 <i class="fa fa-remove"></i> {{ trans('core::common.delete') }}
                                             </button>
                                         </form>
@@ -95,30 +94,33 @@
     </div>
 @endsection
 @push('custom-scripts')
-{{--    <script>--}}
-{{--        $(function () {--}}
-{{--            //handel delete checkbox log--}}
-{{--            $(document).on('click', '.btn-delete-user', function (e) {--}}
-{{--                e.preventDefault();--}}
-{{--                Swal.fire({--}}
-{{--                    // title: 'Có X bản ghi được chọn ',--}}
-{{--                    text: "X を削除してもよろしいですか ?",--}}
-{{--                    type: 'warning',--}}
-{{--                    showCancelButton: true,--}}
-{{--                    confirmButtonColor: '#3085d6',--}}
-{{--                    cancelButtonColor: '#d33',--}}
-{{--                    confirmButtonText: 'はい',--}}
-{{--                    cancelButtonText: 'いいえ'--}}
-{{--                }).then((result) => {--}}
-{{--                    if (result.value) {--}}
-{{--                        Swal.fire(--}}
-{{--                            'Deleted!',--}}
-{{--                            'Your file has been deleted.',--}}
-{{--                            'success'--}}
-{{--                        )--}}
-{{--                    }--}}
-{{--                })--}}
-{{--            })--}}
-{{--        });--}}
-{{--    </script>--}}
+    <script>
+        $(function () {
+            var formMessages = $('#form-messages');
+            //handel delete checkbox log
+            $('.form-delete').one('submit', function (e) {
+                let self = $(this);
+                // var id = $(this).data('id');
+                e.preventDefault();
+                Swal.fire({
+                    text: "を削除してもよろしいですか?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'はい',
+                    cancelButtonText: 'いいえ'
+                }).then((result) => {
+                    if (result.value) {
+                        self.submit();
+                    }
+                })
+            })
+            $(document).on('click', '.user-delete-disable', function (e) {
+                e.preventDefault();
+                let self = $(this);
+                self.removeAttr("disabled");
+            });
+        });
+    </script>
 @endpush

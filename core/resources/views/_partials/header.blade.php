@@ -6,7 +6,7 @@
     <div class="">
         <div class="brand inline">
             <a href="{{route('cp')}}">
-                <img src="/assets/img/logo_admin.jpg" alt="logo" data-src="/assets/img/logo_admin.jpg" data-src-retina="/assets/img/logo_admin.jpg" width="80%">
+                <img src="{{ asset('assets/img/logo_admin.jpg') }}" alt="logo" data-src="/assets/img/logo_admin.jpg" data-src-retina="/assets/img/logo_admin.jpg" width="80%">
             </a>
         </div>
     </div>
@@ -22,9 +22,6 @@
             </div>
             <div class="pull-left p-r-10 fs-14 font-heading d-lg-block d-none">
                 @include('core::_partials.breadcrumbs', ['breadcrumbs' => Breadcrumb::breadcrumbs()])
-            </div>
-            <div class="pull-left p-r-10 fs-14 font-heading d-lg-block d-none">
-                {{ auth()->user()->name }} | {{ auth()->user()->email }}
             </div>
         </div>
     @endif

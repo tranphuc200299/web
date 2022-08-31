@@ -2,6 +2,7 @@
 
 namespace Modules\Auth\Http\Controllers\Web;
 
+use Core\Facades\Breadcrumb\Breadcrumb;
 use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -25,6 +26,7 @@ class UserController extends Controller
 
     public function index()
     {
+        Breadcrumb::push('集計一覧', route('cp.users.index'));
         $assign['users'] = $this->userService->paginate(['with_load' => ['roles']]);
 
         return view('auth::user.index', $assign);
@@ -50,6 +52,7 @@ class UserController extends Controller
 
     public function create()
     {
+        Breadcrumb::push('user')->push('create');
         $assign['roles'] = Role::all();
 
         return view('auth::user.create', $assign);
@@ -59,6 +62,7 @@ class UserController extends Controller
     {
         $data = $request->only(['full_name', 'user_name', 'password']);
         $data['password'] = Hash::make($data['password']);
+        $fullName =$data['full_name'];
 
         /* @var $user User */
         $user = $this->userService->create($data);
@@ -69,7 +73,7 @@ class UserController extends Controller
             $user->assignRole($request->get('role_id'));
 //            activity()->send(new NewAccount($email, $password));
 
-            return redirect()->route('cp.users.index')->with('success', trans('core::message.notify.create success'));
+            return redirect()->route('cp.users.index')->with('success',$fullName . trans('core::message.notify.create success'));
         }
 
         return redirect()->route('cp.users.index');
@@ -102,6 +106,7 @@ class UserController extends Controller
     {
         $assign['user'] = $this->userService->findOr404($id);
         $data = $request->only(['full_name', 'password']);
+        $fullName =$data['full_name'];
 
 
         if ($data['password']) {
@@ -118,12 +123,13 @@ class UserController extends Controller
 //
 //        $user->roles()->sync($roleIds);
 
-        return redirect()->route('cp.users.index');
+        return redirect()->route('cp.users.index')->with('success', $fullName . trans('core::message.notify.update success'));
     }
 
     public function destroy($id)
     {
         $assign['user'] = $this->userService->findOr404($id);
+        $fullName = $assign['user']->full_name;
         $assign['user']->loadMissing('roles');
 
 //        if (!in_array(AuthConst::ROLE_SUPER_ADMIN, $assign['user']->roles->pluck('name')->toArray())) {
@@ -136,6 +142,6 @@ class UserController extends Controller
         }
 
 
-        return redirect()->route('cp.users.index');
+        return redirect()->route('cp.users.index')->with('fail',$fullName . trans('core::message.notify.delete success'));
     }
 }

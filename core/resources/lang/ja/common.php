@@ -3,7 +3,7 @@
 return [
 
     /* button text */
-    'No'              => 'No',
+    'No'              => '項番',
     'submit'          => 'Submit',
     'cancel'          => 'キャンセル',
     'edit'            => 'アカウント編集',
@@ -14,7 +14,7 @@ return [
     'status'          => 'Status',
     'total'           => 'Total',
     'upload'          => 'Upload',
-    'action'          => 'Action',
+    'action'          => '機能',
     'created_at'      => 'Create at',
     'please_select'   => 'Please select item',
     'register'        => 'ユーザー追加',
