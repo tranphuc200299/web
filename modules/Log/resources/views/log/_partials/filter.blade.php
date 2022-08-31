@@ -36,12 +36,18 @@
         <div class="form-group">
             <label for="age">{{ trans('log::text.check in date') }}</label>
             <div class="d-flex align-items-center">
-                <div class="col-5">
-                    <input class="form-control date-filter fa fa-calendar" name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
+                <div class="col-5 calendar-start">
+                    <div class="input-group-addon-calendar">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control date-filter fa fa-calendar data-start"  name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
                 </div>
                 <img src="{{ asset('assets/img/tilde.png') }}" alt="logo" >
-                <div class="col-5">
-                    <input class="form-control date-filter" name="end_date" type="text" value="{{ request('end_date') }}" readonly autocomplete="off">
+                <div class="col-5 calendar-end">
+                    <div class="input-calendar-end">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control date-filter data-end" name="end_date" type="text" value="{{ request('end_date') }}" readonly autocomplete="off">
                 </div>
             </div>
         </div>
