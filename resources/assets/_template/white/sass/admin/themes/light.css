@@ -3456,8 +3456,8 @@ fieldset[disabled] .btn-danger:active,
 .btn-danger.disabled.active,
 .btn-danger[disabled].active,
 fieldset[disabled] .btn-danger.active {
-  background-color: #ea2c54;
-  border-color: #ea2c54;
+  background-color: #FF0000;
+  border-color: #FF0000;
 }
 .btn-danger .badge {
   color: #ea2c54;
@@ -8836,7 +8836,7 @@ div.cs-skin-slide .cs-options ul li.cs-selected span {
   text-transform: uppercase;
   font-weight: 500;
   font-family: 'Montserrat';
-  font-size: 10.5px;
+  font-size: 14px;
   letter-spacing: 0.06em;
   padding-top: 14px;
   padding-bottom: 14px;
@@ -14843,4 +14843,21 @@ body.mobile .page-sidebar .sidebar-menu .menu-items li.open > .icon-thumbnail {
         right: 20px;
         top: 7px;
     }
+}
+.swal2-cancel{
+    background-color: #FF0000!important;
+}
+.swal2-confirm{
+    background-color:#2A367E!important;
+}
+
+.form-group .color-text{
+    color : #2A367E!important;
+}
+.select2-selection__rendered {
+    color: #2A367E!important;
+    line-height: 28px;
+}
+.image-log{
+    text-decoration: underline;
 }

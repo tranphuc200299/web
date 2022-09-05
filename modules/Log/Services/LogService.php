@@ -43,7 +43,7 @@ class LogService extends BaseService
                     $q->where('gender', $this->filter->get('gender'));
                 })->when($this->filter->has('id'), function ($q) {
 //                    $q->where('id', str_replace('ID', '', $this->filter->get('id')));
-                    $q->where('id', 'LIKE', "%".$this->filter->get('id')."%");
+                    $q->where('id', 'LIKE', "%" . str_replace('ID', '', $this->filter->get('id')) . "%");
                 });
             })->orderByDesc('created_at');
 

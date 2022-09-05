@@ -27,7 +27,7 @@ class UserController extends Controller
     public function index()
     {
         Breadcrumb::push('ユーザー管理', route('cp.users.index'));
-        $assign['users'] = $this->userService->paginate(['with_load' => ['roles']]);
+        $assign['users'] = $this->userService->getAll();
 
         return view('auth::user.index', $assign);
     }
@@ -130,7 +130,6 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        dd('a');
         $assign['user'] = $this->userService->findOr404($id);
         $fullName = $assign['user']->full_name;
         $assign['user']->loadMissing('roles');

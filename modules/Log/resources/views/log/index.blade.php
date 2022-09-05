@@ -49,8 +49,8 @@
                                     <input type="checkbox" name="deleteItem" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{($list->currentpage()-1)*$list->perpage()+ $k + 1}}</td>
-                                <td class="v-align-middle text-center">ID{{$log->customer->id}}</td>
-                                <td class="v-align-middle text-center"><a href="#" class="show-image"
+                                <td class="v-align-middle text-center pr-5">ID{{$log->customer->id}}</td>
+                                <td class="v-align-middle text-center"><a href="#" class="show-image image-log"
                                                                           data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a>
                                 </td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender ==  'Male' ? '男性' : '女性'}}</td>
@@ -113,7 +113,7 @@
 
             $('.date-filter').daterangepicker({
                 singleDatePicker: true,
-                autoApply: true,
+                // autoApply: true,
                 showDropdowns: true,
                 minYear: 2000,
                 maxYear: 2030,
