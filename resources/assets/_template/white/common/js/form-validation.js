@@ -78,8 +78,13 @@ jQuery.validator.addMethod("validHiragana", function(value, element) {
 }, trans('message.validate.hiragana'));
 
 jQuery.validator.addMethod("validPassword", function (value, element) {
+    console.log(value);
     return this.optional(element) || /^[A-Za-z\d!@#$%*?&]{6,50}$/.test(value) || !value;
 }, 'パスワードは6文字以上入力してください。');
+
+// jQuery.validator.addMethod("checkSpace", function (value, element) {
+//     return this.optional(element)|| !value;
+// }, 'space。');
 
 jQuery.validator.addMethod('IP4Checker', function (value) {
     if (!value) {
@@ -236,4 +241,6 @@ jQuery(document).ready(function () {
 jQuery.extend(jQuery.validator.messages, {
     required: "この項目は入力必須です。",
     equalTo: "同じパスワードを再度入力してください。",
+    max: jQuery.validator.format("Please enter a value less than or equal to {50}."),
+    min: jQuery.validator.format("Please enter a value greater than or equal to {2}.")
 });

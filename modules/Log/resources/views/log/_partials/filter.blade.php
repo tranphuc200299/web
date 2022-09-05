@@ -4,16 +4,16 @@
     <div class="col-lg-1">
         <div class="form-group">
             <label for="id">ID</label>
-            <input class="form-control" name="id" type="text" value="{{ request('id') }}">
+            <input class="form-control color-text" name="id" type="text" value="{{ request('id') }}" autocomplete="off">
         </div>
     </div>
     <div class="col-lg-1">
         <div class="form-group">
             <label for="gender"> {{ trans('log::text.gender') }}</label>
-            <select name="gender" class="form-control" data-toggle="select2-single">
-                <option value="" disabled selected>{{trans('log::text.choose gender')}}</option>
-                <option value="Male" {{ request('gender') == 'Male' ? 'selected' : '' }}>{{trans('log::text.gender male')}} </option>
-                <option value="Female" {{ request('gender') == 'Female' ? 'selected' : '' }}>{{trans('log::text.gender female')}}</option>
+            <select name="gender" class="form-control color-text" data-toggle="select2-single">
+                <option value="">{{trans('log::text.choose gender')}}</option>
+                <option value="Male" class="color-text" {{ request('gender') == 'Male' ? 'selected' : '' }}>{{trans('log::text.gender male')}} </option>
+                <option value="Female" class="color-text" {{ request('gender') == 'Female' ? 'selected' : '' }}>{{trans('log::text.gender female')}}</option>
             </select>
         </div>
     </div>
@@ -22,11 +22,11 @@
             <label for="age">{{ trans('log::text.age') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
-                    <input class="form-control filter_age" name="age_start" id="ageId" autocomplete="off"
+                    <input class="form-control filter_age color-text" name="age_start" id="ageId" autocomplete="off"
                            value="{{ request('age_start') }}">
                 </div>
                 <img src="{{ asset('assets/img/tilde.png') }}" alt="logo" >                <div class="col-5">
-                    <input class="form-control filter_age" name="age_end" autocomplete="off" value="{{ request('age_end') }}">
+                    <input class="form-control filter_age color-text" name="age_end" autocomplete="off" value="{{ request('age_end') }}">
                 </div>
             </div>
         </div>
@@ -36,12 +36,18 @@
         <div class="form-group">
             <label for="age">{{ trans('log::text.check in date') }}</label>
             <div class="d-flex align-items-center">
-                <div class="col-5">
-                    <input class="form-control date-filter fa fa-calendar" name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
+                <div class="col-5 calendar-start">
+                    <div class="input-group-addon-calendar">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control date-filter fa fa-calendar data-start color-text"  name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
                 </div>
                 <img src="{{ asset('assets/img/tilde.png') }}" alt="logo" >
-                <div class="col-5">
-                    <input class="form-control date-filter" name="end_date" type="text" value="{{ request('end_date') }}" readonly autocomplete="off">
+                <div class="col-5 calendar-end">
+                    <div class="input-calendar-end">
+                        <i class="fa fa-calendar"></i>
+                    </div>
+                    <input class="form-control date-filter data-end color-text" name="end_date" type="text" value="{{ request('end_date') }}" readonly autocomplete="off">
                 </div>
             </div>
         </div>
@@ -52,11 +58,11 @@
             <label for="time">{{ trans('log::text.check in time') }}</label>
             <div class="d-flex align-items-center">
                 <div class="col-5">
-                    <input class="form-control time-filter" name="start_time" type="text" value="{{ request('start_time') }}" readonly autocomplete="off">
+                    <input class="form-control time-filter color-text" name="start_time" type="text" value="{{ request('start_time') }}" readonly autocomplete="off">
                 </div>
                 <img src="{{ asset('assets/img/tilde.png') }}" alt="logo" >
                 <div class="col-5">
-                    <input class="form-control time-filter" name="end_time" type="text" value="{{ request('end_time') }}" readonly autocomplete="off">
+                    <input class="form-control time-filter color-text" name="end_time" type="text" value="{{ request('end_time') }}" readonly autocomplete="off">
                 </div>
             </div>
         </div>

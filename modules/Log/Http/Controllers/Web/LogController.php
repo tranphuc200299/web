@@ -19,7 +19,7 @@ class LogController extends Controller
 
     public function index()
     {
-        Breadcrumb::push('ユーザー管理', route('cp.logs.index'));
+        Breadcrumb::push('集計一覧', route('cp.logs.index'));
         $assign['list'] = $this->logService->getAll(['with_load' => 'customer']);
 
         return view('log::log.index', $assign);

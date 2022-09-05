@@ -10,7 +10,7 @@
 {{--                            <span>{{ trans('core::common.register') }}</span>--}}
 {{--                        </div>--}}
                         <div class="form_content">
-                            @include('core::_messages.flash')
+{{--                            @include('core::_messages.flash')--}}
                             @csrf
                             <div class="form-group">
                                 <div class="row">
@@ -20,8 +20,7 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-6 col-sm-6 col-xs-12">
-                                        <input id="name" class="form-control" value="{{ old('full_name') }}"
-                                               data-validate-length-range="6" data-validate-words="2" name="full_name" maxlength="100" required="required" type="text">
+                                        <input id="name" class="form-control" value="{{ old('full_name') }}" data-rule-checkSpace="true" name="full_name" maxlength="100" required="required" type="text">
                                     </div>
                                 </div>
                             </div>

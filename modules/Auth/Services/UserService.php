@@ -2,6 +2,7 @@
 
 namespace Modules\Auth\Services;
 
+use Core\Constants\AppConst;
 use Core\Services\BaseService;
 use Illuminate\Support\Str;
 use Modules\Auth\Repositories\UserRepository;
@@ -18,8 +19,13 @@ class UserService extends BaseService
         return Str::random(8);
     }
 
-    public function getAll()
+    public function getAll($options = [], $limit = AppConst::PAGE_LIMIT_DEFAULT)
     {
-        return $this->mainRepository->getAll();
+        $options['limit'] = $limit;
+        $this->makeBuilder($options);
+
+        $this->builder->orderBy('created_at', 'asc');
+
+        return $this->endFilter();
     }
 }

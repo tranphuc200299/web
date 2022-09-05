@@ -46,7 +46,7 @@ return [
     'paging' => [
 //        'table detail' => 'Showing :start to :end of :total entries',
         'table detail' => ':start-:end件/:total件',
-        'No corresponding record' => 'No corresponding record'
+        'No corresponding record' => '該当結果が見つかりませんでした。'
     ],
     'yes' =>'はい',
     'no' =>'いいえ',

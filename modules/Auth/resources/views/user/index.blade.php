@@ -9,8 +9,7 @@
                     <div class="col-12">
                         @can('create', Modules\Auth\Entities\Models\User::class)
                             <a href="{{ route('cp.users.create') }}" class="pull-right">
-                                <button type="button" class="btn btn-success btn-xs">{{ trans('auth::user.create') }} <i
-                                            class="fa fa-plus-circle"></i></button>
+                                <button type="button" class="btn btn-success btn-xs">{{ trans('auth::user.create') }}</button>
                             </a>
                         @endcan
                     </div>
@@ -46,16 +45,14 @@
                                               class="d-inline form-delete" method="POST">
                                             @method('DELETE')
                                             @csrf
-                                            <button class="btn btn-danger btn-xs user-delete-disable" type="submit"
-                                                  >
-                                                <i class="fa fa-remove"></i> {{ trans('core::common.delete') }}
+                                            <button class="btn btn-danger btn-xs user-delete-disable" type="submit">
+                                                {{ trans('core::common.delete') }}
                                             </button>
                                         </form>
                                     @endcan
                                     @can('update', $user)
                                         <a class="btn btn-primary btn-xs"
                                            href="{{ route('cp.users.edit', [$user->id]) }}">
-                                            <i class="fa fa-pencil"></i>
                                             {{ trans('core::common.edit') }}
                                         </a>
                                     @endcan

@@ -31,7 +31,7 @@
                         <tr>
                             {!!  Html::renderHeader(
                              [
-                             '' => ['style' => 'width: 80px'],
+                             '' => ['name' => '<input type="checkbox" id="checkAll" > ', 'style' => 'width: 80px'],
                              'stt' => ['name' => trans('log::text.stt'), 'style' => 'width: 80px'],
                              'id' => ['name' => 'ID'],
                              'image' => ['name' => trans('log::text.image')],
@@ -46,11 +46,13 @@
                         @foreach($list as $k => $log)
                             <tr>
                                 <td class="v-align-middle text-center">
-                                    <input type="checkbox" id="checkBox_delete" value="{{$log->id}}">
+                                    <input type="checkbox" name="deleteItem" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{($list->currentpage()-1)*$list->perpage()+ $k + 1}}</td>
-                                <td class="v-align-middle text-center">ID{{$log->customer->id}}</td>
-                                <td class="v-align-middle text-center"><a href="#" class="show-image" data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a></td>
+                                <td class="v-align-middle text-center pr-5">ID{{$log->customer->id}}</td>
+                                <td class="v-align-middle text-center"><a href="#" class="show-image image-log"
+                                                                          data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a>
+                                </td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender ==  'Male' ? '男性' : '女性'}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y-m-d') }}</td>
@@ -111,7 +113,7 @@
 
             $('.date-filter').daterangepicker({
                 singleDatePicker: true,
-                autoApply: true,
+                // autoApply: true,
                 showDropdowns: true,
                 minYear: 2000,
                 maxYear: 2030,
@@ -158,9 +160,9 @@
                 $(this).val('');
             });
 
-            $("input:checkbox").change(function () {
+            $("input[name='deleteItem']").change(function () {
                 let $this = $(this);
-                if ($("input:checkbox").is(":checked")) {
+                if ($("input[name='deleteItem']").is(":checked")) {
                     $('.btn-delete-list').removeAttr('disabled');
                 } else {
                     $('.btn-delete-list').attr('disabled', 'disabled');
@@ -229,13 +231,33 @@
                     showConfirmButton: false
                 })
             })
+            //handler for select all change
+            $('#checkAll').change(function () {
+                $("input[name='deleteItem']").prop('checked', $(this).prop('checked'));
+                if ($('#checkAll').is(":checked")) {
+                    $('.btn-delete-list').removeAttr('disabled');
+                }else{
+                    $('.btn-delete-list').attr('disabled', 'disabled');
+                }
+            })
+            //handler for all checkboxes to refect selectAll status
+            $("input[name='deleteItem']").change(function () {
+                $("#checkAll").prop('checked', true)
+                $("input[name='deleteItem']").each(function () {
+                    if (!$(this).prop('checked')) {
+                        $("#checkAll").prop('checked', $(this).prop('checked'));
+                    }
+                })
+            })
+
+            $(document).on('keypress', '.filter_age', function (event) {
+                if (((event.which != 46 || (event.which == 46 && $(this).val() == '')) ||
+                    $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
+            });
+
         });
 
-        $(document).on('keypress','.filter_age', function(event) {
-            if (((event.which != 46 || (event.which == 46 && $(this).val() == '')) ||
-                $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
-                event.preventDefault();
-            }
-        });
     </script>
 @endpush

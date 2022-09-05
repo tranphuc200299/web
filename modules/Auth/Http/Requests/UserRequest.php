@@ -52,7 +52,8 @@ class UserRequest extends FormRequest
     {
         return [
             'full_name.max' => 'A title is required',
-            'full_name.required' => 'A message is required',
+            'full_name.required' => 'この項目は入力必須です。 sdfsdfsdf',
+            'user_name.required' => 'この項目は入力必須です。',
             'user_name.unique' => 'ユーザー名は既に存在しています。',
             'password.confirmed' => 'パスワードと確認用パスワードが一致しません。',
             'password.min' => 'パスワードは6文字以上入力してください。',

@@ -26,8 +26,8 @@ class UserController extends Controller
 
     public function index()
     {
-        Breadcrumb::push('集計一覧', route('cp.users.index'));
-        $assign['users'] = $this->userService->paginate(['with_load' => ['roles']]);
+        Breadcrumb::push('ユーザー管理', route('cp.users.index'));
+        $assign['users'] = $this->userService->getAll();
 
         return view('auth::user.index', $assign);
     }
@@ -52,7 +52,8 @@ class UserController extends Controller
 
     public function create()
     {
-        Breadcrumb::push('user')->push('create');
+//        Breadcrumb::push('user')->push('create');
+        Breadcrumb::push('ユーザー追加','');
         $assign['roles'] = Role::all();
 
         return view('auth::user.create', $assign);
@@ -93,6 +94,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
+        Breadcrumb::push('プロフィール設定','');
         /* @var $assign ['user'] User */
         $assign['user'] = $this->userService->findOr404($id);
 
