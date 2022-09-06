@@ -14,16 +14,6 @@
                             </button>
                         </a>
                     </div>
-{{--                    @if(count($list) > 0)--}}
-                        <div class="m-l-5">
-                            <a href="#"
-                               class="pull-right">
-                                <button type="button" class="btn btn-success btn btn-secondary">
-                                    ダウンロード画像
-                                </button>
-                            </a>
-                        </div>
-{{--                    @endif--}}
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
@@ -72,9 +62,9 @@
 
                     <div class="col-xs-12 col-sm-7">
                         <nav class="mt-3">
-{{--                            @if(!empty($list))--}}
-{{--                                {{ $list->appends($_GET)->links('vendor.pagination.custom') }}--}}
-{{--                            @endif--}}
+                            @if(!empty($list))
+                                {{ $list->appends($_GET)->links('vendor.pagination.custom') }}
+                            @endif
                         </nav>
                     </div>
                 </div>
@@ -86,7 +76,112 @@
 @push('custom-scripts')
     <script>
         $(function () {
+            $("input[name='deleteItem']").change(function () {
+                let $this = $(this);
+                if ($("input[name='deleteItem']").is(":checked")) {
+                    $('.btn-delete-list').removeAttr('disabled');
+                } else {
+                    $('.btn-delete-list').attr('disabled', 'disabled');
+                }
+            });
+            //handel delete checkbox log
+            $(document).on('click', '#delete-log', function (e) {
+                e.preventDefault();
+                let dataId = [];
+                $("input:checkbox").each(function () {
+                    let $this = $(this);
+                    if ($this.is(":checked")) {
+                        dataId.push($this.val());
+                    }
+                });
+                console.log(dataId);
+                Swal.fire({
+                    // title: '選択されているXXレコードを削除しても ',
+                    text: `選択されている${dataId.length}レコードを削除してもよろしいですか。`,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'はい',
+                    cancelButtonText: 'いいえ'
+                }).then((result) => {
+                    if (result.value) {
+                        $.ajaxSetup({
+                            headers: {
+                                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                            }
+                        });
+                        $.ajax({
+                            "url": '{{ route('cp.customers.destroy') }}',
+                            "method": "POST",
+                            data: {
+                                id: dataId,
+                            },
+                            success: function (data) {
+                                location.reload();
+                            }, error: function (error) {
+                                console.log(error);
+                            }
+                        });
+                    }
+                })
+            })
+            // delete all button
+            $(document).on('click', '#delete-log', function (e) {
+                e.preventDefault();
+                let dataId = [];
+                Swal.fire({
+                    text: `削除する際にユーザーデータも削除されます。削除してもよろしいですか。`,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'はい',
+                    cancelButtonText: 'いいえ'
+                }).then((result) => {
+                    if (result.value) {
+                        $('#deleteLog').submit();
+                    }
+                })
+            })
 
+
+            $('.show-image').on('click', function (e) {
+                e.preventDefault()
+                let image = $(this).attr('data-image');
+                Swal.fire({
+                    imageUrl: `${image}`,
+                    imageHeight: '100%',
+                    imageAlt: 'Image Logs',
+                    showCloseButton: true,
+                    showConfirmButton: false
+                })
+            })
+            //handler for select all change
+            $('#checkAll').change(function () {
+                $("input[name='deleteItem']").prop('checked', $(this).prop('checked'));
+                if ($('#checkAll').is(":checked")) {
+                    $('.btn-delete-list').removeAttr('disabled');
+                } else {
+                    $('.btn-delete-list').attr('disabled', 'disabled');
+                }
+            })
+            //handler for all checkboxes to refect selectAll status
+            $("input[name='deleteItem']").change(function () {
+                $("#checkAll").prop('checked', true)
+                $("input[name='deleteItem']").each(function () {
+                    if (!$(this).prop('checked')) {
+                        $("#checkAll").prop('checked', $(this).prop('checked'));
+                    }
+                })
+            })
+
+            $(document).on('keypress', '.filter_age', function (event) {
+                if (((event.which != 46 || (event.which == 46 && $(this).val() == '')) ||
+                    $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                    event.preventDefault();
+                }
+            });
 
         });
 

@@ -28,7 +28,7 @@ class CustomerServiceProvider extends ServiceProvider
             'group' => 6,
             'group_name' => '',
             'pos_child' => 0,
-            'name' => 'log::text.log management',
+            'name' => 'customer::text.customer management',
             'class' => CustomerModel::class,
             'route' => 'cp.customers.index',
             'icon' => 'user-circle',

@@ -79,6 +79,8 @@
                 {{--</button>--}}
                 <button class="btn btn-danger btn-delete-list" href="#" id="delete-log"
                         disabled="disabled">{{trans('log::text.delete')}}</button>
+                <button class="btn btn-danger delete-all-log"
+                        id="delete-log" {{(count($list) > 0 ? "" : "disabled")}}>{{trans('log::text.delete-all')}}</button>
             </div>
         </div>
     </div>
@@ -86,3 +88,6 @@
 </div>
 
 {!! Form::close() !!}
+<form action="{{route('cp.logs.deleteAll')}}" method="post" id="deleteLog">
+    @csrf
+</form>

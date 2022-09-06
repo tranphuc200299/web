@@ -4,6 +4,7 @@ namespace Modules\Customer\Http\Controllers\Web;
 
 use Core\Facades\Breadcrumb\Breadcrumb;
 use Core\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 use Modules\Customer\Services\CustomerService;
 
 class CustomerController extends Controller
@@ -18,10 +19,26 @@ class CustomerController extends Controller
 
     public function index()
     {
-        Breadcrumb::push('集計一覧', route('cp.customers.index'));
+        Breadcrumb::push(trans('customer::text.customer management'), route('cp.customers.index'));
         $assign['list'] = $this->customerService->getAll([]);
 
-       return view('customer::customer.index',$assign);
+        return view('customer::customer.index', $assign);
+    }
+
+    public function destroy(Request $request)
+    {
+        if ($request->id) {
+            $this->customerService->deleteMultiRecord($request->id);
+            return true;
+        }
+
+        return false;
+    }
+
+    public function deleteAll(Request $request)
+    {
+        $this->customerService->deleteAll();
+        return redirect()->route('cp.customers.index')->with('fail', trans('core::message.notify.delete success'));
     }
 
 }

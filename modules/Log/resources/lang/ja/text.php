@@ -14,4 +14,5 @@ return [
     'check in time' => 'チェックイン時刻',
     'check in date' => 'チェックイン日付',
     'delete' => '削除',
+    'delete-all' => 'すべて削除',
 ];

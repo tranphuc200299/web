@@ -57,6 +57,11 @@ class LogService extends BaseService
         return $this->mainRepository->deleteMultiRecord($listId);
     }
 
+    public function deleteAll()
+    {
+        return $this->mainRepository->deleteAll();
+    }
+
     public function export()
     {
         $logs = $this->getAll(['with_load' => 'customer'], false);

@@ -13,6 +13,8 @@ Route::group(['middleware' => ['auth'], 'prefix' => 'cp'], function () {
             ->name('cp.logs.export');
         Route::get('/download', 'Web\LogController@download')
             ->name('cp.logs.download');
+        Route::post('deleteLog', 'Web\LogController@deleteAll')
+            ->name('cp.logs.deleteAll');
     });
 });
 

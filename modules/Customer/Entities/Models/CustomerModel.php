@@ -4,6 +4,7 @@ namespace Modules\Customer\Entities\Models;
 
 use Core\Entities\Models\Uuid;
 use Illuminate\Database\Eloquent\Model;
+use Modules\Log\Entities\Models\LogModel;
 
 /**
  * Modules\Log\Entities\Models\LogModel
@@ -52,6 +53,11 @@ class CustomerModel extends Model
     protected $casts = [
 
     ];
+
+    public function log()
+    {
+        return $this->hasMany(LogModel::class);
+    }
 
 //    public function owner()
 //    {

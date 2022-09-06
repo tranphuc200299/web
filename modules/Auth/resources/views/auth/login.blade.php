@@ -3,7 +3,7 @@
     <div class="login-container">
         <div class="w-100 px-3 px-md-5">
             <div class="text-center mb-4 account-box-title">
-                <img src="{{ public_url('assets/img/logo_admin.jpg') }}" alt="logo" class="brand"
+                <img src="{{ public_url('assets/img/logo_admin.png') }}" alt="logo" class="brand"
                      data-src="{{ public_url('assets/img/logo_admin.jpg') }}"
                      data-src-retina="{{ public_url('assets/img/logo_admin.jpg') }}"
                      width="200" height="50">

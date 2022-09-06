@@ -257,6 +257,25 @@
                 }
             });
 
+            // delete all button
+            $(document).on('click', '#delete-log', function (e) {
+                e.preventDefault();
+                let dataId = [];
+                Swal.fire({
+                    text: `削除する際にユーザーデータも削除されます。削除してもよろしいですか。`,
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'はい',
+                    cancelButtonText: 'いいえ'
+                }).then((result) => {
+                    if (result.value) {
+                        $('#deleteLog').submit();
+                    }
+                })
+            })
+
         });
 
     </script>

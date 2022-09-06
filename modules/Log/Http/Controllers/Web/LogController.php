@@ -35,6 +35,12 @@ class LogController extends Controller
         return false;
     }
 
+    public function deleteAll(Request $request)
+    {
+        $this->logService->deleteAll();
+        return redirect()->route('cp.logs.index')->with('fail', trans('core::message.notify.delete success'));
+    }
+
     public function export()
     {
         $this->logService->export();
