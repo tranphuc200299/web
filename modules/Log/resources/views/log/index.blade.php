@@ -49,7 +49,7 @@
                                     <input type="checkbox" name="deleteItem" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{($list->currentpage()-1)*$list->perpage()+ $k + 1}}</td>
-                                <td class="v-align-middle text-center pr-5">ID{{$log->customer->id}}</td>
+                                <td class="v-align-middle text-center">ID{{$log->customer->id}}</td>
                                 <td class="v-align-middle text-center"><a href="#" class="show-image image-log"
                                                                           data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a>
                                 </td>
@@ -71,7 +71,7 @@
                             </nav>
                         </div>
                     @else
-                        <div class="col-xs-12 col-sm-12">
+                        <div class="col-xs-12 col-sm-12 mt-2">
                             <div class="text-center top-20 pull-left">
                                 {{ trans('core::message.paging.No corresponding record') }}
                             </div>
@@ -100,10 +100,10 @@
                 singleDatePicker:true,
                 timePicker24Hour : true,
                 timePickerIncrement : 1,
-                timePickerSeconds : true,
+                // timePickerSeconds : true,
                 autoUpdateInput: false,
                 locale : {
-                    format : 'HH:mm:ss',
+                    format : 'HH:mm',
                     applyLabel: "申し込み",
                     cancelLabel: "キャンセル",
                 }
@@ -149,7 +149,7 @@
             });
 
             $('.time-filter').on('apply.daterangepicker', function(ev, picker) {
-                $(this).val(picker.startDate.format('HH:mm:ss'));
+                $(this).val(picker.startDate.format('HH:mm'));
             });
 
             $('.date-filter').on('apply.daterangepicker', function(ev, picker) {
@@ -169,10 +169,10 @@
                 }
             });
             //handel delete checkbox log
-            $(document).on('click', '#delete-log', function (e) {
+            $(document).on('click', '#delete-check-log', function (e) {
                 e.preventDefault();
                 let dataId = [];
-                $("input:checkbox").each(function () {
+                $("input[name='deleteItem']").each(function () {
                     let $this = $(this);
                     if ($this.is(":checked")) {
                         dataId.push($this.val());
@@ -262,7 +262,7 @@
                 e.preventDefault();
                 let dataId = [];
                 Swal.fire({
-                    text: `削除する際にユーザーデータも削除されます。削除してもよろしいですか。`,
+                    text: `全件を削除してもよろしいですか。`,
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',

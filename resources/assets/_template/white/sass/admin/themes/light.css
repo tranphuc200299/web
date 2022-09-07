@@ -14816,6 +14816,7 @@ body.mobile .page-sidebar .sidebar-menu .menu-items li.open > .icon-thumbnail {
     z-index: 1;
     right: 16px;
     top: 6px;
+    color: #2A367E;
 }
 .calendar-start{
     position: relative;
@@ -14828,19 +14829,20 @@ body.mobile .page-sidebar .sidebar-menu .menu-items li.open > .icon-thumbnail {
     z-index: 1;
     right: 10px;
     top: 6px;
+    color: #2A367E;
 }
 @media (max-width: 979px) {
     .input-group-addon-calendar{
         position: absolute;
         z-index: 1;
-        right: 20px;
+        right: 22px;
         top: 8px;
         font-size: 13px;
     }
     .input-calendar-end{
         position: absolute;
         z-index: 1;
-        right: 20px;
+        right: 22px;
         top: 7px;
     }
 }
@@ -14860,4 +14862,50 @@ body.mobile .page-sidebar .sidebar-menu .menu-items li.open > .icon-thumbnail {
 }
 .image-log{
     text-decoration: underline;
+}
+
+.btn.disabled,
+.btn:disabled {
+    opacity: 0.4;
+}
+
+.time-group-start{
+    position: relative;
+}
+.input-clock-start{
+    position: absolute;
+    z-index: 1;
+    right: 14px;
+    line-height:34px;
+    font-size: 1.2rem;
+    color: #2A367E;
+}
+
+.time-group-end{
+    position: relative;
+}
+.input-clock-end{
+    position: absolute;
+    z-index: 1;
+    right: 8px;
+    line-height:34px;
+    font-size: 1.21rem;
+    color: #2A367E;
+}
+
+@media (max-width: 979px) {
+    .input-clock-start{
+        position: absolute;
+        z-index: 1;
+        right: 22px;
+        line-height:34px;
+        font-size: 1.2rem;
+    }
+    .input-clock-end{
+        position: absolute;
+        z-index: 1;
+        right: 22px;
+        line-height:34px;
+        font-size: 1.21rem;
+    }
 }

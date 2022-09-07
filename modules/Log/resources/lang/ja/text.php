@@ -6,7 +6,7 @@ return [
     'gender male' => '男性',
     'gender female' => '女性',
     'select' => '選択する',
-    'log management' => '集計一覧',
+    'log management' => '時間集計一覧',
     'age' => '年齢',
     'stt' => '項番',
     'csv' => 'CSV抽出',

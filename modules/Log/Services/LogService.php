@@ -42,8 +42,10 @@ class LogService extends BaseService
                 })->when($this->filter->has('gender'), function ($q) {
                     $q->where('gender', $this->filter->get('gender'));
                 })->when($this->filter->has('id'), function ($q) {
-//                    $q->where('id', str_replace('ID', '', $this->filter->get('id')));
-                    $q->where('id', 'LIKE', "%" . str_replace('ID', '', $this->filter->get('id')) . "%");
+                    $q->where('id', 'LIKE', "%" . str_replace('ID', '', $this->filter->get('id')) . "%")
+                        ->orWhere('id', 'LIKE', "%" . str_replace('id', '', $this->filter->get('id')) . "%")
+                        ->orWhere('id', 'LIKE', "%" . str_replace('iD', '', $this->filter->get('id')) . "%")
+                        ->orWhere('id', 'LIKE', "%" . str_replace('Id', '', $this->filter->get('id')) . "%");
                 });
             })->orderByDesc('created_at');
 
@@ -67,6 +69,7 @@ class LogService extends BaseService
         $logs = $this->getAll(['with_load' => 'customer'], false);
 
         $csv = Writer::createFromFileObject(new \SplTempFileObject);
+        $csv->setOutputBOM(Writer::BOM_UTF8);
 
         $csv->insertOne([
             '項番',
@@ -83,7 +86,7 @@ class LogService extends BaseService
                 $k,
                 'ID' . $log->customer->id,
                 env('URL_AI') . $log->face_image_url,
-                $log->customer->gender,
+                $log->customer->gender ==  'Male' ? '男性' : '女性',
                 $log->customer->age,
                 Carbon::parse($log->created_at)->format('Y-m-d'),
                 Carbon::parse($log->created_at)->format('H:i:s')

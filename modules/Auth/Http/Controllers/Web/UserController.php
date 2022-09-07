@@ -26,7 +26,7 @@ class UserController extends Controller
 
     public function index()
     {
-        Breadcrumb::push('ユーザー管理', route('cp.users.index'));
+        Breadcrumb::push(trans('auth::text.auth list_user'), route('cp.users.index'));
         $assign['users'] = $this->userService->getAll();
 
         return view('auth::user.index', $assign);
@@ -53,7 +53,7 @@ class UserController extends Controller
     public function create()
     {
 //        Breadcrumb::push('user')->push('create');
-        Breadcrumb::push('ユーザー追加','');
+        Breadcrumb::push(trans('auth::text.auth create_user'),'');
         $assign['roles'] = Role::all();
 
         return view('auth::user.create', $assign);
@@ -72,7 +72,6 @@ class UserController extends Controller
 //            $email = $data['email'];
 //            $password = $data['password'] ?? $this->userService->makePassword();
             $user->assignRole($request->get('role_id'));
-//            activity()->send(new NewAccount($email, $password));
 
             return redirect()->route('cp.users.index')->with('success',$fullName . trans('core::message.notify.create success'));
         }
@@ -94,7 +93,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        Breadcrumb::push('プロフィール設定','');
+        Breadcrumb::push(trans('auth::text.auth edit_user'),'');
         /* @var $assign ['user'] User */
         $assign['user'] = $this->userService->findOr404($id);
 

@@ -10,5 +10,8 @@ return [
     'Send' => 'Send',
     'account management' => 'ユーザー管理',
     'Back to login' => 'Back to login',
-    'Return to main account' => 'メインアカウントへ戻る'
+    'Return to main account' => 'メインアカウントへ戻る',
+    'auth edit_user' => 'アカウント編集 ',
+    'auth create_user' => 'ユーザー追加 ',
+    'auth list_user' => 'ユーザー管理',
 ];

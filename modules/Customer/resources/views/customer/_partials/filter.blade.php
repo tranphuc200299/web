@@ -39,16 +39,13 @@
     <div class="col-lg-6 d-flex justify-content-end mr-lg-4">
         <div class="form-group d-flex">
             <div>
-                <button type="submit" class="btn btn-yellow pl-lg-4 pr-lg-4 ml-lg-4">
+                <button type="submit" class="btn btn-yellow pl-lg-4 pr-lg-4 ml-lg-2">
                     {{trans('core::common.search')}}
                 </button>
-                {{--<button class="btn btn-secondary">--}}
-                {{--<a href="{{route('cp.logs.index')}}">{{trans('core::common.clear filter')}}</a>--}}
-                {{--</button>--}}
-                <button class="btn btn-danger btn-delete-list ml-lg-4" id="delete-log"
+                <button class="btn btn-danger btn-delete-list ml-lg-2" id="delete-customer"
                         disabled="disabled">{{trans('log::text.delete')}}</button>
-                <button class="btn btn-danger btn-delete-all ml-lg-4"
-                        id="delete-log">{{trans('log::text.delete-all')}}</button>
+                <button class="btn btn-danger btn-delete-all ml-lg-2"
+                        id="delete-cutomer-button">{{trans('log::text.delete-all')}}</button>
             </div>
         </div>
     </div>
@@ -56,6 +53,6 @@
 </div>
 
 {!! Form::close() !!}
-<form action="{{route('cp.customers.deleteAll')}}" method="post" id="deleteLog">
+<form action="{{route('cp.customers.deleteAll')}}" method="post" id="deleteCustomer">
     @csrf
 </form>

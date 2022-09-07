@@ -57,11 +57,17 @@
         <div class="form-group">
             <label for="time">{{ trans('log::text.check in time') }}</label>
             <div class="d-flex align-items-center">
-                <div class="col-5">
+                <div class="col-5 time-group-start">
+                    <div class="input-clock-start">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    </div>
                     <input class="form-control time-filter color-text" name="start_time" type="text" value="{{ request('start_time') }}" readonly autocomplete="off">
                 </div>
                 <img src="{{ asset('assets/img/tilde.png') }}" alt="logo" >
-                <div class="col-5">
+                <div class="col-5 time-group-end">
+                    <div class="input-clock-end">
+                        <i class="fa fa-clock-o" aria-hidden="true"></i>
+                    </div>
                     <input class="form-control time-filter color-text" name="end_time" type="text" value="{{ request('end_time') }}" readonly autocomplete="off">
                 </div>
             </div>
@@ -77,7 +83,7 @@
                 {{--<button class="btn btn-secondary">--}}
                     {{--<a href="{{route('cp.logs.index')}}">{{trans('core::common.clear filter')}}</a>--}}
                 {{--</button>--}}
-                <button class="btn btn-danger btn-delete-list" href="#" id="delete-log"
+                <button class="btn btn-danger btn-delete-list" href="#" id="delete-check-log"
                         disabled="disabled">{{trans('log::text.delete')}}</button>
                 <button class="btn btn-danger delete-all-log"
                         id="delete-log" {{(count($list) > 0 ? "" : "disabled")}}>{{trans('log::text.delete-all')}}</button>

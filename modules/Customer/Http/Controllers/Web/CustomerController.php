@@ -20,7 +20,7 @@ class CustomerController extends Controller
     public function index()
     {
         Breadcrumb::push(trans('customer::text.customer management'), route('cp.customers.index'));
-        $assign['list'] = $this->customerService->getAll([]);
+        $assign['list'] = $this->customerService->getAllCustomer([]);
 
         return view('customer::customer.index', $assign);
     }
@@ -28,7 +28,7 @@ class CustomerController extends Controller
     public function destroy(Request $request)
     {
         if ($request->id) {
-            $this->customerService->deleteMultiRecord($request->id);
+            $this->customerService->deleteMultiCustomer($request->id);
             return true;
         }
 
@@ -39,6 +39,12 @@ class CustomerController extends Controller
     {
         $this->customerService->deleteAll();
         return redirect()->route('cp.customers.index')->with('fail', trans('core::message.notify.delete success'));
+    }
+
+    public function export()
+    {
+        $this->customerService->export();
+        die;
     }
 
 }

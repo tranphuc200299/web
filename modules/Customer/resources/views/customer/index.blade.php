@@ -7,7 +7,7 @@
             <div class="">
                 <div class="d-flex justify-content-end">
                     <div class="">
-                        <a href="#"
+                        <a href="{{ route('cp.customers.export') . str_replace('/cp/customers', '', request()->getRequestUri()) }}"
                            class="pull-right">
                             <button type="button" class="btn btn-success btn btn-secondary">
                                 {{trans('log::text.csv')}}
@@ -36,7 +36,7 @@
                                     <input type="checkbox" name="deleteItem" id="checkBox_delete" value="{{$log->id}}">
                                 </td>
                                 <td class="v-align-middle text-center">{{($list->currentpage()-1)*$list->perpage()+ $k + 1}}</td>
-                                <td class="v-align-middle text-center pr-5">ID{{$log->id}}</td>
+                                <td class="v-align-middle text-center">ID{{$log->id}}</td>
                                 <td class="v-align-middle text-center">{{$log->gender ==  'Male' ? '男性' : '女性'}}</td>
                                 <td class="v-align-middle text-center">{{$log->age}}</td>
                                 </td>
@@ -53,7 +53,7 @@
                             </nav>
                         </div>
                     @else
-                        <div class="col-xs-12 col-sm-12">
+                        <div class="col-xs-12 col-sm-12 mt-2">
                             <div class="text-center top-20 pull-left">
                                 {{ trans('core::message.paging.No corresponding record') }}
                             </div>
@@ -85,7 +85,7 @@
                 }
             });
             //handel delete checkbox log
-            $(document).on('click', '#delete-log', function (e) {
+            $(document).on('click', '#delete-customer', function (e) {
                 e.preventDefault();
                 let dataId = [];
                 $("input:checkbox").each(function () {
@@ -127,7 +127,7 @@
                 })
             })
             // delete all button
-            $(document).on('click', '#delete-log', function (e) {
+            $(document).on('click', '#delete-cutomer-button', function (e) {
                 e.preventDefault();
                 let dataId = [];
                 Swal.fire({
@@ -140,7 +140,7 @@
                     cancelButtonText: 'いいえ'
                 }).then((result) => {
                     if (result.value) {
-                        $('#deleteLog').submit();
+                        $('#deleteCustomer').submit();
                     }
                 })
             })
