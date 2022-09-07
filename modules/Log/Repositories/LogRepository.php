@@ -3,6 +3,7 @@
 namespace Modules\Log\Repositories;
 
 use Core\Repositories\BaseRepository;
+use Illuminate\Support\Facades\Schema;
 use Modules\Log\Entities\Models\LogModel;
 
 class LogRepository extends BaseRepository
@@ -15,6 +16,11 @@ class LogRepository extends BaseRepository
     public function deleteMultiRecord($listId)
     {
         return $this->model->whereIn('id', $listId)->delete();
+    }
+
+    public function deleteAll()
+    {
+        $this->model->where('id', '!=', '0')->delete();
     }
 
 }

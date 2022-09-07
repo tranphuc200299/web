@@ -11,7 +11,9 @@
     <meta content="" name="description"/>
     <meta content="" name="author"/>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="icon" type="image/x-icon" href="{{ url('/assets/ico/favicon.ico') }}"/>
+    <link rel="icon" type="image/x-icon" href="{{ url('/assets/ico/favicon_16.ico') }}" sizes="16x16"/>
+    <link rel="icon" type="image/x-icon" href="{{ url('/assets/ico/favicon_32.ico') }}" sizes="32x32"/>
+    <link rel="icon" type="image/x-icon" href="{{ url('/assets/ico/favicon_72.ico') }}" sizes="72x72"/>
     <link href="{{ mix('assets/admin/css/vendor.css') }}" rel="stylesheet" type="text/css" class="main-stylesheet" />
     <link href="{{ mix('assets/admin/css/style.css') }}" rel="stylesheet" type="text/css"/>
 </head>
