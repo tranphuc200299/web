@@ -88,12 +88,12 @@ class LogService extends BaseService
                 env('URL_AI') . $log->face_image_url,
                 $log->customer->gender ==  'Male' ? '男性' : '女性',
                 $log->customer->age,
-                Carbon::parse($log->created_at)->format('Y-m-d'),
+                Carbon::parse($log->created_at)->format('Y/m/d'),
                 Carbon::parse($log->created_at)->format('H:i:s')
             ]);
         }
-
-        $fileName = Carbon::now()->timestamp . '_logs.csv';
+        $date = Carbon::now()->format('Ymd_His');
+        $fileName = '集計一覧_' . $date . '_.csv';
 
         $csv->output($fileName);
     }
@@ -128,6 +128,11 @@ class LogService extends BaseService
             return false;
         }
 
+    }
+
+    public function getByListId($lisId)
+    {
+        return $this->mainRepository->getByListId($lisId);
     }
 
 }
