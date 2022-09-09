@@ -52,7 +52,7 @@
                                     @endcan
                                     @can('update', $user)
                                         <a class="btn btn-primary btn-xs"
-                                           href="{{ route('cp.users.edit', [$user->id]) }}">
+                                           href="{{ route('cp.edit.user', [$user->id]) }}">
                                             {{ trans('core::common.edit') }}
                                         </a>
                                     @endcan
