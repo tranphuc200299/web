@@ -4,7 +4,9 @@
             <span class="icon-thumbnail"><i class="fa fa-cogs"></i></span>
             <a href="javascript:;"><span class="title">{{ trans($item['name']) }}</span>
                 <span class="arrow @if(route_active_group(collect($item['child'])->pluck('route')->toArray())) open active @endif"></span></a>
-            <ul class="sub-menu" @if(route_active_group(collect($item['child'])->pluck('route')->toArray())) style="display: block" @else style="display: none" @endif>
+            <ul class="sub-menu"
+                @if(route_active_group(collect($item['child'])->pluck('route')->toArray())) style="display: block"
+                @else style="display: none" @endif>
                 @foreach($item['child'] as $menu)
                     @can($menu['action']?? 'read', $menu['class'])
                         <li class="@if(route_active(route_wildcard($menu['route']))) item-selected @endif">
@@ -20,8 +22,17 @@
     @endif
     @if(isset($item['single']))
         @can($item['single']['action']?? 'read', $item['single']['class'])
-            <li class="@if(route_active(route_wildcard($item['single']['route']))) item-selected @endif">
-                <a href="{{ route($item['single']['route']) }}" class="menu__sub-item">
+            <li class="
+                    @if(route_active(route_wildcard($item['single']['route'])))
+                        @if(!isset($item['single']['param']))
+                            item-selected
+                        @elseif($item['single']['param']['user'] == str_replace( '/cp/users/', '', str_replace('/edit', '', request()->getRequestUri())))
+                            item-selected
+                        @endif
+                    @endif
+                    ">
+                <a href="{{ isset($item['single']['param']) ? route($item['single']['route'], $item['single']['param'])  : route($item['single']['route']) }}"
+                   class="menu__sub-item">
                     <span class="title">{{ trans($item['single']['name']) }}</span>
                 </a>
                 <span class="icon-thumbnail"><i class="fa fa-{{$item['single']['icon']}}"></i></span>

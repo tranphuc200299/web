@@ -31,3 +31,5 @@
     </div>
     <!-- END SIDEBAR MENU -->
 </nav>
+
+{{--{{ Menu::renders() }}--}}

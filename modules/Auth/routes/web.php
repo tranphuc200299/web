@@ -54,7 +54,7 @@ Route::group(['middleware' => 'auth'], function () {
 
     /*Edit*/
     Route::get('/cp/users/{user}/edit', 'Web\UserController@edit')
-        ->name('cp.users.edit')->middleware('can:update,'.User::class);
+        ->name('cp.edit.user')->middleware('can:update,'.User::class);
 
     Route::match(['PUT', 'PATCH'], '/cp/users/{user}', 'Web\UserController@update')
         ->name('cp.users.update')->middleware('can:update,'.User::class);
