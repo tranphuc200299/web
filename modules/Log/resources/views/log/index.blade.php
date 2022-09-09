@@ -1,4 +1,5 @@
 @extends('log::layout')
+@section('title', trans('log::text.log management'))
 @section('content')
     <div class="container-fluid bg-white">
         @include('log::log._partials.filter')
@@ -36,7 +37,7 @@
                             </div>
                         @else
                             <div class="col-xs-12 col-sm-12 mt-2">
-                                <div class="text-center top-20 pull-left">
+                                <div class="text-center top-20 pull-left mb-2">
                                     {{ trans('core::message.paging.No corresponding record') }}
                                 </div>
                             </div>

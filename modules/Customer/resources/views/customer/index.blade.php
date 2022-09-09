@@ -1,4 +1,5 @@
 @extends('customer::layout')
+@section('title', trans('customer::text.customer management'))
 @section('content')
     <div class="container-fluid bg-white">
         @include('customer::customer._partials.filter')
@@ -17,6 +18,20 @@
                 </div>
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
+                        @if(!empty($list) && count($list) > 0)
+                            <div class="col-xs-12 col-sm-5 mb-2">
+                                <nav class="mt-3">
+                                    @include('core::_pagination.counting', ['paginator' => $list])
+                                </nav>
+                            </div>
+                        @else
+                            <div class="col-xs-12 col-sm-12 mt-2">
+                                <div class="text-center top-20 pull-left mb-2">
+                                    {{ trans('core::message.paging.No corresponding record') }}
+                                </div>
+                            </div>
+                        @endif
+
                         <thead>
                         <tr>
                             {!!  Html::renderHeader(
@@ -49,13 +64,13 @@
                     @if(!empty($list) && count($list) > 0)
                         <div class="col-xs-12 col-sm-5">
                             <nav class="mt-3">
-                                @include('core::_pagination.counting', ['paginator' => $list])
+{{--                                @include('core::_pagination.counting', ['paginator' => $list])--}}
                             </nav>
                         </div>
                     @else
                         <div class="col-xs-12 col-sm-12 mt-2">
                             <div class="text-center top-20 pull-left">
-                                {{ trans('core::message.paging.No corresponding record') }}
+{{--                                {{ trans('core::message.paging.No corresponding record') }}--}}
                             </div>
                         </div>
                     @endif
@@ -118,7 +133,21 @@
                                 id: dataId,
                             },
                             success: function (data) {
-                                location.reload();
+                                console.log(data)
+                                if (data.code == 200)
+                                {
+                                    Swal.fire(
+                                        {
+                                            type: 'success',
+                                            text: `${data.message}`,
+                                        }
+
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            location.reload();
+                                        }
+                                    })
+                                }
                             }, error: function (error) {
                                 console.log(error);
                             }

@@ -47,7 +47,7 @@ class LogService extends BaseService
                         ->orWhere('id', 'LIKE', "%" . str_replace('iD', '', $this->filter->get('id')) . "%")
                         ->orWhere('id', 'LIKE', "%" . str_replace('Id', '', $this->filter->get('id')) . "%");
                 });
-            })->orderByDesc('created_at');
+            })->orderBy('user_id', 'ASC');
 
         $this->cleanFilterBuilder(['id', 'age_start', 'age_end', 'gender']);
 

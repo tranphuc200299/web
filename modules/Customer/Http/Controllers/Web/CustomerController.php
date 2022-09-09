@@ -28,8 +28,13 @@ class CustomerController extends Controller
     public function destroy(Request $request)
     {
         if ($request->id) {
+            $check = $this->customerService->getByListId($request->id);
             $this->customerService->deleteMultiCustomer($request->id);
-            return true;
+            return response()->json([
+                'code' => 200,
+                'message' => (count($check) > 0) ? 'レコードが正常に削除されました。' : 'レコードが削除されました。',
+                'count' => count($check)
+            ]);
         }
 
         return false;

@@ -1,4 +1,5 @@
 @extends('auth::layout')
+@section('title', trans('auth::text.auth list_user'))
 @section('content')
     <div class=" container-fluid bg-white">
 {{--        @include('auth::user._partials.filter')--}}
