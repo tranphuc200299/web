@@ -83,7 +83,7 @@ class LogService extends BaseService
 
         foreach ($logs as $k => $log) {
             $csv->insertOne([
-                $k,
+                $k + 1,
                 'ID' . $log->customer->id,
                 env('URL_AI') . $log->face_image_url,
                 $log->customer->gender ==  'Male' ? '男性' : '女性',

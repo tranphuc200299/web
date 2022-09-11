@@ -302,9 +302,9 @@
             setTimeout(function () {
                 Swal.fire({
                     type: 'success',
-                    title: 'export thành công ahih',
+                    title: 'ファイルが正常に抽出されました。',
                     showConfirmButton: false,
-                    timer: 1500
+                    timer: 2000
                 })
             }, 500);
         });

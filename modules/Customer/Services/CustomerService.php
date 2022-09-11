@@ -61,14 +61,15 @@ class CustomerService extends BaseService
 
         foreach ($customers as $k => $customer) {
             $csv->insertOne([
-                $k,
-                'ID' . $customer->id,
+                $k +1,
+                'ID' . $customer->id ,
                 $customer->gender == 'Male' ? '男性' : '女性',
                 $customer->age
             ]);
         }
 
-        $fileName = Carbon::now()->timestamp . '_logs.csv';
+        $date = Carbon::now()->format('Ymd_His');
+        $fileName = '集計一覧_' . $date . '_.csv';
 
         $csv->output($fileName);
     }

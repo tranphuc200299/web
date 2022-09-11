@@ -9,7 +9,7 @@
                 <div class="d-flex justify-content-end">
                     <div class="">
                         <a href="{{ route('cp.customers.export') . str_replace('/cp/customers', '', request()->getRequestUri()) }}"
-                           class="pull-right">
+                           class="pull-right csv-export-customer">
                             <button type="button" class="btn btn-success btn btn-secondary">
                                 {{trans('log::text.csv')}}
                             </button>
@@ -111,8 +111,7 @@
                 });
                 console.log(dataId);
                 Swal.fire({
-                    // title: '選択されているXXレコードを削除しても ',
-                    text: `選択されている${dataId.length}レコードを削除してもよろしいですか。`,
+                    text: `OO件が選択されています。削除する際にユーザーデータも削除されます。削除してもよろしいですか。。`,
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -160,7 +159,7 @@
                 e.preventDefault();
                 let dataId = [];
                 Swal.fire({
-                    text: `削除する際にユーザーデータも削除されます。削除してもよろしいですか。`,
+                    text: `全件が削除され、IDがリセットされます。削除してもよろしいですか。`,
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
@@ -210,6 +209,17 @@
                     $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
                     event.preventDefault();
                 }
+            });
+
+            $('.csv-export-customer').on('click', function (e) {
+                setTimeout(function () {
+                    Swal.fire({
+                        type: 'success',
+                        title: 'ファイルが正常に抽出されました。',
+                        showConfirmButton: false,
+                        timer: 2000
+                    })
+                }, 500);
             });
 
         });
