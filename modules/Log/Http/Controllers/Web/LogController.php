@@ -53,11 +53,6 @@ class LogController extends Controller
     }
     public function download()
     {
-        if($this->logService->download())
-        {
-            return $this->logService->download();
-        }
-
-        return redirect()->route('cp.logs.index')->with('error', 'Download false');
+        return $this->logService->download();
     }
 }
