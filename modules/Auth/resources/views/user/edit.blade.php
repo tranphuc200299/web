@@ -1,4 +1,5 @@
 @extends('auth::layout')
+@section('title', trans('auth::text.auth edit_user'))
 @section('content')
     <div class="container-fluid bg-white">
         <div class="row">

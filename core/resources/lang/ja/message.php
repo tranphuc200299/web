@@ -34,7 +34,7 @@ return [
     'notify' => [
         'create success' => 'ユーザー名が追加されました。',
         'update success' => 'ユーザー名が編集されました。',
-        'delete success' => 'ユーザー名が削除されました。',
+        'delete success' => 'レコードが正常に削除されました。',
         'create fail' => '作成が失敗しました。再度試してください',
         'update fail' => '変更が失敗しました。再度試してください',
         'delete fail' => '削除が失敗しました。再度試してください',

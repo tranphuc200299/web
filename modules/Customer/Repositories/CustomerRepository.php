@@ -27,4 +27,9 @@ class CustomerRepository extends BaseRepository
         Schema::enableForeignKeyConstraints();
     }
 
+    public function getByListId($listId)
+    {
+        return $this->model->whereIn('id',$listId)->get();
+    }
+
 }

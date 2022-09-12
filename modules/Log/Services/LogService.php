@@ -47,7 +47,7 @@ class LogService extends BaseService
                         ->orWhere('id', 'LIKE', "%" . str_replace('iD', '', $this->filter->get('id')) . "%")
                         ->orWhere('id', 'LIKE', "%" . str_replace('Id', '', $this->filter->get('id')) . "%");
                 });
-            })->orderByDesc('created_at');
+            })->orderBy('user_id', 'ASC');
 
         $this->cleanFilterBuilder(['id', 'age_start', 'age_end', 'gender']);
 
@@ -83,17 +83,17 @@ class LogService extends BaseService
 
         foreach ($logs as $k => $log) {
             $csv->insertOne([
-                $k,
+                $k + 1,
                 'ID' . $log->customer->id,
                 env('URL_AI') . $log->face_image_url,
                 $log->customer->gender ==  'Male' ? '男性' : '女性',
                 $log->customer->age,
-                Carbon::parse($log->created_at)->format('Y-m-d'),
+                Carbon::parse($log->created_at)->format('Y/m/d'),
                 Carbon::parse($log->created_at)->format('H:i:s')
             ]);
         }
-
-        $fileName = Carbon::now()->timestamp . '_logs.csv';
+        $date = Carbon::now()->format('Ymd_His');
+        $fileName = '集計一覧_' . $date . '_.csv';
 
         $csv->output($fileName);
     }
@@ -128,6 +128,11 @@ class LogService extends BaseService
             return false;
         }
 
+    }
+
+    public function getByListId($lisId)
+    {
+        return $this->mainRepository->getByListId($lisId);
     }
 
 }

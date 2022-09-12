@@ -19,7 +19,7 @@ class LogController extends Controller
 
     public function index()
     {
-        Breadcrumb::push(trans('log::text.log management'), route('cp.logs.index'));
+        Breadcrumb::push(trans('log::text.log management home'), route('cp.logs.index'));
         $assign['list'] = $this->logService->getAll(['with_load' => 'customer']);
 
         return view('log::log.index', $assign);
@@ -28,8 +28,13 @@ class LogController extends Controller
     public function destroy(Request $request)
     {
         if ($request->id) {
+            $check = $this->logService->getByListId($request->id);
             $this->logService->deleteMultiRecord($request->id);
-            return true;
+            return response()->json([
+                'code' => 200,
+                'message' => (count($check) > 0) ? 'レコードが正常に削除されました。' : 'レコードが削除されました。',
+                'count' => count($check)
+            ]);
         }
 
         return false;
@@ -46,7 +51,6 @@ class LogController extends Controller
         $this->logService->export();
         die;
     }
-
     public function download()
     {
         if($this->logService->download())

@@ -1,4 +1,5 @@
 @extends('log::layout')
+@section('title', trans('log::text.log management'))
 @section('content')
     <div class="container-fluid bg-white">
         @include('log::log._partials.filter')
@@ -8,7 +9,7 @@
                 <div class="d-flex justify-content-end">
                     <div class="">
                         <a href="{{ route('cp.logs.export') . str_replace('/cp/logs', '', request()->getRequestUri()) }}"
-                           class="pull-right">
+                           class="pull-right csv-export">
                             <button type="button" class="btn btn-success btn btn-secondary">
                                 {{trans('log::text.csv')}}
                             </button>
@@ -28,6 +29,20 @@
                 <div class="table-responsive">
                     <table class="table table-hover" id="basicTable">
                         <thead>
+                        @if(!empty($list) && count($list) > 0)
+                            <div class="col-xs-12 col-sm-5 mb-2">
+                                <nav class="mt-3">
+                                    @include('core::_pagination.counting', ['paginator' => $list])
+                                </nav>
+                            </div>
+                        @else
+                            <div class="col-xs-12 col-sm-12 mt-2">
+                                <div class="text-center top-20 pull-left mb-2">
+                                    {{ trans('core::message.paging.No corresponding record') }}
+                                </div>
+                            </div>
+                        @endif
+
                         <tr>
                             {!!  Html::renderHeader(
                              [
@@ -55,7 +70,7 @@
                                 </td>
                                 <td class="v-align-middle text-center">{{$log->customer->gender ==  'Male' ? '男性' : '女性'}}</td>
                                 <td class="v-align-middle text-center">{{$log->customer->age}}</td>
-                                <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y-m-d') }}</td>
+                                <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y/m/d') }}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('H:i:s') }}</td>
                                 </td>
                             </tr>
@@ -67,13 +82,13 @@
                     @if(!empty($list) && count($list) > 0)
                         <div class="col-xs-12 col-sm-5">
                             <nav class="mt-3">
-                                @include('core::_pagination.counting', ['paginator' => $list])
+{{--                                @include('core::_pagination.counting', ['paginator' => $list])--}}
                             </nav>
                         </div>
                     @else
                         <div class="col-xs-12 col-sm-12 mt-2">
                             <div class="text-center top-20 pull-left">
-                                {{ trans('core::message.paging.No corresponding record') }}
+{{--                                {{ trans('core::message.paging.No corresponding record') }}--}}
                             </div>
                         </div>
                     @endif
@@ -202,16 +217,21 @@
                                 id: dataId,
                             },
                             success: function (data) {
-                                // Swal.fire(
-                                //     'Deleted!',
-                                //     'Your file has been deleted.',
-                                //     'success',
-                                // ).then((result) => {
-                                //     if (result.value) {
-                                //         location.reload();
-                                //     }
-                                // })
-                                location.reload();
+                                console.log(data)
+                                if (data.code == 200)
+                                {
+                                    Swal.fire(
+                                        {
+                                            type: 'success',
+                                            text: `${data.message}`,
+                                        }
+
+                                    ).then((result) => {
+                                        if (result.value) {
+                                            location.reload();
+                                        }
+                                    })
+                                }
                             }, error: function (error) {
                                 console.log(error);
                             }
@@ -276,6 +296,17 @@
                 })
             })
 
+        });
+
+        $('.csv-export').on('click', function (e) {
+            setTimeout(function () {
+                Swal.fire({
+                    type: 'success',
+                    title: 'ファイルが正常に抽出されました。',
+                    showConfirmButton: false,
+                    timer: 2000
+                })
+            }, 500);
         });
 
     </script>

@@ -23,4 +23,9 @@ class LogRepository extends BaseRepository
         $this->model->where('id', '!=', '0')->delete();
     }
 
+    public function getByListId($listId)
+    {
+        return $this->model->whereIn('id',$listId)->get();
+    }
+
 }

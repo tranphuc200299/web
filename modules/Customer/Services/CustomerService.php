@@ -31,7 +31,7 @@ class CustomerService extends BaseService
                     ->orWhere('id', 'LIKE', "%" . str_replace('Id', '', $this->filter->get('id')) . "%");
             })->when($this->filter->has('gender'), function ($query) {
                 $query->where('gender', $this->filter->get('gender'));
-            })->orderByDesc('created_at');
+            })->orderBy('id', 'ASC');
         $this->cleanFilterBuilder(['id', 'age_start', 'age_end', 'gender']);
 
         return $this->endFilter();
@@ -61,15 +61,21 @@ class CustomerService extends BaseService
 
         foreach ($customers as $k => $customer) {
             $csv->insertOne([
-                $k,
-                'ID' . $customer->id,
+                $k +1,
+                'ID' . $customer->id ,
                 $customer->gender == 'Male' ? '男性' : '女性',
                 $customer->age
             ]);
         }
 
-        $fileName = Carbon::now()->timestamp . '_logs.csv';
+        $date = Carbon::now()->format('Ymd_His');
+        $fileName = '集計一覧_' . $date . '_.csv';
 
         $csv->output($fileName);
+    }
+
+    public function getByListId($lisId)
+    {
+        return $this->mainRepository->getByListId($lisId);
     }
 }

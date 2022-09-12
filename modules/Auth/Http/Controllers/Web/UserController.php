@@ -106,7 +106,7 @@ class UserController extends Controller
     public function update($id, Request $request)
     {
         $assign['user'] = $this->userService->findOr404($id);
-        $data = $request->only(['full_name', 'password']);
+        $data = $request->only(['full_name','password']);
         $fullName =$data['full_name'];
 
 
