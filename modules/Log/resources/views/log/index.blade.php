@@ -17,8 +17,9 @@
                     </div>
                     @if(count($list) > 0)
                         <div class="m-l-5">
-                            <a href="{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}"
-                               class="pull-right">
+                            {{--<a href="{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}"--}}
+                            <a href="#"
+                               class="pull-right download-image">
                                 <button type="button" class="btn btn-success btn btn-secondary">
                                     ダウンロード画像
                                 </button>
@@ -111,18 +112,18 @@
         $(function () {
 
             $('.time-filter').daterangepicker({
-                timePicker : true,
-                singleDatePicker:true,
-                timePicker24Hour : true,
-                timePickerIncrement : 1,
+                timePicker: true,
+                singleDatePicker: true,
+                timePicker24Hour: true,
+                timePickerIncrement: 1,
                 // timePickerSeconds : true,
                 autoUpdateInput: false,
-                locale : {
-                    format : 'HH:mm',
+                locale: {
+                    format: 'HH:mm',
                     applyLabel: "申し込み",
                     cancelLabel: "キャンセル",
                 }
-            }).on('show.daterangepicker', function(ev, picker) {
+            }).on('show.daterangepicker', function (ev, picker) {
                 picker.container.find(".calendar-table").hide();
             });
 
@@ -134,7 +135,7 @@
                 maxYear: 2030,
                 autoUpdateInput: false,
                 locale: {
-                    format : 'yy/MM/DD',
+                    format: 'yy/MM/DD',
                     "daysOfWeek": [
                         "日",
                         "月",
@@ -163,15 +164,15 @@
                 }
             });
 
-            $('.time-filter').on('apply.daterangepicker', function(ev, picker) {
+            $('.time-filter').on('apply.daterangepicker', function (ev, picker) {
                 $(this).val(picker.startDate.format('HH:mm'));
             });
 
-            $('.date-filter').on('apply.daterangepicker', function(ev, picker) {
+            $('.date-filter').on('apply.daterangepicker', function (ev, picker) {
                 $(this).val(picker.startDate.format('yy/MM/DD'));
             });
 
-            $('.date-filter, .time-filter').on('cancel.daterangepicker', function(ev, picker) {
+            $('.date-filter, .time-filter').on('cancel.daterangepicker', function (ev, picker) {
                 $(this).val('');
             });
 
@@ -240,7 +241,7 @@
                 })
             })
 
-            $('.show-image').on('click', function(e) {
+            $('.show-image').on('click', function (e) {
                 e.preventDefault()
                 let image = $(this).attr('data-image');
                 Swal.fire({
@@ -256,7 +257,7 @@
                 $("input[name='deleteItem']").prop('checked', $(this).prop('checked'));
                 if ($('#checkAll').is(":checked")) {
                     $('.btn-delete-list').removeAttr('disabled');
-                }else{
+                } else {
                     $('.btn-delete-list').attr('disabled', 'disabled');
                 }
             })
@@ -294,6 +295,62 @@
                         $('#deleteLog').submit();
                     }
                 })
+            })
+
+            $('.download-image').on('click', function () {
+                ``
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                let timerInterval
+                Swal.fire({
+                    allowOutsideClick: false,
+                    onBeforeOpen: () => {
+                        Swal.showLoading()
+                    },
+                });
+
+                $.ajax({
+                    'url': '{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}',
+                    success: function (data) {
+                        if (data.code == 200) {
+                            if (data.image_erorr.length > 0) {
+                                let textHTML = `以下の画像は破壊しているため、ダウンロードできません<br>
+                                                破壊されない他の画像をダウンロードしますか。
+                                                <ul class='error-download'>`;
+
+                                $.each(data.image_erorr, function (index, value) {
+                                    textHTML += `<li>${value}</li>`;
+                                    textHTML += `<li>${value}</li>`;
+                                    textHTML += `<li>${value}</li>`;
+                                });
+                                textHTML += `</ul>`;
+
+                                Swal.fire({
+                                    html: textHTML,
+                                    allowOutsideClick: false,
+                                    type: 'warning',
+                                    showCancelButton: true,
+                                    confirmButtonColor: '#3085d6',
+                                    cancelButtonColor: '#d33',
+                                    confirmButtonText: 'はい',
+                                    cancelButtonText: 'いいえ'
+                                }).then((result) => {
+                                    if (result.value) {
+                                        window.location.href = data.file_name;
+                                    }
+
+                                })
+                            } else {
+                                window.location.href = data.file_name;
+                            }
+                        }
+                    }, error: function (error) {
+                        console.log(error);
+                    }
+                });
             })
 
         });
