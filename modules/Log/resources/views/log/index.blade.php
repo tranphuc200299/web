@@ -83,13 +83,13 @@
                     @if(!empty($list) && count($list) > 0)
                         <div class="col-xs-12 col-sm-5">
                             <nav class="mt-3">
-{{--                                @include('core::_pagination.counting', ['paginator' => $list])--}}
+                                {{--                                @include('core::_pagination.counting', ['paginator' => $list])--}}
                             </nav>
                         </div>
                     @else
                         <div class="col-xs-12 col-sm-12 mt-2">
                             <div class="text-center top-20 pull-left">
-{{--                                {{ trans('core::message.paging.No corresponding record') }}--}}
+                                {{--                                {{ trans('core::message.paging.No corresponding record') }}--}}
                             </div>
                         </div>
                     @endif
@@ -105,6 +105,16 @@
             </div>
         </div>
         <!-- END card -->
+    </div>
+
+    <div class="modal show-spin" tabindex="-1" role="dialog" data-toggle="modal" data-backdrop="static"
+         data-keyboard="false">
+        <div class="d-flex justify-content-center loading-download">
+            <div class="spinner-border text-primary loading-spin" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
+
     </div>
 @endsection
 @push('custom-scripts')
@@ -194,7 +204,7 @@
                         dataId.push($this.val());
                     }
                 });
-                console.log(dataId);
+
                 Swal.fire({
                     // title: '選択されているXXレコードを削除しても ',
                     text: `選択されている${dataId.length}レコードを削除してもよろしいですか。`,
@@ -218,15 +228,12 @@
                                 id: dataId,
                             },
                             success: function (data) {
-                                console.log(data)
-                                if (data.code == 200)
-                                {
+                                if (data.code == 200) {
                                     Swal.fire(
                                         {
                                             type: 'success',
                                             text: `${data.message}`,
                                         }
-
                                     ).then((result) => {
                                         if (result.value) {
                                             location.reload();
@@ -305,12 +312,8 @@
                     }
                 });
                 let timerInterval
-                Swal.fire({
-                    allowOutsideClick: false,
-                    onBeforeOpen: () => {
-                        Swal.showLoading()
-                    },
-                });
+
+                $('.show-spin').modal('show');
 
                 $.ajax({
                     'url': '{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}',
@@ -349,6 +352,9 @@
                         }
                     }, error: function (error) {
                         console.log(error);
+
+                    }, complete: function () {
+                        $('.show-spin').modal('hide')
                     }
                 });
             })
