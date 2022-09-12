@@ -314,9 +314,11 @@
                 let timerInterval
 
                 $('.show-spin').modal('show');
+                let url  = '{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}';
+                url = url.replaceAll('&amp;', '&');
 
                 $.ajax({
-                    'url': '{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}',
+                    'url': url,
                     success: function (data) {
                         if (data.code == 200) {
                             if (data.image_erorr.length > 0) {
@@ -325,8 +327,6 @@
                                                 <ul class='error-download'>`;
 
                                 $.each(data.image_erorr, function (index, value) {
-                                    textHTML += `<li>${value}</li>`;
-                                    textHTML += `<li>${value}</li>`;
                                     textHTML += `<li>${value}</li>`;
                                 });
                                 textHTML += `</ul>`;
