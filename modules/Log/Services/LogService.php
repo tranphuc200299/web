@@ -42,12 +42,9 @@ class LogService extends BaseService
                 })->when($this->filter->has('gender'), function ($q) {
                     $q->where('gender', $this->filter->get('gender'));
                 })->when($this->filter->has('id'), function ($q) {
-                    $q->where('id', 'LIKE', "%" . str_replace('ID', '', $this->filter->get('id')) . "%")
-                        ->orWhere('id', 'LIKE', "%" . str_replace('id', '', $this->filter->get('id')) . "%")
-                        ->orWhere('id', 'LIKE', "%" . str_replace('iD', '', $this->filter->get('id')) . "%")
-                        ->orWhere('id', 'LIKE', "%" . str_replace('Id', '', $this->filter->get('id')) . "%");
+                    $q->where('id', 'LIKE', cxl_replaceStringID($this->filter->get('id')) . "%");
                 });
-            })->orderBy('user_id', 'ASC');
+            })->orderByDesc('created_at');
 
         $this->cleanFilterBuilder(['id', 'age_start', 'age_end', 'gender']);
 
@@ -140,5 +137,4 @@ class LogService extends BaseService
     {
         return $this->mainRepository->getByListId($lisId);
     }
-
 }

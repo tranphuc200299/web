@@ -21,7 +21,7 @@
                             <a href="#"
                                class="pull-right download-image">
                                 <button type="button" class="btn btn-success btn btn-secondary">
-                                    ダウンロード画像
+                                    {{trans('log::text.download')}}
                                 </button>
                             </a>
                         </div>

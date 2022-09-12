@@ -115,3 +115,14 @@ if (!function_exists('get_tenant_id')) {
         return null;
     }
 }
+
+if (!function_exists('cxl_replaceStringID')) {
+    function cxl_replaceStringID($string)
+    {
+        $listCharacter = ['id', 'ID', 'Id', 'iD'];
+        foreach ($listCharacter as $character) {
+            $string = str_replace($character,'',$string);
+        }
+        return $string;
+    }
+}

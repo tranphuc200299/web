@@ -126,9 +126,9 @@
                                         <button class="btn btn-success pull-right" type="submit">
                                             {{trans('core::common.save')}}
                                         </button>
-                                        {{--                                        <a href="{{ back_link() }}" class="btn btn-default pull-right mr-2">--}}
-                                        {{--                                            {{trans('core::common.back')}}--}}
-                                        {{--                                        </a>--}}
+                                        <a href="{{ route('cp.users.index') }}" class="btn btn-danger pull-right mr-2">
+                                            {{trans('core::common.back')}}
+                                        </a>
                                     </div>
                                 </div>
                             </div>
