@@ -16,4 +16,5 @@ return [
     'check in date' => 'チェックイン日付',
     'delete' => '削除',
     'delete-all' => 'すべて削除',
+    'download' => '全画像ダウンロード',
 ];

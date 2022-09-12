@@ -25,10 +25,7 @@ class CustomerService extends BaseService
             })->when($this->filter->has('age_end'), function ($query) {
                 $query->where('age', '<=', $this->filter->get('age_end'));
             })->when($this->filter->has('id'), function ($query) {
-                $query->where('id', 'LIKE', "%" . str_replace('ID', '', $this->filter->get('id')) . "%")
-                    ->orWhere('id', 'LIKE', "%" . str_replace('id', '', $this->filter->get('id')) . "%")
-                    ->orWhere('id', 'LIKE', "%" . str_replace('iD', '', $this->filter->get('id')) . "%")
-                    ->orWhere('id', 'LIKE', "%" . str_replace('Id', '', $this->filter->get('id')) . "%");
+                $query->where('id', 'LIKE', cxl_replaceStringID($this->filter->get('id')) . "%");
             })->when($this->filter->has('gender'), function ($query) {
                 $query->where('gender', $this->filter->get('gender'));
             })->orderBy('id', 'ASC');
