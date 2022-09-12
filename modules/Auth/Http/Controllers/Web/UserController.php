@@ -53,7 +53,7 @@ class UserController extends Controller
     public function create()
     {
 //        Breadcrumb::push('user')->push('create');
-        Breadcrumb::push(trans('auth::text.auth create_user'),'');
+        Breadcrumb::push(trans('auth::text.auth create_user'), '');
         $assign['roles'] = Role::all();
 
         return view('auth::user.create', $assign);
@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         $data = $request->only(['full_name', 'user_name', 'password']);
         $data['password'] = Hash::make($data['password']);
-        $fullName =$data['full_name'];
+        $fullName = $data['full_name'];
 
         /* @var $user User */
         $user = $this->userService->create($data);
@@ -73,7 +73,7 @@ class UserController extends Controller
 //            $password = $data['password'] ?? $this->userService->makePassword();
             $user->assignRole($request->get('role_id'));
 
-            return redirect()->route('cp.users.index')->with('success',$fullName . trans('core::message.notify.create success'));
+            return redirect()->route('cp.users.index')->with('success', $fullName . trans('core::message.notify.create success'));
         }
 
         return redirect()->route('cp.users.index');
@@ -93,7 +93,7 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        Breadcrumb::push(trans('auth::text.auth edit_user'),'');
+        Breadcrumb::push(trans('auth::text.auth edit_user'), '');
         /* @var $assign ['user'] User */
         $assign['user'] = $this->userService->findOr404($id);
 
@@ -103,11 +103,11 @@ class UserController extends Controller
         return view('auth::user.edit', $assign);
     }
 
-    public function update($id, Request $request)
+    public function update($id, UserRequest $request)
     {
         $assign['user'] = $this->userService->findOr404($id);
-        $data = $request->only(['full_name','password']);
-        $fullName =$data['full_name'];
+        $data = $request->only(['full_name', 'user_name', 'password']);
+        $fullName = $data['user_name'];
 
 
         if ($data['password']) {
@@ -138,11 +138,11 @@ class UserController extends Controller
 //        }
         $count = $this->userService->getAll()->count();
 
-        if($count > 1) {
+        if ($count > 1) {
             $assign['user']->delete();
         }
 
 
-        return redirect()->route('cp.users.index')->with('fail',$fullName . trans('core::message.notify.delete success'));
+        return redirect()->route('cp.users.index')->with('fail', $fullName . trans('core::message.notify.delete success'));
     }
 }

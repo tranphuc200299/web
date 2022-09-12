@@ -5,6 +5,9 @@ namespace Modules\Auth\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
+/**
+ * @property mixed user
+ */
 class UserRequest extends FormRequest
 {
     /**
@@ -25,12 +28,12 @@ class UserRequest extends FormRequest
     public function rules()
     {
         $rule['full_name'] = 'required|max:50';
-        $rule['user_name'] = ['required', 'max:50',  Rule::unique('ms_users', 'user_name')->withoutTrashed()];
+        $rule['user_name'] = ['required', 'max:50',  Rule::unique('ms_users', 'user_name')->ignore($this->user)->withoutTrashed()];
         $rule['password'] = 'required|confirmed|min:6';
         $rule['role_id'] = 'required';
 
         if ($this->route('user')) {
-            unset($rule['user_name']);
+//            unset($rule['user_name']);
             unset($rule['password']);
             unset($rule['role_id']);
         }
