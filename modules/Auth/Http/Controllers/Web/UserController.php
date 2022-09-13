@@ -93,7 +93,8 @@ class UserController extends Controller
 
     public function edit($id)
     {
-        Breadcrumb::push(trans('auth::text.auth edit_user'), '');
+        $idLogin = Auth::id();
+        Breadcrumb::push(($idLogin == $id) ?  'プロフィール設定' : 'アカウント編集' , '');
         /* @var $assign ['user'] User */
         $assign['user'] = $this->userService->findOr404($id);
 

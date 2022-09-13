@@ -13,12 +13,12 @@
     <div class="sidebar-menu">
         <!-- BEGIN SIDEBAR MENU ITEMS-->
         <ul class="menu-items">
-            <li class="pin-menu-item">
-                <span class="pin-menu-custom icon-thumbnail" data-toggle-pin="sidebar" id="btnPinMenu">
-                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>
-                </span>
-                <a href="javascript:;" class="menu__sub-item"></a>
-            </li>
+{{--            <li class="pin-menu-item">--}}
+{{--                <span class="pin-menu-custom icon-thumbnail" data-toggle-pin="sidebar" id="btnPinMenu">--}}
+{{--                    <i class="fa fa-thumb-tack" aria-hidden="true"></i>--}}
+{{--                </span>--}}
+{{--                <a href="javascript:;" class="menu__sub-item"></a>--}}
+{{--            </li>--}}
             {{ Menu::renders() }}
             <li>
                 <a href="{{ route('logout') }}" class="menu__sub-item">

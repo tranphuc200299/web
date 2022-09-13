@@ -10,7 +10,7 @@
     <div class="col-lg-1 mr-lg-4">
         <div class="form-group">
             <label for="gender"> {{ trans('log::text.gender') }}</label>
-            <select name="gender" class="form-control color-text" data-toggle="select2-single">
+            <select name="gender" class="form-control color-text" data-toggle="select2-single" data-minimum-results-for-search="Infinity">
                 <option value="">{{trans('log::text.choose gender')}}</option>
                 <option value="Male"
                         class="color-text" {{ request('gender') == 'Male' ? 'selected' : '' }}>{{trans('log::text.gender male')}} </option>

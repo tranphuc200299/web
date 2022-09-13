@@ -215,7 +215,7 @@
                 setTimeout(function () {
                     Swal.fire({
                         type: 'success',
-                        title: 'ファイルが正常に抽出されました。',
+                        text: 'ファイルが正常に抽出されました。',
                         showConfirmButton: false,
                         timer: 2000
                     })

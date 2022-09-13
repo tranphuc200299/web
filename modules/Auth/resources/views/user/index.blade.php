@@ -15,6 +15,19 @@
                         @endcan
                     </div>
                 </div>
+                @if(!empty($users) && count($users) > 0)
+                    <div class="col-xs-12 col-sm-5">
+                        <nav class="mt-3">
+                            @include('core::_pagination.counting', ['paginator' => $users])
+                        </nav>
+                    </div>
+                @else
+                    <div class="col-xs-12 col-sm-12">
+                        <div class="text-center top-20 pull-left">
+                            {{ trans('core::message.paging.No corresponding record') }}
+                        </div>
+                    </div>
+                @endif
                 <div class="table-responsive">
                     <table class="table table-hover ">
                         <thead>
@@ -26,7 +39,7 @@
                                  'user_name' => ['name' => trans('auth::user.user_name')],
                                  'created_at' => ['name' => trans('core::common.created at')],
                                  'updated_at' => ['name' => trans('core::common.updated at')],
-                                 'action' => ['name' => '','style' => "width: 270px"],
+                                 'action' => ['name' =>  trans('core::common.action'),'style' => "width: 270px"],
                                  ],'id', route(Route::currentRouteName()), false)  !!}
                             </tr>
                         </thead>
@@ -67,13 +80,13 @@
                     @if(!empty($users) && count($users) > 0)
                         <div class="col-xs-12 col-sm-5">
                             <nav class="mt-3">
-                                @include('core::_pagination.counting', ['paginator' => $users])
+{{--                                @include('core::_pagination.counting', ['paginator' => $users])--}}
                             </nav>
                         </div>
                     @else
                         <div class="col-xs-12 col-sm-12">
                             <div class="text-center top-20 pull-left">
-                                {{ trans('core::message.paging.No corresponding record') }}
+{{--                                {{ trans('core::message.paging.No corresponding record') }}--}}
                             </div>
                         </div>
                     @endif

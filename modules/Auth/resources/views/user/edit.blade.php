@@ -42,8 +42,7 @@
                             <div class="form-group {{$errors->has('user_name') ? 'has-error' : ''}}">
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12"
-                                           for="name">{{ trans('auth::user.user_name') }}
-                                        ({{ trans('auth::user.login ID') }})<span
+                                           for="name">{{ trans('auth::user.user_name') }}<span
                                                 class="required">*</span>
                                     </label>
                                 </div>
