@@ -130,8 +130,8 @@
                 autoUpdateInput: false,
                 locale: {
                     format: 'HH:mm',
-                    applyLabel: "申し込み",
-                    cancelLabel: "キャンセル",
+                    applyLabel: "選択",
+                    cancelLabel: "クリア",
                 }
             }).on('show.daterangepicker', function (ev, picker) {
                 picker.container.find(".calendar-table").hide();
@@ -169,8 +169,8 @@
                         "十一月",
                         "十二月"
                     ],
-                    applyLabel: "申し込み",
-                    cancelLabel: "キャンセル",
+                    applyLabel: "選択",
+                    cancelLabel: "クリア",
                 }
             });
 
@@ -365,7 +365,7 @@
             setTimeout(function () {
                 Swal.fire({
                     type: 'success',
-                    title: 'ファイルが正常に抽出されました。',
+                    text: 'ファイルが正常に抽出されました。',
                     showConfirmButton: false,
                     timer: 2000
                 })

@@ -18,7 +18,7 @@
     <link href="{{ mix('assets/admin/css/style.css') }}" rel="stylesheet" type="text/css"/>
     @stack('custom-styles')
 </head>
-<body class="fixed-header @if(\Illuminate\Support\Facades\Cookie::get('pin')) menu-pin @endif">
+<body class="fixed-header menu-pin">
 @include('core::_partials.sidebar')
 <div class="page-container ">
     @include('core::_partials.header')

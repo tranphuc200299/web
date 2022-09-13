@@ -20,7 +20,7 @@
                     </span>
                 @endif
             </div>
-            <div class="pull-left p-r-10 fs-14 font-heading d-lg-block d-none">
+            <div class="pull-left p-r-10 fs-16 font-heading d-lg-block d-none">
                 @include('core::_partials.breadcrumbs', ['breadcrumbs' => Breadcrumb::breadcrumbs()])
             </div>
         </div>
