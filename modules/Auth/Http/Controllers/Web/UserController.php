@@ -63,7 +63,7 @@ class UserController extends Controller
     {
         $data = $request->only(['full_name', 'user_name', 'password']);
         $data['password'] = Hash::make($data['password']);
-        $fullName = $data['full_name'];
+        $userName = $data['user_name'];
 
         /* @var $user User */
         $user = $this->userService->create($data);
@@ -73,7 +73,7 @@ class UserController extends Controller
 //            $password = $data['password'] ?? $this->userService->makePassword();
             $user->assignRole($request->get('role_id'));
 
-            return redirect()->route('cp.users.index')->with('success', $fullName . trans('core::message.notify.create success'));
+            return redirect()->route('cp.users.index')->with('success', $userName . trans('core::message.notify.create success'));
         }
 
         return redirect()->route('cp.users.index');
@@ -130,20 +130,17 @@ class UserController extends Controller
 
     public function destroy($id)
     {
-        $assign['user'] = $this->userService->findOr404($id);
-        $fullName = $assign['user']->full_name;
+        $assign['user'] = $this->userService->find($id);
         $assign['user']->loadMissing('roles');
-
-//        if (!in_array(AuthConst::ROLE_SUPER_ADMIN, $assign['user']->roles->pluck('name')->toArray())) {
-//            $assign['user']->delete();
-//        }
-        $count = $this->userService->getAll()->count();
-
-        if ($count > 1) {
-            $assign['user']->delete();
+        if ($assign['user']) {
+            $count = $this->userService->getAll()->count();
+            $fullName = $assign['user']['user_name'];
+            if ($count > 0) {
+                $assign['user']->delete();
+            }
+            return redirect()->back()->with('fail', $fullName . trans('core::message.notify.delete success'));
+        } else {
+            return redirect()->route('cp.users.index')->with('fail',  trans('core::message.notify.delete user_fail'));
         }
-
-
-        return redirect()->route('cp.users.index')->with('fail', $fullName . trans('core::message.notify.delete success'));
     }
 }
