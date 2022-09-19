@@ -115,12 +115,13 @@
                     }
                 });
                 Swal.fire({
-                    text: `${dataId.length}件が選択されています。削除する際にユーザーデータも削除されます。削除してもよろしいですか。。`,
+                    text: `${dataId.length}件が選択されています。削除する際にユーザーデータも削除されます。削除してもよろしいですか。`,
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
                     confirmButtonText: 'はい',
+                    allowOutsideClick: false,
                     cancelButtonText: 'いいえ'
                 }).then((result) => {
                     if (result.value) {
