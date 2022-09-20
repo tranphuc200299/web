@@ -69,8 +69,8 @@
                                 <td class="v-align-middle text-center"><a href="#" class="show-image image-log"
                                                                           data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a>
                                 </td>
-                                <td class="v-align-middle text-center">{{$log->customer->gender ==  'Male' ? '男性' : '女性'}}</td>
-                                <td class="v-align-middle text-center">{{$log->customer->age}}</td>
+                                <td class="v-align-middle text-center">{{$log->gender ==  'Male' ? '男性' : '女性'}}</td>
+                                <td class="v-align-middle text-center">{{$log->age}}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y/m/d') }}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('H:i:s') }}</td>
                                 </td>
@@ -377,10 +377,6 @@
         setTimeout(function () {
             $('.alert-danger').fadeOut(500);
         }, 2000);
-
-        $('.select2-single').on('change', function () {
-
-        })
 
     </script>
 @endpush

@@ -4,6 +4,8 @@ namespace Modules\Log\Services;
 
 use Carbon\Carbon;
 use Core\Services\BaseService;
+use Illuminate\Filesystem\Filesystem;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
@@ -19,34 +21,42 @@ class LogService extends BaseService
         $this->mainRepository = $repository;
     }
 
-    public function getAll($options = [], $limit = AppConst::PAGE_LIMIT_DEFAULT)
+    public function checkDataTime($request) : bool
     {
+        return array_key_exists('start_date', $request);
+    }
 
+    public function getAll($request, $options = [], $limit = AppConst::PAGE_LIMIT_DEFAULT)
+    {
         $options['limit'] = $limit;
         $this->makeBuilder($options);
+        $check = $this->checkDataTime($request->all());
+        $now = Carbon::now();
 
         $this->builder
-            ->when($this->filter->has('start_date'), function ($query) {
-                $query->whereDate('created_at', '>=', $this->filter->get('start_date'));
-            })->when($this->filter->has('end_date'), function ($query) {
-                $query->whereDate('created_at', '<=', $this->filter->get('end_date'));
-            })->when($this->filter->has('start_time'), function ($query) {
-                $query->whereTime('created_at', '>=', $this->filter->get('start_time'));
-            })->when($this->filter->has('end_time'), function ($query) {
-                $query->whereTime('created_at', '<=', $this->filter->get('end_time'));
-            })->whereHas('customer', function ($query) {
-                $query->when($this->filter->has('age_start'), function ($q) {
-                    $q->where('age', '>=', $this->filter->get('age_start'));
-                })->when($this->filter->has('age_end'), function ($q) {
-                    $q->where('age', '<=', $this->filter->get('age_end'));
-                })->when($this->filter->has('gender'), function ($q) {
-                    $q->where('gender', $this->filter->get('gender'));
+            ->when($check === false, function ($q) use ($now) {
+                $q->whereDate('created_at', $now);
+            }, function ($queryDate) {
+                $queryDate->when($this->filter->has('start_date'), function ($query) {
+                    $query->whereDate('created_at', '>=', $this->filter->get('start_date'));
+                })->when($this->filter->has('end_date'), function ($query) {
+                    $query->whereDate('created_at', '<=', $this->filter->get('end_date'));
+                })->when($this->filter->has('start_time'), function ($query) {
+                    $query->whereTime('created_at', '>=', $this->filter->get('start_time'));
+                })->when($this->filter->has('end_time'), function ($query) {
+                    $query->whereTime('created_at', '<=', $this->filter->get('end_time'));
+                })->when($this->filter->has('age_start'), function ($query) {
+                    $query->where('age', '>=', $this->filter->get('age_start'));
+                })->when($this->filter->has('age_end'), function ($query) {
+                    $query->where('age', '<=', $this->filter->get('age_end'));
+                })->when($this->filter->has('gender'), function ($query) {
+                    $query->where('gender', $this->filter->get('gender'));
                 })->when($this->filter->has('id'), function ($q) {
-                    $q->where(function ($queryId) {
-                        $queryId->where('id', 'LIKE', cxl_replaceStringID($this->filter->get('id')) . "%");
-                        $queryId->orWhere('id', 'LIKE', "%" . ($this->filter->get('id')) . "%");
+                        $q->where(function ($queryId) {
+                            $queryId->where('user_id', 'LIKE', cxl_replaceStringID($this->filter->get('id')) . "%");
+                            $queryId->orWhere('user_id', 'LIKE', "%" . ($this->filter->get('id')) . "%");
+                        });
                     });
-                });
             })->orderByDesc('created_at');
 
         $this->cleanFilterBuilder(['id', 'age_start', 'age_end', 'gender']);
@@ -64,9 +74,9 @@ class LogService extends BaseService
         return $this->mainRepository->deleteAll();
     }
 
-    public function export()
+    public function export($request)
     {
-        $logs = $this->getAll(['with_load' => 'customer'], false);
+        $logs = $this->getAll($request,['with_load' => 'customer'], false);
 
         $csv = Writer::createFromFileObject(new \SplTempFileObject);
         $csv->setOutputBOM(Writer::BOM_UTF8);
@@ -98,9 +108,9 @@ class LogService extends BaseService
         $csv->output($fileName);
     }
 
-    public function download()
+    public function download($request): \Illuminate\Http\JsonResponse
     {
-        $logs = $this->getAll([], false);
+        $logs = $this->getAll($request, [], false);
         $now = Carbon::now()->timestamp;
         $imageError = [];
         foreach ($logs as $log) {
@@ -139,5 +149,11 @@ class LogService extends BaseService
     public function getByListId($lisId)
     {
         return $this->mainRepository->getByListId($lisId);
+    }
+
+    public function deleteImages()
+    {
+        $file = new Filesystem;
+        $file->cleanDirectory('storage/app/public/download');
     }
 }
