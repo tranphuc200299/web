@@ -96,8 +96,8 @@ class LogService extends BaseService
                 $k + 1,
                 'ID' . $log->customer->id,
                 env('URL_AI') . $log->face_image_url,
-                $log->customer->gender == 'Male' ? '男性' : '女性',
-                $log->customer->age,
+                $log->gender == 'Male' ? '男性' : '女性',
+                $log->age,
                 Carbon::parse($log->created_at)->format('Y/m/d'),
                 Carbon::parse($log->created_at)->format('H:i:s')
             ]);
