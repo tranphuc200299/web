@@ -69,8 +69,8 @@
                                 <td class="v-align-middle text-center"><a href="#" class="show-image image-log"
                                                                           data-image={{ env('URL_AI') . $log->face_image_url }}>画像閲覧</a>
                                 </td>
-                                <td class="v-align-middle text-center">{{$log->customer->gender ==  'Male' ? '男性' : '女性'}}</td>
-                                <td class="v-align-middle text-center">{{$log->customer->age}}</td>
+                                <td class="v-align-middle text-center">{{$log->gender ==  'Male' ? '男性' : '女性'}}</td>
+                                <td class="v-align-middle text-center">{{$log->age}}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('Y/m/d') }}</td>
                                 <td class="v-align-middle text-center">{{ \Carbon\Carbon::parse($log->created_at)->format('H:i:s') }}</td>
                                 </td>
@@ -212,6 +212,7 @@
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
                     cancelButtonColor: '#d33',
+                    allowOutsideClick: false,
                     confirmButtonText: 'はい',
                     cancelButtonText: 'いいえ'
                 }).then((result) => {
@@ -281,7 +282,7 @@
 
             $(document).on('keypress', '.filter_age', function (event) {
                 if (((event.which != 46 || (event.which == 46 && $(this).val() == '')) ||
-                    $(this).val().indexOf('.') != -1) && (event.which < 48 || event.which > 57)) {
+                    $(this).val().indexOf('.') != -1) && (event.which < 48 && event.which != 13|| event.which > 57)) {
                     event.preventDefault();
                 }
             });
@@ -315,7 +316,7 @@
                 let timerInterval
 
                 $('.show-spin').modal('show');
-                let url  = '{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}';
+                let url = '{{ route('cp.logs.download') . str_replace('/cp/logs', '', request()->getRequestUri()) }}';
                 url = url.replaceAll('&amp;', '&');
 
                 $.ajax({
@@ -325,7 +326,7 @@
                             if (data.image_erorr.length > 0) {
                                 let textHTML = `以下の画像は破壊しているため、ダウンロードできません<br>
                                                 破壊されない他の画像をダウンロードしますか。
-                                                <ul class='error-download'>`;
+                                                <ul class='error-download mt-4'>`;
 
                                 $.each(data.image_erorr, function (index, value) {
                                     textHTML += `<li>${value}</li>`;
@@ -373,7 +374,7 @@
             }, 500);
         });
 
-        setTimeout(function() {
+        setTimeout(function () {
             $('.alert-danger').fadeOut(500);
         }, 2000);
 

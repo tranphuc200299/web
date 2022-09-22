@@ -17,10 +17,13 @@ class LogController extends Controller
 
     }
 
-    public function index()
+    public function index(Request $request)
     {
         Breadcrumb::push(trans('log::text.log management home'), route('cp.logs.index'));
-        $assign['list'] = $this->logService->getAll(['with_load' => 'customer']);
+        $obj = $request->all();
+        $assign['checkDataStart'] = array_key_exists('start_date', $obj);
+        $assign['checkDataEnd'] = array_key_exists('end_date', $obj);
+        $assign['list'] = $this->logService->getAll($request,['with_load' => 'customer'], 20);
 
         if ($assign['list']->currentPage() > $assign['list']->lastPage())
             return redirect()->route('cp.logs.index', ['page' => $assign['list']->lastPage()]);
@@ -49,14 +52,14 @@ class LogController extends Controller
         return redirect()->route('cp.logs.index')->with('fail', trans('core::message.notify.delete success'));
     }
 
-    public function export()
+    public function export(Request $request)
     {
-        $this->logService->export();
+        $this->logService->export($request);
         die;
     }
 
-    public function download()
+    public function download(Request $request)
     {
-        return $this->logService->download();
+        return $this->logService->download($request);
     }
 }

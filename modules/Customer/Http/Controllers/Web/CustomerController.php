@@ -20,7 +20,7 @@ class CustomerController extends Controller
 
     public function index()
     {
-        Breadcrumb::push(trans('customer::text.customer management'), route('cp.customers.index'));
+        Breadcrumb::push(trans('customer::text.customer management_list'), route('cp.customers.index'));
         $assign['list'] = $this->customerService->getAllCustomer([]);
         if ($assign['list']->currentPage() > $assign['list']->lastPage())
             return redirect()->route('cp.customers.index', ['page' => $assign['list']->lastPage()]);

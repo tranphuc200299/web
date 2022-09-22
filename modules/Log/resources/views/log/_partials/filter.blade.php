@@ -40,14 +40,14 @@
                     <div class="input-group-addon-calendar">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input class="form-control date-filter fa fa-calendar data-start color-text"  name="start_date" type="text" value="{{ request('start_date') }}" readonly autocomplete="off">
+                    <input class="form-control date-filter fa fa-calendar data-start color-text"  name="start_date" type="text" value="{{ $checkDataStart ?  request('start_date'): date('Y/m/d')  }}" readonly autocomplete="off">
                 </div>
                 <img src="{{ asset('assets/img/tilde.png') }}" alt="logo" >
                 <div class="col-5 calendar-end">
                     <div class="input-calendar-end">
                         <i class="fa fa-calendar"></i>
                     </div>
-                    <input class="form-control date-filter data-end color-text" name="end_date" type="text" value="{{ request('end_date') }}" readonly autocomplete="off">
+                    <input class="form-control date-filter data-end color-text" name="end_date" type="text" value="{{ $checkDataEnd ? request('end_date') : date('Y/m/d') }}" readonly autocomplete="off">
                 </div>
             </div>
         </div>

@@ -12,4 +12,5 @@ return [
     'image' => '画像',
     'delete' => '削除',
     'customer management' => '乗客集計',
+    'customer management_list' => '乗客集計一覧',
 ];

@@ -28,6 +28,8 @@ class UserController extends Controller
     {
         Breadcrumb::push(trans('auth::text.auth list_user'), route('cp.users.index'));
         $assign['users'] = $this->userService->getAll();
+        if ($assign['users']->currentPage() > $assign['users']->lastPage())
+            return redirect()->route('cp.users.index', ['page' => $assign['users']->lastPage()]);
 
         return view('auth::user.index', $assign);
     }
@@ -131,16 +133,16 @@ class UserController extends Controller
     public function destroy($id)
     {
         $assign['user'] = $this->userService->find($id);
-        $assign['user']->loadMissing('roles');
         if ($assign['user']) {
             $count = $this->userService->getAll()->count();
+            $assign['user']->loadMissing('roles');
             $fullName = $assign['user']['user_name'];
             if ($count > 0) {
                 $assign['user']->delete();
             }
             return redirect()->back()->with('fail', $fullName . trans('core::message.notify.delete success'));
         } else {
-            return redirect()->route('cp.users.index')->with('fail',  trans('core::message.notify.delete user_fail'));
+            return redirect()->back()->with('fail',  trans('core::message.notify.delete user_fail'));
         }
     }
 }
