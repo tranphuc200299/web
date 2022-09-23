@@ -54,7 +54,8 @@ class UserRequest extends FormRequest
     public function messages()
     {
         return [
-            'full_name.max' => 'A title is required',
+            'full_name.max' => '氏名は50文字以下に入力してください。',
+            'user_name.max' => 'ユーザー名は50文字以下に入力してください。',
             'full_name.required' => 'この項目は入力必須です。',
             'user_name.required' => 'この項目は入力必須です。',
             'user_name.unique' => 'ユーザー名は既に存在しています。',
