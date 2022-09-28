@@ -38,7 +38,6 @@
                                 <div class="row">
                                     <label class="control-label col-md-3 col-sm-3 col-xs-12"
                                            for="name">{{ trans('auth::user.user_name') }}
-                                        ({{ trans('auth::user.login ID') }})
                                         <span class="required">*</span>
                                     </label>
                                 </div>
