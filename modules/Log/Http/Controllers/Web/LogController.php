@@ -5,6 +5,7 @@ namespace Modules\Log\Http\Controllers\Web;
 use Core\Facades\Breadcrumb\Breadcrumb;
 use Core\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 use Modules\Log\Services\LogService;
 
 class LogController extends Controller
@@ -36,6 +37,11 @@ class LogController extends Controller
         if ($request->id) {
             $check = $this->logService->getByListId($request->id);
             $this->logService->deleteMultiRecord($request->id);
+            try {
+                $response = Http::get(config('api.url_ai') . 'reload-database' );
+            }catch (\Exception $e) {
+
+            }
             return response()->json([
                 'code' => 200,
                 'message' => (count($check) > 0) ? 'レコードが正常に削除されました。' : 'レコードが削除されました。',
@@ -49,6 +55,11 @@ class LogController extends Controller
     public function deleteAll(Request $request)
     {
         $this->logService->deleteAll();
+        try {
+            $response = Http::get(config('api.url_ai') . 'reload-database' );
+        }catch (\Exception $e) {
+
+        }
         return redirect()->route('cp.logs.index')->with('fail', trans('core::message.notify.delete success'));
     }
 
